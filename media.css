@@ -52,9 +52,97 @@
     .video-box1, .video-box2 {
         width:100%;
     }
+    nav {
+        width: 100%;
+    }
+    .nav-link {
+        width: 100%;
+    }
+    .nav-link {
+        display:flex;
+        gap:10px;
+        z-index: 1000;
+        position: relative;
+    }
 }
 @media (max-width:480px) {
     .intro h1 {
         font-size: 36px;
+    }
+    .card-grid {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .card {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .contact {
+        width: 100vw;
+    }
+    hr {
+        display:none;
+    }
+    .studio-flex {
+        display: flex;
+        flex-direction: column;
+        gap:1px;
+        justify-content:center;
+    }
+    .studio-flex2 {
+        margin-top:2px;
+    }
+    .hero-img {
+        width: 100%;
+    }
+    .service-flex {
+        display: flex;
+        flex-direction: column;
+    }
+    .service1 {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    nav .nav-link{
+         display: none;
+    } 
+    .video-boxes {
+        display: flex;
+        flex-direction: column;
+    }
+    .service {
+        margin-bottom: 400px;
+    }
+    .service, .work ,.studio h1 {
+        text-align: center;
+    }
+    .head-intro {
+        text-align: center;
+    }
+    nav {
+        margin-bottom: 40px;
+    }
+    .video-box1, .video-box2 {
+        width:100%;
+    }
+    nav {
+        width: 100%;
+    }
+    .nav-link {
+        width: 100%;
+    }
+    .nav-link {
+        display:flex;
+        gap:10px;
+        z-index: 1000;
+        position: relative;
     }
 }
