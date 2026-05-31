@@ -103,6 +103,7 @@ nav {
     height: 70px;
     backdrop-filter: blur(10px);
     padding-left: 30px;
+    margin-bottom: 40px;
 }
 
 .nav-link {
