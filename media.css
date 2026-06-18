@@ -64,6 +64,9 @@
         margin-left: auto;
         margin-right: auto;
     }
+    .intro {
+        margin-top: 600px;
+    }
     .card {
         display: flex;
         flex-direction: column;
@@ -111,6 +114,10 @@
     }
 }
 @media (max-width:480px) {
+    nav {
+        margin-bottom: 40px;
+        z-index: 1000;
+    }
     .intro h1 {
         font-size: 36px;
     }
@@ -121,7 +128,9 @@
         margin-left: auto;
         margin-right: auto;
     }
-    
+    .intro {
+        margin-top: 600px;
+    }
     .card {
         display: flex;
         flex-direction: column;
