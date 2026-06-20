@@ -17,11 +17,13 @@
 }
 body {
     background-color:rgb(14, 13, 13);
-    overflow: hidden;
+    overflow-X: hidden;
     font-family: 'Inter', sans-serif;
     color:white;
 }
-
+i:before {
+    content: icon;
+}
 .hero {
     position: relative;
     width: 100%;
@@ -56,7 +58,7 @@ nav {
     top: 0; 
     left: 1;
     right: 1;
-    z-index: 100;
+    z-index: 1000;
     align-items: center;
     width:100%;
     justify-content: space-between;
@@ -116,6 +118,8 @@ nav {
 }
 .hero-first {
     padding: 30px;
+    z-index: 100;
+    position: relative;
 }
 .intro .circle {
     background-color: #10b981;
@@ -175,6 +179,7 @@ nav button:hover {
     font-weight: 800;
     font-family: Space Grotesk, sans-serif;
     margin-top: 30px;
+    z-index: 100;
 }
 .hero-first h1 span {
     background: linear-gradient(45deg, #7f00ff,#ec4899,#7f00ff,#3bdaf6);
@@ -183,7 +188,7 @@ nav button:hover {
     -webkit-text-fill-color: transparent;
 }
 .hero-first .des {
-    max-width: 45rem;
+    max-width: 42rem;
     line-height: 1.525;
     font-weight: 100;
     font-size: 18px;
@@ -192,6 +197,113 @@ nav button:hover {
     margin-top: 20px;
     font-family: 'Plus Jakarta Sans', sans-serif system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color:rgba(255, 255, 255, 0.712); 
+    
     font-weight: 200;
     letter-spacing: 0.13rem;
+}
+.fa-clapperboard:before {
+    content: "\e131";
+}
+::after, ::before {
+    --tw-content: '';
+}
+.text-studio-accent {
+    --tw-text-opacity: 1;
+    color: rgb(139 92 246 / var(--tw-text-opacity, 1));
+}
+.app1 {
+    background-color: #12121499;
+    border: 1px solid #1a1a1e;
+    display: flex;
+    font-size: 13.3px;
+    font-weight: 100;
+    width: 250px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    height: 30px;
+    border-radius: 7px;
+    align-items: center;
+    justify-content: center;
+    color:#d3d3f1;
+    gap:5px;
+}
+.apps {
+    display:grid;
+    grid-template-columns: repeat(2,1fr);
+    margin-top: 30px;
+    max-width:40%;
+    gap:10px;
+}
+.fa-wand-magic-sparkles:before {
+    content: "\e2ca";
+}
+.text-studio-cyan {
+    --tw-text-opacity: 1;
+    color: rgb(6 182 212 / var(--tw-text-opacity, 1));
+}
+.fa-bolt:before, .fa-zap:before {
+    content: "\f0e7";
+}
+.text-studio-neon {
+    --tw-text-opacity: 1;
+    color: rgb(16 185 129 / var(--tw-text-opacity, 1));
+}
+.fa-play:before {
+    content: "\f04b";
+    
+}
+
+.fa-solid, .fas {
+    font-weight: 900;
+}
+.fa-classic, .fa-regular, .fa-solid, .far, .fas {
+    font-family: "Font Awesome 6 Free";
+}
+.ctas {
+    display:flex;
+    margin-top: 20px;
+    gap:20px;
+}
+.cta1 {
+    background: linear-gradient(90deg, #7f00ff,#ec4899);
+    border-radius: 0.75em;
+    border: none;
+    font-weight: 700;
+    color:white;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    gap:0.27rem;
+    display:flex;
+    box-shadow: 0 0  7px #7f00ff;
+    transition: 0.4s;
+}
+.cta1:hover {
+    transform: translateY(-5px);
+}
+.cta2 {
+    background-color: #12121499;
+    border: 1px solid #1a1a1e;
+    border-radius: 0.75em;
+    font-weight: 300;
+    color:white;
+    font-size: 0.99rem;
+    display: flex;
+    align-items: center;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    gap:0.27rem;
+    display:flex;
+}
+.fa-bezier-curve:before {
+    content: "\f55b";
+}
+.text-studio-cyan {
+    --tw-text-opacity: 1;
+    color: rgb(6 182 212 / var(--tw-text-opacity, 1));
 }
