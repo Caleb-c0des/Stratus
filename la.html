@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALEX STERLING | Motion Designer & Video Editor</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        studio: {
+                            950: '#09090b',
+                            900: '#121214',
+                            800: '#1a1a1e',
+                            700: '#26262b',
+                            600: '#3f3f46',
+                            accent: '#8b5cf6', // Electric Purple
+                            cyan: '#06b6d4',   // Cyber Cyan
+                            neon: '#10b981'    // Render Green
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Scrollbar styled like timelines */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #121214;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #26262b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8b5cf6;
+        }
+        
+        .glow-hover:hover {
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+        }
+        .glow-cyan:hover {
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.4);
+        }
+        
+        /* Grid background pattern */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body class="bg-studio-950 text-gray-100 font-sans selection:bg-studio-accent selection:text-white overflow-x-hidden">
+
+    <!-- Header / Navigation Bar -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-studio-950/80 backdrop-blur-md border-b border-studio-800">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="relative w-10 h-10 flex items-center justify-center bg-gradient-to-tr from-studio-accent to-studio-cyan rounded-lg overflow-hidden shadow-lg">
+                    <!-- Dynamic Frame Mark -->
+                    <span class="font-display font-black text-lg tracking-tighter text-white">AS</span>
+                    <div class="absolute inset-0 border-2 border-white/20 rounded-lg group-hover:scale-95 transition-transform"></div>
+                </div>
+                <div>
+                    <span class="font-display font-bold text-lg tracking-wider block leading-none group-hover:text-studio-accent transition-colors">ALEX STERLING</span>
+                    <span class="text-xs text-gray-400 font-mono tracking-widest uppercase">Motion & Editor</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide">
+                <a href="#about" class="text-gray-400 hover:text-white transition-colors">/ABOUT</a>
+                <a href="#reels" class="text-gray-400 hover:text-white transition-colors">/WORK_REELS</a>
+                <a href="#sandbox" class="text-gray-400 hover:text-white transition-colors">/MOTION_SANDBOX</a>
+                <a href="#grading" class="text-gray-400 hover:text-white transition-colors">/COLOR_GRADE</a>
+                <a href="#workflow" class="text-gray-400 hover:text-white transition-colors">/PIPELINE</a>
+            </nav>
+
+            <!-- Action Button -->
+            <div class="hidden md:block">
+                <a href="#contact" class="px-5 py-2.5 rounded-lg border border-studio-accent/40 bg-studio-accent/10 hover:bg-studio-accent text-white font-medium text-sm tracking-wider transition-all duration-300 shadow-[0_0_15px_rgba(139,92,246,0.1)] hover:shadow-[0_0_25px_rgba(139,92,246,0.3)]">
+                    <i class="fa-solid fa-bolt mr-2"></i>START PROJECT
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobileMenuBtn" class="md:hidden text-gray-400 hover:text-white focus:outline-none">
+                <i class="fa-solid fa-bars-staggered text-2xl"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Drawer Navigation -->
+    <div id="mobileDrawer" class="fixed inset-0 z-40 bg-studio-950/98 backdrop-blur-lg transform translate-x-full transition-transform duration-300 md:hidden flex flex-col justify-center items-center space-y-8">
+        <button id="closeMobileMenuBtn" class="absolute top-6 right-6 text-gray-400 hover:text-white text-3xl">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <a href="#about" class="mobile-nav-link text-2xl font-display font-medium text-gray-300 hover:text-studio-accent transition-colors">/ABOUT</a>
+        <a href="#reels" class="mobile-nav-link text-2xl font-display font-medium text-gray-300 hover:text-studio-accent transition-colors">/WORK_REELS</a>
+        <a href="#sandbox" class="mobile-nav-link text-2xl font-display font-medium text-gray-300 hover:text-studio-accent transition-colors">/MOTION_SANDBOX</a>
+        <a href="#grading" class="mobile-nav-link text-2xl font-display font-medium text-gray-300 hover:text-studio-accent transition-colors">/COLOR_GRADE</a>
+        <a href="#workflow" class="mobile-nav-link text-2xl font-display font-medium text-gray-300 hover:text-studio-accent transition-colors">/PIPELINE</a>
+        <a href="#contact" class="mobile-nav-link px-6 py-3 rounded-lg bg-studio-accent hover:bg-studio-accent/80 text-white font-semibold text-lg transition-all">START PROJECT</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center pt-24 overflow-hidden bg-grid">
+        <!-- Interactive Node Canvas Background -->
+        <canvas id="heroCanvas" class="absolute inset-0 w-full h-full pointer-events-auto z-10 opacity-70"></canvas>
+        
+        <!-- Subtle Ambient Vignette -->
+        <div class="absolute inset-0 pointer-events-none bg-gradient-to-t from-studio-950 via-transparent to-studio-950/80 z-20"></div>
+
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-30 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center pointer-events-none">
+            <!-- Left Hero Content -->
+            <div class="lg:col-span-7 flex flex-col justify-center space-y-6 pointer-events-auto">
+                <div class="inline-flex items-center space-x-2 bg-studio-800/80 border border-studio-700 rounded-full px-4 py-1.5 w-fit">
+                    <span class="w-2.5 h-2.5 bg-studio-neon rounded-full animate-pulse"></span>
+                    <span class="text-xs font-mono font-bold uppercase tracking-widest text-studio-neon">SYSTEM ONLINE // ACTIVE FOR HIRE</span>
+                </div>
+
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-display font-extrabold tracking-tight leading-none text-white">
+                    I SHAPE <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-studio-accent via-pink-500 to-studio-cyan">
+                        MOTION & LIGHT
+                    </span>
+                </h1
+                
+                <p class="text-lg text-gray-300 max-w-xl font-light leading-relaxed">
+                    High-end video editor & motion graphics director crafting bespoke brand experiences, title designs, and complex visual effects. Move fast, render faster.
+                </p>
+
+                <!-- Micro Timeline / Tech Specs -->
+                <div class="flex flex-wrap gap-4 text-xs font-mono text-gray-400 py-2">
+                    <div class="bg-studio-900/60 border border-studio-800 rounded px-3 py-2 flex items-center space-x-2">
+                        <i class="fa-solid fa-clapperboard text-studio-accent"></i>
+                        <span>EDITING: PREMIERE & DAVINCI</span>
+                    </div>
+                    <div class="bg-studio-900/60 border border-studio-800 rounded px-3 py-2 flex items-center space-x-2">
+                        <i class="fa-solid fa-wand-magic-sparkles text-studio-cyan"></i>
+                        <span>MOTION: AFTER EFFECTS & C4D</span>
+                    </div>
+                    <div class="bg-studio-900/60 border border-studio-800 rounded px-3 py-2 flex items-center space-x-2">
+                        <i class="fa-solid fa-bolt text-studio-neon"></i>
+                        <span>60FPS RENDER pipeline READY</span>
+                    </div>
+                </div>
+
+                <!-- CTA Actions -->
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <a href="#reels" class="px-8 py-4 rounded-xl bg-gradient-to-r from-studio-accent to-pink-600 hover:opacity-90 font-bold text-white tracking-wider flex items-center space-x-3 shadow-lg shadow-studio-accent/20 transition-all transform hover:-translate-y-0.5">
+                        <i class="fa-solid fa-play"></i>
+                        <span>VIEW REELS</span>
+                    </a>
+                    <a href="#sandbox" class="px-8 py-4 rounded-xl border border-studio-700 bg-studio-900/50 hover:bg-studio-800 hover:border-studio-600 text-gray-200 hover:text-white font-medium tracking-wider flex items-center space-x-2 transition-all">
+                        <i class="fa-solid fa-bezier-curve text-studio-cyan"></i>
+                        <span>EXPERIMENT WITH MOTION</span>
+                    </a>
+                    
+                </div>
+            </div>
+
+            <!-- Right Hero Interactive Overlay (Instruction Tip) -->
+            <div class="lg:col-span-5 hidden lg:flex flex-col justify-end items-end space-y-4 text-right">
+                <div class="bg-studio-900/80 backdrop-blur-sm border border-studio-800 rounded-xl p-6 max-w-sm shadow-2xl relative overflow-hidden group pointer-events-auto">
+                    <!-- Ambient node lines on card -->
+                    <div class="absolute top-0 left-0 w-1.5 h-full bg-studio-accent"></div>
+                    <h3 class="font-display font-semibold text-white flex items-center justify-end space-x-2">
+                        <span>NODE INTERACTION MODE</span>
+                        <i class="fa-solid fa-circle-dot text-studio-accent animate-ping text-xs"></i>
+                    </h3>
+                    <p class="text-xs text-gray-400 mt-2 leading-relaxed">
+                        Drag your mouse across the background grid to dynamically attract composite nodes and physics-based vectors. Experience active visual logic.
+                    </p>
+                    <div class="mt-4 flex items-center justify-end space-x-3 text-xs font-mono text-studio-cyan">
+                        <span>FORCE FIELD: DYNAMIC</span>
+                        <i class="fa-solid fa-arrows-spin animate-spin"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Down Prompt -->
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center space-y-2 pointer-events-none">
+            <span class="text-[10px] font-mono uppercase tracking-widest text-gray-500">TIMELINE START</span>
+            <div class="w-6 h-10 border-2 border-studio-850 rounded-full flex justify-center p-1.5">
+                <div class="w-1.5 h-2.5 bg-studio-accent rounded-full animate-bounce"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="border-y border-studio-850 bg-studio-900/40 relative z-30 backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div class="text-center md:text-left">
+                <p class="text-4xl font-display font-bold text-white">85+</p>
+                <p class="text-xs font-mono uppercase tracking-wider text-gray-400 mt-1">COMPLETED PROJECT REELS</p>
+            </div>
+            <div class="text-center md:text-left">
+                <p class="text-4xl font-display font-bold text-studio-cyan">15M+</p>
+                <p class="text-xs font-mono uppercase tracking-wider text-gray-400 mt-1">ORGANIC VIEW ENGAGEMENT</p>
+            </div>
+            <div class="text-center md:text-left">
+                <p class="text-4xl font-display font-bold text-studio-accent">7+</p>
+                <p class="text-xs font-mono uppercase tracking-wider text-gray-400 mt-1">YEARS OF TIMELINE SCRUBBING</p>
+            </div>
+            <div class="text-center md:text-left">
+                <p class="text-4xl font-display font-bold text-studio-neon">100%</p>
+                <p class="text-xs font-mono uppercase tracking-wider text-gray-400 mt-1">RENDER FIDELITY RATE</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            <!-- Left Info Panel -->
+            <div class="lg:col-span-5 space-y-6">
+                <div class="inline-flex items-center space-x-2 text-studio-accent font-mono text-xs tracking-widest uppercase">
+                    <span class="w-1.5 h-1.5 bg-studio-accent rounded-full"></span>
+                    <span>METADATA // BIO</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-display font-bold text-white">
+                    Fusing editorial precision with creative dynamics.
+                </h2>
+                <p class="text-gray-300 leading-relaxed font-light">
+                    My workspace is where rhythm meets physics. I believe every cut should feel inevitable and every frame of keyframed animation must respect physical weight, inertia, and visual direction.
+                </p>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    Whether you are an agencies launching highly stylized commercials, game studios deploying cinematic game trailers, or brands building immersive UX animations, I craft tailor-made aesthetics to capture absolute attention.
+                </p>
+
+                <!-- Software & Tool Stack Grid -->
+                <div class="space-y-3 pt-4">
+                    <span class="text-xs font-mono text-gray-500 uppercase tracking-widest block">CORE STACK SUITE</span>
+                    <div class="grid grid-cols-3 gap-2">
+                        <div class="bg-studio-900 border border-studio-800 p-3 rounded-lg text-center flex flex-col items-center justify-center space-y-1 hover:border-studio-accent/40 transition-colors">
+                            <i class="fa-solid fa-bezier-curve text-studio-accent text-lg"></i>
+                            <span class="text-[10px] font-mono text-white tracking-tight">After Effects</span>
+                        </div>
+                        <div class="bg-studio-900 border border-studio-800 p-3 rounded-lg text-center flex flex-col items-center justify-center space-y-1 hover:border-studio-cyan/40 transition-colors">
+                            <i class="fa-solid fa-film text-studio-cyan text-lg"></i>
+                            <span class="text-[10px] font-mono text-white tracking-tight">Premiere Pro</span>
+                        </div>
+                        <div class="bg-studio-900 border border-studio-800 p-3 rounded-lg text-center flex flex-col items-center justify-center space-y-1 hover:border-studio-neon/40 transition-colors">
+                            <i class="fa-solid fa-sliders text-studio-neon text-lg"></i>
+                            <span class="text-[10px] font-mono text-white tracking-tight">DaVinci Resolve</span>
+                        </div>
+                        <div class="bg-studio-900 border border-studio-800 p-3 rounded-lg text-center flex flex-col items-center justify-center space-y-1 hover:border-studio-accent/40 transition-colors">
+                            <i class="fa-solid fa-cube text-purple-400 text-lg"></i>
+                            <span class="text-[10px] font-mono text-white tracking-tight">Cinema 4D</span>
+                        </div>
+                        <div class="bg-studio-900 border border-studio-800 p-3 rounded-lg text-center flex flex-col items-center justify-center space-y-1 hover:border-studio-cyan/40 transition-colors">
+                            <i class="fa-solid fa-shapes text-teal-400 text-lg"></i>
+                            <span class="text-[10px] font-mono text-white tracking-tight">Blender 3D</span>
+                        </div>
+                        <div class="bg-studio-900 border border-studio-800 p-3 rounded-lg text-center flex flex-col items-center justify-center space-y-1 hover:border-studio-neon/40 transition-colors">
+                            <i class="fa-solid fa-wave-square text-emerald-400 text-lg"></i>
+                            <span class="text-[10px] font-mono text-white tracking-tight">Audition</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Interactive Graphic Component (Interactive Node Workspace) -->
+            <div class="lg:col-span-7 bg-studio-900 border border-studio-800 rounded-2xl overflow-hidden shadow-2xl relative">
+                <!-- Suite Header Bar -->
+                <div class="bg-studio-950 px-4 py-3 border-b border-studio-800 flex items-center justify-between">
+                    <div class="flex items-center space-x-2">
+                        <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+                        <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+                        <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
+                        <span class="text-xs font-mono text-gray-400 ml-4">COMP_SUITE_VIEW_1_LOG.TXT</span>
+                    </div>
+                    <span class="text-[10px] font-mono bg-studio-800 text-gray-300 px-2 py-0.5 rounded uppercase">ACTIVE MONITOR</span>
+                </div>
+
+                <div class="p-6 space-y-6">
+                    <h3 class="font-display font-semibold text-lg text-white">Dynamic Workflow & Rendering Competency</h3>
+                    
+                    <!-- Progress Bar 1 -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-xs font-mono">
+                            <span class="text-gray-300">Motion Graphics & Kinetic Layouts</span>
+                            <span class="text-studio-accent font-bold">95% (Expert)</span>
+                        </div>
+                        <div class="h-2 bg-studio-950 rounded-full overflow-hidden p-0.5">
+                            <div class="h-full bg-gradient-to-r from-studio-accent to-pink-500 rounded-full transition-all duration-1000" style="width: 95%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Progress Bar 2 -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-xs font-mono">
+                            <span class="text-gray-300">Commercial & Narrative Editing</span>
+                            <span class="text-studio-cyan font-bold">90% (Lead-Level)</span>
+                        </div>
+                        <div class="h-2 bg-studio-950 rounded-full overflow-hidden p-0.5">
+                            <div class="h-full bg-gradient-to-r from-studio-cyan to-blue-500 rounded-full transition-all duration-1000" style="width: 90%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Progress Bar 3 -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-xs font-mono">
+                            <span class="text-gray-300">Color Correction, Grading & LUTS</span>
+                            <span class="text-studio-neon font-bold">88% (DaVinci Standard)</span>
+                        </div>
+                        <div class="h-2 bg-studio-950 rounded-full overflow-hidden p-0.5">
+                            <div class="h-full bg-gradient-to-r from-studio-neon to-green-500 rounded-full transition-all duration-1000" style="width: 88%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Progress Bar 4 -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-xs font-mono">
+                            <span class="text-gray-300">VFX Compositing & Layer Masking</span>
+                            <span class="text-purple-400 font-bold">82% (High Integration)</span>
+                        </div>
+                        <div class="h-2 bg-studio-950 rounded-full overflow-hidden p-0.5">
+                            <div class="h-full bg-gradient-to-r from-purple-500 to-pink-600 rounded-full transition-all duration-1000" style="width: 82%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Keyframe Quote / Philosophy -->
+                    <div class="bg-studio-950 border border-studio-850 p-4 rounded-lg flex items-start space-x-3">
+                        <i class="fa-solid fa-quote-left text-studio-accent text-xl mt-1"></i>
+                        <p class="text-xs text-gray-400 italic leading-relaxed">
+                            "Perfect motion is rarely linear. It's the micro-adjustments in temporal and spatial bezier curves that make viewers subconsciously feel the physical reality of abstract digital design."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Reels Showcase (Interactive Canvas Projects) -->
+    <section id="reels" class="py-24 border-t border-studio-900 bg-studio-900/10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
+                <div class="space-y-3">
+                    <div class="inline-flex items-center space-x-2 text-studio-cyan font-mono text-xs tracking-widest uppercase">
+                        <span class="w-1.5 h-1.5 bg-studio-cyan rounded-full"></span>
+                        <span>INTERACTIVE WORK SHOWROOM</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-display font-bold text-white">Featured Project Reels</h2>
+                </div>
+                <p class="text-gray-400 max-w-md text-sm mt-4 md:mt-0 font-light leading-relaxed">
+                    Experience custom visual simulations built directly into this portfolio. Click inside each terminal to inspect the active motion system.
+                </p>
+            </div>
+
+            <!-- Project Reel Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Reel Card 1: Cyberpunk Glitch -->
+                <div class="bg-studio-900 border border-studio-800 rounded-2xl overflow-hidden group hover:border-studio-accent/40 transition-all duration-300 flex flex-col">
+                    <div class="bg-studio-950 px-4 py-3 border-b border-studio-800 flex justify-between items-center text-xs font-mono">
+                        <span class="text-pink-500"><i class="fa-solid fa-triangle-exclamation mr-1.5"></i>PROJECT_01 // CYBER GLITCH</span>
+                        <span class="text-gray-500">60 FPS</span>
+                    </div>
+                    <!-- Live Glitch Interactive Canvas -->
+                    <div class="relative h-64 bg-black flex items-center justify-center overflow-hidden cursor-pointer" onclick="triggerGlitch()">
+                        <canvas id="glitchCanvas" class="absolute inset-0 w-full h-full"></canvas>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none"></div>
+                        <!-- Play Indicator Overlay -->
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-xs">
+                            <div class="w-14 h-14 rounded-full bg-studio-accent/80 border border-white/20 flex items-center justify-center text-white text-lg shadow-xl shadow-studio-accent/30 transform scale-90 group-hover:scale-100 transition-transform">
+                                <i class="fa-solid fa-bolt animate-pulse"></i>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-4 left-4 z-10">
+                            <span class="px-2 py-1 bg-black/80 rounded border border-studio-800 text-[10px] font-mono tracking-widest text-white uppercase">
+                                <i class="fa-solid fa-mouse-pointer mr-1"></i> CLICK TO FORCE GLITCH
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <h3 class="font-display font-bold text-xl text-white group-hover:text-studio-accent transition-colors">Neo-Tokyo Cinematic Opener</h3>
+                            <p class="text-sm text-gray-400 mt-2 font-light">
+                                Fast-paced glitch aesthetic constructed with procedural noise maps, automated split-chromatic aberration, and high-frequency framing.
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-2 text-[10px] font-mono text-gray-400">
+                            <span class="bg-studio-950 px-2.5 py-1 rounded">VFX</span>
+                            <span class="bg-studio-950 px-2.5 py-1 rounded">CHROMATIC SPLIT</span>
+                            <span class="bg-studio-950 px-2.5 py-1 rounded">SOUND DESIGN</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reel Card 2: Kinetic Typography -->
+                <div class="bg-studio-900 border border-studio-800 rounded-2xl overflow-hidden group hover:border-studio-cyan/40 transition-all duration-300 flex flex-col">
+                    <div class="bg-studio-950 px-4 py-3 border-b border-studio-800 flex justify-between items-center text-xs font-mono">
+                        <span class="text-studio-cyan"><i class="fa-solid fa-text-width mr-1.5"></i>PROJECT_02 // KINETIC_TYPE</span>
+                        <span class="text-gray-500">HTML_CANVAS</span>
+                    </div>
+                    <!-- Live Kinetic Typography Canvas -->
+                    <div class="relative h-64 bg-zinc-950 flex items-center justify-center overflow-hidden cursor-crosshair">
+                        <canvas id="kineticCanvas" class="absolute inset-0 w-full h-full"></canvas>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none"></div>
+                        <div class="absolute top-4 right-4 z-10 bg-studio-900/90 px-3 py-1.5 rounded border border-studio-800 text-[10px] font-mono text-studio-cyan">
+                            Interactive Dynamic Speed
+                        </div>
+                        <div class="absolute bottom-4 left-4 z-10">
+                            <span class="px-2 py-1 bg-black/80 rounded border border-studio-800 text-[10px] font-mono tracking-widest text-white uppercase">
+                                <i class="fa-solid fa-arrows-left-right-to-line mr-1"></i> WAVE MOUSE OVER CANVAS
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <h3 class="font-display font-bold text-xl text-white group-hover:text-studio-cyan transition-colors">Bold Identity Typography Rig</h3>
+                            <p class="text-sm text-gray-400 mt-2 font-light">
+                                Dynamic typography system crafted for modern brand launches, incorporating reactive cursor fields, spatial distortion, and fluid delays.
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-2 text-[10px] font-mono text-gray-400">
+                            <span class="bg-studio-950 px-2.5 py-1 rounded">KINETIC TYPE</span>
+                            <span class="bg-studio-950 px-2.5 py-1 rounded">EXPRESSIONS RIGGING</span>
+                            <span class="bg-studio-950 px-2.5 py-1 rounded">VECTOR MATH</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reel Card 3: Abstract Fluid Particles -->
+                <div class="bg-studio-900 border border-studio-800 rounded-2xl overflow-hidden group hover:border-studio-neon/40 transition-all duration-300 flex flex-col">
+                    <div class="bg-studio-950 px-4 py-3 border-b border-studio-800 flex justify-between items-center text-xs font-mono">
+                        <span class="text-studio-neon"><i class="fa-solid fa-atom mr-1.5"></i>PROJECT_03 // PARTICLE_FIELD</span>
+                        <span class="text-gray-500">PHYSICS_SIM</span>
+                    </div>
+                    <!-- Live Dynamic Fluid Particles Canvas -->
+                    <div class="relative h-64 bg-zinc-950 flex items-center justify-center overflow-hidden cursor-pointer" onclick="scrambleFluid()">
+                        <canvas id="fluidCanvas" class="absolute inset-0 w-full h-full"></canvas>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none"></div>
+                        <div class="absolute bottom-4 left-4 z-10">
+                            <span class="px-2 py-1 bg-black/80 rounded border border-studio-800 text-[10px] font-mono tracking-widest text-white uppercase">
+                                <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> CLICK TO IMPACT GRAVITY
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <h3 class="font-display font-bold text-xl text-white group-hover:text-studio-neon transition-colors">Abstract Flow Field Simulation</h3>
+                            <p class="text-sm text-gray-400 mt-2 font-light">
+                                Highly complex mathematical noise-field simulation demonstrating 3D displacement, dynamic light physics, and fluid-like particle mechanics.
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-2 text-[10px] font-mono text-gray-400">
+                            <span class="bg-studio-950 px-2.5 py-1 rounded">FLOW FIELD</span>
+                            <span class="bg-studio-950 px-2.5 py-1 rounded">3D DISPLACEMENT</span>
+                            <span class="bg-studio-950 px-2.5 py-1 rounded">FRACTAL NOISE</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reel Card 4: HUD Command Console -->
+                <div class="bg-studio-900 border border-studio-800 rounded-2xl overflow-hidden group hover:border-studio-cyan/40 transition-all duration-300 flex flex-col">
+                    <div class="bg-studio-950 px-4 py-3 border-b border-studio-800 flex justify-between items-center text-xs font-mono">
+                        <span class="text-yellow-500"><i class="fa-solid fa-gauge mr-1.5"></i>PROJECT_04 // HUD_INTERFACE</span>
+                        <span class="text-gray-500">VECTOR_UI</span>
+                    </div>
+                    <!-- Live Interactive Sci-Fi HUD Canvas -->
+                    <div class="relative h-64 bg-slate-950 flex items-center justify-center overflow-hidden cursor-pointer" onclick="rebootHud()">
+                        <canvas id="hudCanvas" class="absolute inset-0 w-full h-full"></canvas>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none"></div>
+                        <div class="absolute bottom-4 left-4 z-10">
+                            <span class="px-2 py-1 bg-black/80 rounded border border-studio-800 text-[10px] font-mono tracking-widest text-white uppercase">
+                                <i class="fa-solid fa-rotate-left mr-1"></i> CLICK TO REBOOT DIAGNOSTICS
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <h3 class="font-display font-bold text-xl text-white group-hover:text-studio-cyan transition-colors">Sci-Fi Interactive Target UI</h3>
+                            <p class="text-sm text-gray-400 mt-2 font-light">
+                                Intricate Fictional User Interface (FUI) engineered for cinematic gaming environments, HUD tracking overlays, and futuristic telemetry graphics.
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-2 text-[10px] font-mono text-gray-400">
+                            <span class="bg-studio-950 px-2.5 py-1 rounded">HUD</span>
+                            <span class="bg-studio-950 px-2.5 py-1 rounded">VECTOR PATHS</span>
+                            <span class="bg-studio-950 px-2.5 py-1 rounded">UI GRAPHICS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Motion & Easing Sandbox -->
+    <section id="sandbox" class="py-24 border-t border-studio-900 bg-studio-950 relative overflow-hidden bg-grid">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="max-w-3xl space-y-3 mb-12">
+                <div class="inline-flex items-center space-x-2 text-studio-accent font-mono text-xs tracking-widest uppercase">
+                    <span class="w-1.5 h-1.5 bg-studio-accent rounded-full"></span>
+                    <span>EDUCATION & TINKERING SUITE</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-display font-bold text-white">The Keyframe & Easing Sandbox</h2>
+                <p class="text-gray-300 font-light text-sm sm:text-base leading-relaxed">
+                    Motion design is defined by spacing and pacing. Select an animation easing curve below, hit <strong class="text-studio-accent">"EXECUTE KEYFRAMES"</strong>, and analyze how curves translate to dynamic real-time motion.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Control Panel & Curve Selection (Left) -->
+                <div class="lg:col-span-5 bg-studio-900 border border-studio-800 rounded-2xl p-6 flex flex-col justify-between space-y-6">
+                    <div class="space-y-4">
+                        <span class="text-xs font-mono text-gray-400 uppercase tracking-widest block">1. SELECT EASING ARCHITECTURE</span>
+                        
+                        <div class="space-y-2" id="easingSelectorGroup">
+                            <button onclick="setEasing('linear')" class="w-full text-left p-3.5 rounded-lg border border-studio-800 bg-studio-950 flex items-center justify-between group transition-all" id="btn-linear">
+                                <span class="text-sm font-mono text-gray-300 font-medium group-hover:text-white transition-colors">Linear Easing</span>
+                                <span class="text-xs font-mono text-gray-500">t_curve_01</span>
+                            </button>
+                            <button onclick="setEasing('easeInOut')" class="w-full text-left p-3.5 rounded-lg border border-studio-accent/40 bg-studio-accent/5 flex items-center justify-between group transition-all" id="btn-easeInOut">
+                                <span class="text-sm font-mono text-studio-accent font-medium transition-colors">Ease In-Out (Smooth)</span>
+                                <span class="text-xs font-mono text-studio-accent/70">t_curve_02</span>
+                            </button>
+                            <button onclick="setEasing('elastic')" class="w-full text-left p-3.5 rounded-lg border border-studio-800 bg-studio-950 flex items-center justify-between group transition-all" id="btn-elastic">
+                                <span class="text-sm font-mono text-gray-300 font-medium group-hover:text-white transition-colors">Elastic Springs</span>
+                                <span class="text-xs font-mono text-gray-500">t_curve_03</span>
+                            </button>
+                            <button onclick="setEasing('bounce')" class="w-full text-left p-3.5 rounded-lg border border-studio-800 bg-studio-950 flex items-center justify-between group transition-all" id="btn-bounce">
+                                <span class="text-sm font-mono text-gray-300 font-medium group-hover:text-white transition-colors">Gravity Bounce</span>
+                                <span class="text-xs font-mono text-gray-500">t_curve_04</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Sandbox Stats -->
+                    <div class="bg-studio-950 border border-studio-850 rounded-xl p-4 space-y-2 font-mono text-xs text-gray-400">
+                        <div class="flex justify-between">
+                            <span>TIMELINE FRAME DUR:</span>
+                            <span class="text-white">60 frames / 1000ms</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>CURRENT ALGORITHM:</span>
+                            <span class="text-studio-cyan" id="txt-algo">ease-in-out-cubic</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>VELOCITY DISPLACEMENT:</span>
+                            <span class="text-studio-neon" id="txt-displacement">Variable</span>
+                        </div>
+                    </div>
+
+                    <!-- Execute Trigger -->
+                    <button onclick="playSandboxAnimation()" class="w-full py-4 rounded-xl bg-gradient-to-r from-studio-accent to-pink-500 text-white font-display font-bold uppercase tracking-wider hover:opacity-90 shadow-lg shadow-studio-accent/20 transition-all flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-play text-sm"></i>
+                        <span>EXECUTE KEYFRAMES</span>
+                    </button>
+                </div>
+
+                <!-- Live Playground Display (Right) -->
+                <div class="lg:col-span-7 bg-studio-900 border border-studio-800 rounded-2xl flex flex-col overflow-hidden">
+                    <!-- Studio Top Header -->
+                    <div class="bg-studio-950 px-4 py-3 border-b border-studio-800 flex justify-between items-center text-xs font-mono">
+                        <span class="text-gray-400"><i class="fa-solid fa-bezier-curve text-studio-accent mr-1.5"></i>PREVIEW RENDER VIEW</span>
+                        <span class="text-studio-neon" id="sandboxTimer">TIME: 0.00s</span>
+                    </div>
+
+                    <!-- Live Animation Track -->
+                    <div class="relative flex-1 min-h-[220px] bg-studio-950 border-b border-studio-850 p-8 flex flex-col justify-center space-y-12">
+                        <!-- Object 1 Track -->
+                        <div class="relative h-12 bg-studio-900/60 border border-studio-850 rounded-lg flex items-center px-4 overflow-hidden">
+                            <span class="absolute left-4 top-2 text-[8px] font-mono text-gray-500 tracking-wider">TRACK A: VECTOR PATH</span>
+                            <!-- Animated Object -->
+                            <div id="sandboxTargetCircle" class="absolute left-4 w-8 h-8 rounded-lg bg-gradient-to-tr from-studio-accent to-pink-500 flex items-center justify-center text-white text-xs font-black shadow-lg shadow-studio-accent/30" style="left: 10px;">
+                                <i class="fa-solid fa-compact-disc animate-spin"></i>
+                            </div>
+                        </div>
+
+                        <!-- Track B Description -->
+                        <div class="relative h-12 bg-studio-900/60 border border-studio-850 rounded-lg flex items-center px-4 overflow-hidden">
+                            <span class="absolute left-4 top-2 text-[8px] font-mono text-gray-500 tracking-wider">TRACK B: VELOCITY FORCE</span>
+                            <!-- Second Object (Trailing) -->
+                            <div id="sandboxTargetTriangle" class="absolute left-4 w-8 h-8 rounded-full bg-studio-cyan flex items-center justify-center text-white text-xs font-bold shadow-lg shadow-studio-cyan/30" style="left: 10px;">
+                                <i class="fa-solid fa-circle-nodes"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Velocity Curve Chart Renderer -->
+                    <div class="bg-studio-950 p-6 flex flex-col space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-mono text-gray-400">VELOCITY VALUE OVER TIMELINE</span>
+                            <div class="flex space-x-4 text-[10px] font-mono">
+                                <span class="flex items-center space-x-1.5 text-studio-accent">
+                                    <span class="w-2 h-2 rounded bg-studio-accent"></span>
+                                    <span>Track A</span>
+                                </span>
+                                <span class="flex items-center space-x-1.5 text-studio-cyan">
+                                    <span class="w-2 h-2 rounded bg-studio-cyan"></span>
+                                    <span>Track B</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="h-28 bg-studio-900/80 rounded-lg border border-studio-800 overflow-hidden relative">
+                            <!-- Draw Curve dynamically with SVG -->
+                            <svg class="absolute inset-0 w-full h-full" id="curveSvg">
+                                <path d="" fill="none" stroke="#8b5cf6" stroke-width="2.5" id="svgPathAccent" />
+                                <path d="" fill="none" stroke="#06b6d4" stroke-width="1.5" stroke-dasharray="4,4" id="svgPathCyan" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Color Grading Interactive Suite -->
+    <section id="grading" class="py-24 border-y border-studio-900 bg-studio-900/10 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="max-w-3xl space-y-3 mb-12">
+                <div class="inline-flex items-center space-x-2 text-studio-neon font-mono text-xs tracking-widest uppercase">
+                    <span class="w-1.5 h-1.5 bg-studio-neon rounded-full"></span>
+                    <span>DA_VINCI_GRADER</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-display font-bold text-white">Cinematic Color Correction</h2>
+                <p class="text-gray-300 font-light text-sm sm:text-base leading-relaxed">
+                    Color sets the mood of a story. Use the Lift, Gamma, and Gain sliders on the dashboard to grade the image in real-time. Witness standard rec709 transform into high-end dramatic sci-fi grading.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <!-- Live Cinematic Frame Rendering -->
+                <div class="lg:col-span-7 bg-studio-900 border border-studio-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col">
+                    <div class="bg-studio-950 px-4 py-3 border-b border-studio-800 flex justify-between items-center text-xs font-mono">
+                        <span class="text-studio-neon"><i class="fa-solid fa-eye mr-1.5"></i>MONITOR_VIEW_LUT_RENDER</span>
+                        <span id="txt-active-lut" class="text-studio-cyan">CUSTOM LUT</span>
+                    </div>
+                    
+                    <!-- Color Grading Image Container (Utilizes SVG and CSS filters) -->
+                    <div class="relative h-[320px] bg-neutral-900 overflow-hidden flex items-center justify-center">
+                        <!-- Custom rendered background representing a highly stylized cinematic composition -->
+                        <div id="cinematicScene" class="w-full h-full relative transition-all duration-300" style="filter: brightness(1) contrast(1) saturate(1) hue-rotate(0deg);">
+                            <!-- Pure Code Art for Cinema Scene (to guarantee beautiful, non-broken look) -->
+                            <div class="absolute inset-0 bg-gradient-to-tr from-slate-950 via-zinc-900 to-indigo-950"></div>
+                            
+                            <!-- Neon City Scape representation -->
+                            <div class="absolute bottom-0 left-0 w-full h-3/4 flex items-end justify-between px-12 pb-6 space-x-4 opacity-75">
+                                <div class="w-20 bg-slate-900 border-t-2 border-cyan-500 rounded-t-lg shadow-[0_0_20px_rgba(6,182,212,0.5)]" style="height: 70%;"></div>
+                                <div class="w-28 bg-zinc-900 border-t-2 border-purple-500 rounded-t-lg shadow-[0_0_20px_rgba(139,92,246,0.5)]" style="height: 85%;"></div>
+                                <div class="w-16 bg-slate-900 border-t-2 border-emerald-500 rounded-t-lg shadow-[0_0_20px_rgba(16,185,129,0.5)]" style="height: 50%;"></div>
+                                <div class="w-32 bg-zinc-900 border-t-2 border-pink-500 rounded-t-lg shadow-[0_0_20px_rgba(236,72,153,0.5)]" style="height: 95%;"></div>
+                            </div>
+
+                            <!-- Abstract Neon Floating Sphere / SciFi Object -->
+                            <div class="absolute top-12 left-1/3 w-32 h-32 rounded-full bg-gradient-to-tr from-violet-600 via-pink-500 to-amber-400 blur-xs shadow-[0_0_50px_rgba(139,92,246,0.7)] animate-pulse flex items-center justify-center">
+                                <div class="w-24 h-24 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center">
+                                    <i class="fa-solid fa-film text-white text-3xl"></i>
+                                </div>
+                            </div>
+
+                            <!-- Grid Lines representing scanline overlay -->
+                            <div class="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[size:100%_4px,3px_100%] pointer-events-none"></div>
+
+                            <!-- Color Grading Mask Divider Overlay -->
+                            <div class="absolute inset-y-0 right-0 w-1/2 border-l border-white/20 bg-white/2 backdrop-blur-xs flex items-center px-4 pointer-events-none">
+                                <span class="text-[9px] font-mono tracking-widest text-white/40 uppercase rotate-90 origin-left">GRADED SPECTRUM</span>
+                            </div>
+                        </div>
+
+                        <!-- Reset grading button -->
+                        <button onclick="resetGrading()" class="absolute bottom-4 right-4 bg-black/80 hover:bg-black border border-studio-800 text-white font-mono text-[10px] px-3 py-1.5 rounded transition-all">
+                            <i class="fa-solid fa-arrow-rotate-left mr-1"></i> RESET TO REC709
+                        </button>
+                    </div>
+
+                    <!-- Grading Presets -->
+                    <div class="bg-studio-950 p-4 border-t border-studio-800 grid grid-cols-4 gap-2 text-center text-[11px] font-mono">
+                        <button onclick="applyLUT('neonCyber')" class="p-2.5 rounded bg-studio-900 border border-studio-800 hover:border-studio-accent text-gray-300 hover:text-white transition-all">Cyber Neon</button>
+                        <button onclick="applyLUT('classicTeal')" class="p-2.5 rounded bg-studio-900 border border-studio-800 hover:border-studio-cyan text-gray-300 hover:text-white transition-all">Teal & Orange</button>
+                        <button onclick="applyLUT('vintageNoir')" class="p-2.5 rounded bg-studio-900 border border-studio-800 hover:border-white text-gray-300 hover:text-white transition-all">Vintage Noir</button>
+                        <button onclick="applyLUT('rawLog')" class="p-2.5 rounded bg-studio-900 border border-studio-800 hover:border-yellow-500 text-gray-300 hover:text-white transition-all">Flat Log (Raw)</button>
+                    </div>
+                </div>
+
+                <!-- Grading Sliders (Right) -->
+                <div class="lg:col-span-5 bg-studio-900 border border-studio-800 rounded-2xl p-6 space-y-6">
+                    <span class="text-xs font-mono text-gray-400 uppercase tracking-widest block">CONTROL DESK SLIDERS</span>
+                    
+                    <!-- Lift (Brightness) -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center text-xs font-mono">
+                            <span class="text-gray-300">LIFT (Blacks / Brightness)</span>
+                            <span id="txt-lift-val" class="text-studio-accent font-bold">1.0x</span>
+                        </div>
+                        <input type="range" id="slider-lift" min="0.5" max="1.5" step="0.05" value="1.0" oninput="updateGrading()" class="w-full accent-studio-accent bg-studio-950 h-1.5 rounded-lg appearance-none cursor-pointer">
+                    </div>
+
+                    <!-- Gamma (Midtones / Contrast) -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center text-xs font-mono">
+                            <span class="text-gray-300">GAMMA (Midtones / Contrast)</span>
+                            <span id="txt-gamma-val" class="text-studio-cyan font-bold">1.0x</span>
+                        </div>
+                        <input type="range" id="slider-gamma" min="0.5" max="1.5" step="0.05" value="1.0" oninput="updateGrading()" class="w-full accent-studio-cyan bg-studio-950 h-1.5 rounded-lg appearance-none cursor-pointer">
+                    </div>
+
+                    <!-- Gain (Highlights / Saturation) -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center text-xs font-mono">
+                            <span class="text-gray-300">GAIN (Highlights / Color Sat)</span>
+                            <span id="txt-gain-val" class="text-studio-neon font-bold">1.0x</span>
+                        </div>
+                        <input type="range" id="slider-gain" min="0.1" max="2.0" step="0.05" value="1.0" oninput="updateGrading()" class="w-full accent-studio-neon bg-studio-950 h-1.5 rounded-lg appearance-none cursor-pointer">
+                    </div>
+
+                    <!-- Hue Rotation -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center text-xs font-mono">
+                            <span class="text-gray-300">HUE SPECTRUM OFFSET</span>
+                            <span id="txt-hue-val" class="text-yellow-500 font-bold">0 deg</span>
+                        </div>
+                        <input type="range" id="slider-hue" min="0" max="360" step="10" value="0" oninput="updateGrading()" class="w-full accent-yellow-500 bg-studio-950 h-1.5 rounded-lg appearance-none cursor-pointer">
+                    </div>
+
+                    <div class="bg-studio-950 p-4 rounded-xl border border-studio-850 flex items-center space-x-3 text-xs font-mono text-gray-400">
+                        <i class="fa-solid fa-circle-info text-studio-cyan text-lg"></i>
+                        <p class="leading-relaxed">
+                            CSS engine uses dynamic compositing filters to render 32-bit floating point grading directly onto browser layers in 1ms.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Workflow & Pipeline -->
+    <section id="workflow" class="py-24 border-t border-studio-900 bg-studio-950 relative overflow-hidden bg-grid">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="max-w-3xl space-y-3 mb-16">
+                <div class="inline-flex items-center space-x-2 text-studio-accent font-mono text-xs tracking-widest uppercase">
+                    <span class="w-1.5 h-1.5 bg-studio-accent rounded-full"></span>
+                    <span>PRODUCTION PHASE ARCHITECTURE</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-display font-bold text-white">The Creative Post-Pipeline</h2>
+                <p class="text-gray-300 font-light text-sm sm:text-base leading-relaxed">
+                    How visual chaos converts into a polished master render. A detailed view of my collaborative design cycle.
+                </p>
+            </div>
+
+            <!-- Pipeline Roadmap Steps -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Step 1 -->
+                <div class="bg-studio-900 border border-studio-800 rounded-2xl p-8 space-y-4 group hover:border-studio-accent/40 transition-all duration-300 relative">
+                    <div class="absolute -top-6 left-8 w-12 h-12 rounded-xl bg-studio-950 border border-studio-800 flex items-center justify-center font-display font-bold text-lg text-studio-accent group-hover:bg-studio-accent group-hover:text-white transition-colors shadow-lg">
+                        01
+                    </div>
+                    <div class="pt-4">
+                        <h3 class="font-display font-bold text-lg text-white">Pre-Production & Moodboards</h3>
+                        <p class="text-sm text-gray-400 mt-2 leading-relaxed">
+                            Establishing kinetic pacing, storyboards, stylistic typography palettes, and asset-gathering parameters before opening timelines.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-studio-900 border border-studio-800 rounded-2xl p-8 space-y-4 group hover:border-studio-cyan/40 transition-all duration-300 relative">
+                    <div class="absolute -top-6 left-8 w-12 h-12 rounded-xl bg-studio-950 border border-studio-800 flex items-center justify-center font-display font-bold text-lg text-studio-cyan group-hover:bg-studio-cyan group-hover:text-white transition-colors shadow-lg">
+                        02
+                    </div>
+                    <div class="pt-4">
+                        <h3 class="font-display font-bold text-lg text-white">The Rough-Cut & Core Motion</h3>
+                        <p class="text-sm text-gray-400 mt-2 leading-relaxed">
+                            Synchronizing high-impact editing slices with custom rhythm tracks and constructing primary vector & motion-design keyframes.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-studio-900 border border-studio-800 rounded-2xl p-8 space-y-4 group hover:border-studio-neon/40 transition-all duration-300 relative">
+                    <div class="absolute -top-6 left-8 w-12 h-12 rounded-xl bg-studio-950 border border-studio-800 flex items-center justify-center font-display font-bold text-lg text-studio-neon group-hover:bg-studio-neon group-hover:text-white transition-colors shadow-lg">
+                        03
+                    </div>
+                    <div class="pt-4">
+                        <h3 class="font-display font-bold text-lg text-white">Grading, Audio & Master Render</h3>
+                        <p class="text-sm text-gray-400 mt-2 leading-relaxed">
+                            Calibrating precision color-correction suites, building atmospheric soundscapes, tracking Foley cues, and rendering final pro-res files.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Inquiry / Contact Form -->
+    <section id="contact" class="py-24 border-t border-studio-900 bg-studio-900/10">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center space-y-4 mb-12">
+                <div class="inline-flex items-center space-x-2 text-studio-accent font-mono text-xs tracking-widest uppercase">
+                    <span class="w-1.5 h-1.5 bg-studio-accent rounded-full"></span>
+                    <span>INITIALIZE TRANSMISSION</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-display font-bold text-white">Let's Render Something Exceptional</h2>
+                <p class="text-gray-400 max-w-lg mx-auto text-sm leading-relaxed">
+                    Have an upcoming project, commercial, or creative brand reel? Send through your metrics and let's structure the pipeline.
+                </p>
+            </div>
+
+            <!-- Form Wrapper with Terminal Style UI -->
+            <div class="bg-studio-900 border border-studio-800 rounded-2xl overflow-hidden shadow-2xl">
+                <!-- Terminal Header Bar -->
+                <div class="bg-studio-950 px-4 py-3 border-b border-studio-800 flex justify-between items-center text-xs font-mono">
+                    <span class="text-gray-400"><i class="fa-solid fa-paper-plane text-studio-accent mr-1.5"></i>SECURE_ENCRYPTED_CONTACT_FORM</span>
+                    <span class="text-studio-cyan">SSL_ACTIVE</span>
+                </div>
+
+                <form id="portfolioContactForm" onsubmit="handleFormSubmit(event)" class="p-6 sm:p-10 space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <!-- Client Name -->
+                        <div class="space-y-2">
+                            <label class="text-xs font-mono text-gray-400 uppercase block">YOUR IDENTIFICATION / NAME</label>
+                            <input type="text" id="clientName" required placeholder="e.g. Director Sterling" class="w-full bg-studio-950 border border-studio-800 rounded-xl px-4 py-3.5 text-white placeholder-gray-600 focus:outline-none focus:border-studio-accent transition-all text-sm">
+                        </div>
+                        
+                        <!-- Client Email -->
+                        <div class="space-y-2">
+                            <label class="text-xs font-mono text-gray-400 uppercase block">SECURE EMAIL ADDRESS</label>
+                            <input type="email" id="clientEmail" required placeholder="e.g. contact@studio.co" class="w-full bg-studio-950 border border-studio-800 rounded-xl px-4 py-3.5 text-white placeholder-gray-600 focus:outline-none focus:border-studio-accent transition-all text-sm">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <!-- Project Type Dropdown -->
+                        <div class="space-y-2">
+                            <label class="text-xs font-mono text-gray-400 uppercase block">PROJECT CORE SCOPE</label>
+                            <select id="projectScope" class="w-full bg-studio-950 border border-studio-800 rounded-xl px-4 py-3.5 text-gray-300 focus:outline-none focus:border-studio-accent transition-all text-sm">
+                                <option value="motion-graphics">3D Motion Graphics Design</option>
+                                <option value="commercial-edit">Commercial / Brand Editing</option>
+                                <option value="youtube-promo">Promo Reels & Shorts Campaign</option>
+                                <option value="vfx-grade">VFX & Precision Color Grading</option>
+                                <option value="full-pipeline">Full Post-Production Pipeline</option>
+                            </select>
+                        </div>
+
+                        <!-- Project Budget Scale -->
+                        <div class="space-y-2">
+                            <label class="text-xs font-mono text-gray-400 uppercase block">BUDGET METRIC RANGE</label>
+                            <select id="projectBudget" class="w-full bg-studio-950 border border-studio-800 rounded-xl px-4 py-3.5 text-gray-300 focus:outline-none focus:border-studio-accent transition-all text-sm">
+                                <option value="bracket-a">Under $2,500</option>
+                                <option value="bracket-b">$2,500 - $5,000</option>
+                                <option value="bracket-c">$5,000 - $10,000</option>
+                                <option value="bracket-d">$10,000+ (High Fidelity)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Project Scope Details -->
+                    <div class="space-y-2">
+                        <label class="text-xs font-mono text-gray-400 uppercase block">BRIEF METRICS / PROJECT DETAILS</label>
+                        <textarea id="projectMessage" rows="5" required placeholder="Detail the core message, deadline parameters, visual requirements, or custom visual themes..." class="w-full bg-studio-950 border border-studio-800 rounded-xl px-4 py-3.5 text-white placeholder-gray-600 focus:outline-none focus:border-studio-accent transition-all text-sm resize-none"></textarea>
+                    </div>
+
+                    <!-- Custom Success Toast Indicator Inside Form -->
+                    <div id="formFeedback" class="hidden p-4 rounded-xl border border-studio-neon/40 bg-studio-neon/10 flex items-center space-x-3 text-xs font-mono text-studio-neon">
+                        <i class="fa-solid fa-circle-check text-lg"></i>
+                        <span>TRANSMISSION RENDERED SUCCESSFULLY! I will get back to your query within 12 standard business hours.</span>
+                    </div>
+
+                    <!-- Submit Action -->
+                    <div class="flex items-center justify-between pt-4">
+                        <span class="text-xs font-mono text-gray-500 tracking-wider">PREPARED BY ALEX STERLING STUDIO</span>
+                        <button type="submit" class="px-8 py-4 rounded-xl bg-gradient-to-r from-studio-accent to-pink-600 font-bold text-white tracking-wider flex items-center space-x-3 shadow-lg shadow-studio-accent/20 hover:opacity-90 transition-all transform hover:-translate-y-0.5">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            <span>INITIATE PIPELINE</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-studio-900 bg-studio-950 py-16 text-xs text-gray-400 font-mono">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
+            <!-- Col 1 -->
+            <div class="space-y-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 flex items-center justify-center bg-gradient-to-tr from-studio-accent to-studio-cyan rounded-lg">
+                        <span class="font-display font-black text-sm text-white">AS</span>
+                    </div>
+                    <span class="font-display font-bold text-md text-white tracking-wider">ALEX STERLING</span>
+                </div>
+                <p class="text-gray-500 text-[11px] leading-relaxed font-light font-sans">
+                    Digital post-production design studio crafting high-impact editing pipelines and vector layouts.
+                </p>
+                <p class="text-studio-neon uppercase text-[10px] tracking-widest font-mono">
+                    <i class="fa-solid fa-circle-notch animate-spin mr-1"></i> PIPELINE ONLINE
+                </p>
+            </div>
+
+            <!-- Col 2 -->
+            <div class="space-y-3">
+                <span class="text-white font-semibold text-xs tracking-widest block uppercase">REEL CHANNELS</span>
+                <ul class="space-y-2 text-[11px]">
+                    <li><a href="#" class="hover:text-studio-accent transition-colors"><i class="fa-brands fa-vimeo-v mr-1.5"></i> VIMEO / ALEX_STERLING</a></li>
+                    <li><a href="#" class="hover:text-studio-cyan transition-colors"><i class="fa-brands fa-youtube mr-1.5"></i> YOUTUBE / STERLING_EDIT</a></li>
+                    <li><a href="#" class="hover:text-studio-neon transition-colors"><i class="fa-brands fa-artstation mr-1.5"></i> ARTSTATION / VOXEL_FLOW</a></li>
+                    <li><a href="#" class="hover:text-purple-400 transition-colors"><i class="fa-brands fa-behance mr-1.5"></i> BEHANCE / ALEX_STERLING</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 3 -->
+            <div class="space-y-3">
+                <span class="text-white font-semibold text-xs tracking-widest block uppercase">TIMELINE INDEX</span>
+                <ul class="space-y-2 text-[11px]">
+                    <li><a href="#about" class="hover:text-white transition-colors">/METADATA_BIO</a></li>
+                    <li><a href="#reels" class="hover:text-white transition-colors">/WORK_REELS</a></li>
+                    <li><a href="#sandbox" class="hover:text-white transition-colors">/MOTION_SANDBOX</a></li>
+                    <li><a href="#grading" class="hover:text-white transition-colors">/COLOR_GRADE</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 4 -->
+            <div class="space-y-3">
+                <span class="text-white font-semibold text-xs tracking-widest block uppercase">SYSTEM STATUS</span>
+                <div class="space-y-2 text-[11px] text-gray-500 leading-relaxed font-light">
+                    <p>MAIN OPERATIONAL HQ: LOS ANGELES, CA</p>
+                    <p>AVAILABILITY: GLOBAL WORKSPACE</p>
+                    <p class="text-gray-400">© 2026 ALEX STERLING. ALL RIGHTS RESERVED ON MOTION RIGS.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Portfolio Logic -->
+    <script>
+        // ----------------- MOBILE NAVIGATION MENU -----------------
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const closeMobileMenuBtn = document.getElementById('closeMobileMenuBtn');
+        const mobileDrawer = document.getElementById('mobileDrawer');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileDrawer.classList.remove('translate-x-full');
+        });
+
+        closeMobileMenuBtn.addEventListener('click', () => {
+            mobileDrawer.classList.add('translate-x-full');
+        });
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileDrawer.classList.add('translate-x-full');
+            });
+        });
+
+        // ----------------- HERO CANVAS NODE NETWORK -----------------
+        const heroCanvas = document.getElementById('heroCanvas');
+        const heroCtx = heroCanvas.getContext('2d');
+        let particles = [];
+        let mouseX = -1000;
+        let mouseY = -1000;
+
+        function resizeHeroCanvas() {
+            heroCanvas.width = heroCanvas.parentElement.clientWidth;
+            heroCanvas.height = heroCanvas.parentElement.clientHeight;
+            initParticles();
+        }
+
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.baseX = x;
+                this.baseY = y;
+                this.vx = (Math.random() - 0.5) * 1.5;
+                this.vy = (Math.random() - 0.5) * 1.5;
+                this.radius = Math.random() * 2 + 1;
+                this.color = Math.random() > 0.5 ? '#8b5cf6' : '#06b6d4';
+            }
+
+            update() {
+                // Return to base position slightly
+                this.vx += (this.baseX - this.x) * 0.001;
+                this.vy += (this.baseY - this.y) * 0.001;
+
+                this.x += this.vx;
+                this.y += this.vy;
+
+                // Mouse interaction physics
+                let dx = mouseX - this.x;
+                let dy = mouseY - this.y;
+                let dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 150) {
+                    let force = (150 - dist) / 150;
+                    this.x -= dx * force * 0.05;
+                    this.y -= dy * force * 0.05;
+                }
+            }
+
+            draw() {
+                heroCtx.beginPath();
+                heroCtx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                heroCtx.fillStyle = this.color;
+                heroCtx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            const count = Math.min(100, Math.floor(heroCanvas.width / 12));
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle(
+                    Math.random() * heroCanvas.width,
+                    Math.random() * heroCanvas.height
+                ));
+            }
+        }
+
+        function drawHeroConnections() {
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    let dx = particles[i].x - particles[j].x;
+                    let dy = particles[i].y - particles[j].y;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 110) {
+                        heroCtx.beginPath();
+                        heroCtx.moveTo(particles[i].x, particles[i].y);
+                        heroCtx.lineTo(particles[j].x, particles[j].y);
+                        heroCtx.strokeStyle = `rgba(139, 92, 246, ${0.12 * (1 - dist / 110)})`;
+                        heroCtx.lineWidth = 0.8;
+                        heroCtx.stroke();
+                    }
+                }
+            }
+        }
+
+        function heroAnimationLoop() {
+            heroCtx.clearRect(0, 0, heroCanvas.width, heroCanvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            drawHeroConnections();
+            requestAnimationFrame(heroAnimationLoop);
+        }
+
+        window.addEventListener('resize', resizeHeroCanvas);
+        heroCanvas.addEventListener('mousemove', (e) => {
+            const rect = heroCanvas.getBoundingClientRect();
+            mouseX = e.clientX - rect.left;
+            mouseY = e.clientY - rect.top;
+        });
+        heroCanvas.addEventListener('mouseleave', () => {
+            mouseX = -1000;
+            mouseY = -1000;
+        });
+
+        // Initialize Hero canvas
+        resizeHeroCanvas();
+        heroAnimationLoop();
+
+
+        // ----------------- PROJECTS REEL SIMULATIONS -----------------
+
+        // Project 1: Cyber Glitch
+        const glitchCanvas = document.getElementById('glitchCanvas');
+        const gCtx = glitchCanvas.getContext('2d');
+        let forceGlitch = 0;
+
+        function resizeGlitchCanvas() {
+            glitchCanvas.width = glitchCanvas.parentElement.clientWidth;
+            glitchCanvas.height = glitchCanvas.parentElement.clientHeight;
+        }
+        window.addEventListener('resize', resizeGlitchCanvas);
+        resizeGlitchCanvas();
+
+        function triggerGlitch() {
+            forceGlitch = 15;
+        }
+
+        function renderGlitchScene() {
+            gCtx.clearRect(0, 0, glitchCanvas.width, glitchCanvas.height);
+            
+            // Standard Background graphic simulation
+            gCtx.fillStyle = '#09090b';
+            gCtx.fillRect(0, 0, glitchCanvas.width, glitchCanvas.height);
+
+            gCtx.save();
+            if (forceGlitch > 0) {
+                // Apply glitchy translation displacement
+                gCtx.translate((Math.random() - 0.5) * forceGlitch * 2, (Math.random() - 0.5) * forceGlitch);
+                forceGlitch--;
+            }
+
+            // Draw sci-fi wire grid
+            gCtx.strokeStyle = 'rgba(6, 182, 212, 0.15)';
+            gCtx.lineWidth = 1;
+            for (let i = 0; i < glitchCanvas.width; i += 40) {
+                gCtx.beginPath();
+                gCtx.moveTo(i, 0);
+                gCtx.lineTo(i, glitchCanvas.height);
+                gCtx.stroke();
+            }
+
+            // Central Dynamic Icon Core
+            const cx = glitchCanvas.width / 2;
+            const cy = glitchCanvas.height / 2;
+            gCtx.beginPath();
+            gCtx.arc(cx, cy, 50, 0, Math.PI * 2);
+            gCtx.fillStyle = 'rgba(139, 92, 246, 0.2)';
+            gCtx.strokeStyle = '#8b5cf6';
+            gCtx.lineWidth = 3;
+            gCtx.fill();
+            gCtx.stroke();
+
+            // Overlay Glitch Text
+            gCtx.font = 'bold 20px "Space Grotesk"';
+            gCtx.fillStyle = '#ffffff';
+            gCtx.textAlign = 'center';
+            gCtx.fillText('TOKYO_OPENER_REEL', cx, cy + 6);
+
+            // Trigger random auto glitch moments
+            if (Math.random() > 0.98) forceGlitch = Math.floor(Math.random() * 8) + 4;
+
+            gCtx.restore();
+            requestAnimationFrame(renderGlitchScene);
+        }
+        renderGlitchScene();
+
+        // Project 2: Kinetic Typography
+        const kineticCanvas = document.getElementById('kineticCanvas');
+        const kCtx = kineticCanvas.getContext('2d');
+        let kMouseX = 0;
+
+        function resizeKineticCanvas() {
+            kineticCanvas.width = kineticCanvas.parentElement.clientWidth;
+            kineticCanvas.height = kineticCanvas.parentElement.clientHeight;
+        }
+        window.addEventListener('resize', resizeKineticCanvas);
+        resizeKineticCanvas();
+
+        kineticCanvas.addEventListener('mousemove', (e) => {
+            const rect = kineticCanvas.getBoundingClientRect();
+            kMouseX = e.clientX - rect.left;
+        });
+
+        function renderKineticScene() {
+            kCtx.fillStyle = '#050507';
+            kCtx.fillRect(0, 0, kineticCanvas.width, kineticCanvas.height);
+
+            const phrases = ["CREATIVE", "DYNAMICS", "PIXELS", "MOTION", "TIMELINE", "VFX"];
+            const gap = 38;
+            kCtx.font = 'bold 36px "Space Grotesk"';
+            kCtx.textAlign = 'center';
+
+            for (let i = 0; i < phrases.length; i++) {
+                let y = 45 + (i * gap);
+                // Compute custom shift based on mouse X position
+                let shift = Math.sin((kMouseX / kineticCanvas.width) * Math.PI + (i * 0.5)) * 40;
+                
+                // Color gradient displacement shift
+                if (i % 2 === 0) {
+                    kCtx.fillStyle = '#06b6d4';
+                    kCtx.fillText(phrases[i], (kineticCanvas.width / 2) + shift, y);
+                } else {
+                    kCtx.strokeStyle = '#8b5cf6';
+                    kCtx.lineWidth = 1;
+                    kCtx.strokeText(phrases[i], (kineticCanvas.width / 2) - shift, y);
+                }
+            }
+            requestAnimationFrame(renderKineticScene);
+        }
+        renderKineticScene();
+
+        // Project 3: Fluid Flow Field Particles
+        const fluidCanvas = document.getElementById('fluidCanvas');
+        const fCtx = fluidCanvas.getContext('2d');
+        let fluidParticles = [];
+        let fluidScrambleTime = 0;
+
+        function resizeFluidCanvas() {
+            fluidCanvas.width = fluidCanvas.parentElement.clientWidth;
+            fluidCanvas.height = fluidCanvas.parentElement.clientHeight;
+            initFluidParticles();
+        }
+        window.addEventListener('resize', resizeFluidCanvas);
+
+        class FluidParticle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * fluidCanvas.width;
+                this.y = Math.random() * fluidCanvas.height;
+                this.life = Math.random() * 150 + 50;
+                this.color = Math.random() > 0.5 ? '#10b981' : '#06b6d4';
+                this.speed = Math.random() * 1 + 0.5;
+            }
+            update() {
+                let angle = (this.x * 0.005) * Math.PI + (this.y * 0.005) * Math.PI;
+                if (fluidScrambleTime > 0) {
+                    angle += Math.sin(fluidScrambleTime * 0.1) * 5;
+                }
+                this.x += Math.cos(angle) * this.speed;
+                this.y += Math.sin(angle) * this.speed;
+                this.life--;
+
+                if (this.life <= 0 || this.x < 0 || this.x > fluidCanvas.width || this.y < 0 || this.y > fluidCanvas.height) {
+                    this.reset();
+                }
+            }
+            draw() {
+                fCtx.fillStyle = this.color;
+                fCtx.fillRect(this.x, this.y, 1.8, 1.8);
+            }
+        }
+
+        function initFluidParticles() {
+            fluidParticles = [];
+            for (let i = 0; i < 150; i++) {
+                fluidParticles.push(new FluidParticle());
+            }
+        }
+
+        function scrambleFluid() {
+            fluidScrambleTime = 100;
+        }
+
+        function renderFluidScene() {
+            fCtx.fillStyle = 'rgba(5, 5, 5, 0.08)'; // Tail path effect
+            fCtx.fillRect(0, 0, fluidCanvas.width, fluidCanvas.height);
+
+            fluidParticles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            if (fluidScrambleTime > 0) fluidScrambleTime--;
+            requestAnimationFrame(renderFluidScene);
+        }
+        resizeFluidCanvas();
+        renderFluidScene();
+
+        // Project 4: Interactive HUD Diagnostics
+        const hudCanvas = document.getElementById('hudCanvas');
+        const hCtx = hudCanvas.getContext('2d');
+        let hudRebooting = 0;
+
+        function resizeHudCanvas() {
+            hudCanvas.width = hudCanvas.parentElement.clientWidth;
+            hudCanvas.height = hudCanvas.parentElement.clientHeight;
+        }
+        window.addEventListener('resize', resizeHudCanvas);
+        resizeHudCanvas();
+
+        function rebootHud() {
+            hudRebooting = 40;
+        }
+
+        function renderHudScene() {
+            hCtx.fillStyle = '#020617';
+            hCtx.fillRect(0, 0, hudCanvas.width, hudCanvas.height);
+
+            const cx = hudCanvas.width / 2;
+            const cy = hudCanvas.height / 2;
+            const t = Date.now() * 0.001;
+
+            if (hudRebooting > 0) {
+                hCtx.fillStyle = '#eab308';
+                hCtx.font = '12px font-mono';
+                hCtx.textAlign = 'center';
+                hCtx.fillText(`REBOOTING HUD CORE... ${Math.floor(100 - (hudRebooting * 2.5))}%`, cx, cy);
+                hudRebooting--;
+                requestAnimationFrame(renderHudScene);
+                return;
+            }
+
+            // Draw circular dial 1
+            hCtx.beginPath();
+            hCtx.arc(cx, cy, 60, t, t + Math.PI * 1.5);
+            hCtx.strokeStyle = 'rgba(6, 182, 212, 0.8)';
+            hCtx.lineWidth = 1.5;
+            hCtx.stroke();
+
+            // Draw circular dial 2 (reverse)
+            hCtx.beginPath();
+            hCtx.arc(cx, cy, 75, -t * 0.7, -t * 0.7 + Math.PI);
+            hCtx.strokeStyle = 'rgba(139, 92, 246, 0.6)';
+            hCtx.lineWidth = 1;
+            hCtx.stroke();
+
+            // Draw Crosshairs
+            hCtx.beginPath();
+            hCtx.moveTo(cx - 100, cy); hCtx.lineTo(cx + 100, cy);
+            hCtx.moveTo(cx, cy - 100); hCtx.lineTo(cx, cy + 100);
+            hCtx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+            hCtx.stroke();
+
+            // Center Ring target
+            hCtx.beginPath();
+            hCtx.arc(cx, cy, 10, 0, Math.PI * 2);
+            hCtx.strokeStyle = '#eab308';
+            hCtx.lineWidth = 2;
+            hCtx.stroke();
+
+            // Add text labels
+            hCtx.fillStyle = '#06b6d4';
+            hCtx.font = '9px monospace';
+            hCtx.fillText("TRACKING_ACTIVE: LOCK ON", cx - 90, cy - 80);
+            hCtx.fillText("FPS: 60.00HZ", cx + 50, cy + 85);
+
+            requestAnimationFrame(renderHudScene);
+        }
+        renderHudScene();
+
+
+        // ----------------- INTERACTIVE EASING SANDBOX -----------------
+        let activeEasing = 'easeInOut';
+        let isSandboxAnimating = false;
+        let sandboxProgress = 0; // 0 to 1
+
+        // Curve values definitions
+        const easingFunctions = {
+            linear: (t) => t,
+            easeInOut: (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2,
+            elastic: (t) => {
+                const c4 = (2 * Math.PI) / 3;
+                return t === 0 ? 0 : t === 1 ? 1 : -Math.pow(2, 10 * t - 10) * Math.sin((t * 10 - 10.75) * c4);
+            },
+            bounce: (t) => {
+                const n1 = 7.5625;
+                const d1 = 2.75;
+                if (t < 1 / d1) return n1 * t * t;
+                else if (t < 2 / d1) return n1 * (t -= 1.5 / d1) * t + 0.75;
+                else if (t < 2.5 / d1) return n1 * (t -= 2.25 / d1) * t + 0.9375;
+                else return n1 * (t -= 2.625 / d1) * t + 0.984375;
+            }
+        };
+
+        function setEasing(type) {
+            activeEasing = type;
+            document.querySelectorAll('#easingSelectorGroup button').forEach(btn => {
+                btn.className = "w-full text-left p-3.5 rounded-lg border border-studio-800 bg-studio-950 flex items-center justify-between group transition-all";
+                const firstSpan = btn.querySelector('span:first-child');
+                const lastSpan = btn.querySelector('span:last-child');
+                firstSpan.className = "text-sm font-mono text-gray-300 font-medium group-hover:text-white transition-colors";
+                lastSpan.className = "text-xs font-mono text-gray-500";
+            });
+
+            // Set active look
+            const activeBtn = document.getElementById(`btn-${type}`);
+            activeBtn.className = `w-full text-left p-3.5 rounded-lg border border-studio-accent/40 bg-studio-accent/5 flex items-center justify-between group transition-all`;
+            activeBtn.querySelector('span:first-child').className = "text-sm font-mono text-studio-accent font-medium";
+            activeBtn.querySelector('span:last-child').className = "text-xs font-mono text-studio-accent/70";
+
+            // Update details
+            document.getElementById('txt-algo').innerText = `${type}-spacing-function`;
+            drawSvgCurve();
+        }
+
+        function playSandboxAnimation() {
+            if (isSandboxAnimating) return;
+            isSandboxAnimating = true;
+            sandboxProgress = 0;
+            const startTime = Date.now();
+
+            function update() {
+                const elapsed = Date.now() - startTime;
+                sandboxProgress = Math.min(1, elapsed / 1000); // 1-second total animation duration
+
+                // Apply curves to target positions
+                const easedValA = easingFunctions[activeEasing](sandboxProgress);
+                // Offset track B slightly
+                const easedValB = easingFunctions[activeEasing](Math.max(0, sandboxProgress - 0.1));
+
+                // Map to visual track width displacement
+                const containerWidth = document.getElementById('sandboxTargetCircle').parentElement.clientWidth - 50;
+                document.getElementById('sandboxTargetCircle').style.left = `${10 + (easedValA * containerWidth)}px`;
+                document.getElementById('sandboxTargetTriangle').style.left = `${10 + (easedValB * containerWidth)}px`;
+
+                // Update text counter
+                document.getElementById('sandboxTimer').innerText = `TIME: ${(elapsed / 1000).toFixed(2)}s`;
+
+                if (sandboxProgress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    isSandboxAnimating = false;
+                }
+            }
+            update();
+        }
+
+        // Draw visualization curves on SVG
+        function drawSvgCurve() {
+            const svgPathAccent = document.getElementById('svgPathAccent');
+            const svgPathCyan = document.getElementById('svgPathCyan');
+            const width = 500;
+            const height = 112;
+
+            let pointsAccent = [];
+            let pointsCyan = [];
+
+            for (let i = 0; i <= width; i++) {
+                let t = i / width;
+                let valA = easingFunctions[activeEasing](t);
+                let valB = easingFunctions[activeEasing](Math.max(0, t - 0.1));
+
+                // Map SVG coord dimensions
+                let x = i;
+                let yA = height - (valA * (height - 10));
+                let yB = height - (valB * (height - 10));
+
+                pointsAccent.push(`${x},${yA}`);
+                pointsCyan.push(`${x},${yB}`);
+            }
+
+            svgPathAccent.setAttribute('d', `M 0,${height} L ` + pointsAccent.join(' '));
+            svgPathCyan.setAttribute('d', `M 0,${height} L ` + pointsCyan.join(' '));
+        }
+
+        // Initialize sandbox SVG drawing
+        drawSvgCurve();
+
+
+        // ----------------- INTERACTIVE COLOR GRADING -----------------
+        const scene = document.getElementById('cinematicScene');
+
+        function updateGrading() {
+            const lift = document.getElementById('slider-lift').value;
+            const gamma = document.getElementById('slider-gamma').value;
+            const gain = document.getElementById('slider-gain').value;
+            const hue = document.getElementById('slider-hue').value;
+
+            // Apply calculated filters directly to DOM rendering
+            scene.style.filter = `brightness(${lift}) contrast(${gamma}) saturate(${gain}) hue-rotate(${hue}deg)`;
+
+            // Update displayed values
+            document.getElementById('txt-lift-val').innerText = `${lift}x`;
+            document.getElementById('txt-gamma-val').innerText = `${gamma}x`;
+            document.getElementById('txt-gain-val').innerText = `${gain}x`;
+            document.getElementById('txt-hue-val').innerText = `${hue} deg`;
+
+            document.getElementById('txt-active-lut').innerText = "CUSTOM GRADE ACTIVE";
+        }
+
+        function applyLUT(preset) {
+            if (preset === 'neonCyber') {
+                document.getElementById('slider-lift').value = 0.9;
+                document.getElementById('slider-gamma').value = 1.35;
+                document.getElementById('slider-gain').value = 1.7;
+                document.getElementById('slider-hue').value = 320;
+                document.getElementById('txt-active-lut').innerText = "CYBERPUNK GLOW";
+            } else if (preset === 'classicTeal') {
+                document.getElementById('slider-lift').value = 0.85;
+                document.getElementById('slider-gamma').value = 1.25;
+                document.getElementById('slider-gain').value = 1.4;
+                document.getElementById('slider-hue').value = 190;
+                document.getElementById('txt-active-lut').innerText = "TEAL & ORANGE MASTER";
+            } else if (preset === 'vintageNoir') {
+                document.getElementById('slider-lift').value = 0.8;
+                document.getElementById('slider-gamma').value = 1.5;
+                document.getElementById('slider-gain').value = 0.1;
+                document.getElementById('slider-hue').value = 0;
+                document.getElementById('txt-active-lut').innerText = "VINTAGE MONOCHROME";
+            } else if (preset === 'rawLog') {
+                document.getElementById('slider-lift').value = 1.4;
+                document.getElementById('slider-gamma').value = 0.6;
+                document.getElementById('slider-gain').value = 0.3;
+                document.getElementById('slider-hue').value = 0;
+                document.getElementById('txt-active-lut').innerText = "FLAT LOG (UNGRADED)";
+            }
+            updateGrading();
+        }
+
+        function resetGrading() {
+            document.getElementById('slider-lift').value = 1.0;
+            document.getElementById('slider-gamma').value = 1.0;
+            document.getElementById('slider-gain').value = 1.0;
+            document.getElementById('slider-hue').value = 0;
+            document.getElementById('txt-active-lut').innerText = "REC709 CALIBRATION";
+            updateGrading();
+        }
+
+
+        // ----------------- CONTACT FORM SUCCESS ANIMATION -----------------
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            // Render simulated successful pipeline output
+            const feedback = document.getElementById('formFeedback');
+            feedback.classList.remove('hidden');
+            feedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+            // Clear inputs securely
+            document.getElementById('clientName').value = "";
+            document.getElementById('clientEmail').value = "";
+            document.getElementById('projectMessage').value = "";
+        }
+    </script>
+</body>
+</html>

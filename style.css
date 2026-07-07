@@ -38,9 +38,10 @@
     --button:#3B82F6;
     --border:#2A2418;
     --nav: 0.7rem;
+    --tw-text-opacity: 1;
 }
 body {
-    background-color:rgb(14, 13, 13);
+    background-color:#09090b;
     overflow-X: hidden;
     font-family: 'Inter', sans-serif;
     color:white;
@@ -51,13 +52,15 @@ i:before {
 .hero {
     position: relative;
     width: 100%;
-    height: 100vh;
-    /* The blueprint cyber-grid pattern */
+    min-height: 100vh;
+    height: auto;
     background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-    background-size: 50px 50px;
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    padding-bottom: 60px;
     background-position: center;
+    padding-bottom: 60px;
 }
 .name-flex img {
     width: 100px;
@@ -208,7 +211,7 @@ nav button:hover {
     background-clip:text;
     -webkit-text-fill-color: transparent;
 }
-.hero-first .des {
+ .des {
     max-width: 42rem;
     line-height: 1.525;
     font-weight: 100;
@@ -219,7 +222,7 @@ nav button:hover {
     font-family: 'Plus Jakarta Sans', sans-serif system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color:rgba(255, 255, 255, 0.712); 
     
-    font-weight: 200;
+    font-weight: 100;
     letter-spacing: 0.13rem;
 }
 .fa-clapperboard:before {
@@ -466,12 +469,312 @@ nav button:hover {
 .wrapper2 {
     border-top: 1px solid white;
     border-bottom: 1px solid white;
-    background: rgb(0, 0, 0);
+    background: #09090b;
     overflow: hidden;
     padding: 34px 3px;
-    margin-top: 40px;
+    margin-top: 60px;
     display: flex;
     justify-content: space-around;
     color:var(--text);
-    margin-bottom: 40px;
+    opacity: 1;
+    flex-wrap: wrap;
+    gap:20px;
+    font-family: Plus Jakarta Sans, sans-serif;
 }
+.hardware1 {
+    color:white;
+    margin-bottom:5px;
+    font-size:36px;
+    font-family: Space Grotesk, sans-serif;
+    font-weight:700;    
+}
+.hardware2 {
+    color:#06b6d4;
+   margin-bottom:5px;
+   font-size:36px;
+    font-family: Space Grotesk, sans-serif;
+    font-weight:700; 
+}
+.hardware3 {
+    color:#8b5cf6;
+   margin-bottom:5px;
+   font-size:36px;
+    font-family: Space Grotesk, sans-serif;
+    font-weight:700; 
+}
+.hardware4 {
+    color:#10b981;
+    margin-bottom:5px;
+    font-size:36px;
+    font-family: Space Grotesk, sans-serif;
+    font-weight:700; 
+}
+.info p {
+    font-weight: 100;
+    color:#9ca3af;
+    font-family:  ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 12px;
+}
+.about {
+    position: relative;
+    padding: 55px;
+    margin-top: 40px;
+    
+}
+.sec-flex p {
+    color:#7b43fd;
+    font-size: 0.80rem;
+    line-height: 1rem;
+    font-weight: 500;
+    letter-spacing: 1.2px;
+}
+.sec-circle {
+    height: 8px;
+    width: 8px;
+    background-color: #7135fd;
+    border-radius: 50%;
+}
+.sec-flex {
+    display:flex;
+    align-items: center;
+    gap:7px;
+}
+.head {
+    font-weight: 700;
+    font-family: Space Grotesk, sans-serif;
+}
+.about-flex {
+    display:flex;
+}
+.about-sec1 {
+    width: 37%;
+}
+.about-des {
+    font-weight: 300;
+    font-family: Space Grotesk, sans-serif;
+    line-height: 1.625;
+    color:#d1d5db;
+    margin-top: 30px;
+}
+.about-des2 {
+    font-size: 0.875rem;
+    color: rgb(156 163 175 / var(--tw-text-opacity, 1));
+}
+.core-head {
+    color: rgb(107 114 128 / var(--tw-text-opacity, 1));
+    letter-spacing: 0.1em;
+    font-size: 0.75rem;
+    line-height: 1rem;
+}
+.core {
+    margin-top: 2rem;
+}
+.core-card {
+    background-color: #121214;
+    border:1px solid #1a1a1e;
+    border-radius: 0.5rem;
+    text-align: center;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    gap:6px;
+    transition: 0.4s ease;
+    padding: 1.1rem;
+}
+.core-card p {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    letter-spacing: -0.025em;
+    font-size: 10px;
+}
+.core-grid {
+    grid-template-columns: repeat(3,1fr);
+    display:grid;
+    gap:0.5rem;
+    margin-top: 0.5rem;
+}
+.text-emerald-400 {
+    --tw-text-opacity: 1;
+    color: rgb(52 211 153 / var(--tw-text-opacity, 1));
+}
+.text-teal-400 {
+    --tw-text-opacity: 1;
+    color: rgb(45 212 191 / var(--tw-text-opacity, 1));
+}
+.text-purple-400 {
+    --tw-text-opacity: 1;
+    color: rgb(192 132 252 / var(--tw-text-opacity, 1));
+}
+.purple:hover {
+    border: 1px solid #8b5cf6;
+}
+.blue:hover {
+    border:1px solid #06b6d4;
+}
+.green:hover {
+    border: 1px solid #10b981;
+}
+.code-box {
+    height:430px;
+    width:600px;
+    border-radius: 1rem;
+    border: 1px solid #1a1a1e;
+    background-color: #121214;
+}
+.code-box1 {
+    border-bottom: 1px solid #1a1a1e;
+    background-color: #09090b;
+    padding: 4px;
+    display:flex;
+    gap:20px;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+.code-box2 {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+.code-head {
+    font-weight: 600;
+    font-family: Space Grotesk, sans-serif;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+.red {
+    width: 0.75rem;
+    height: 0.75rem;
+    background-color: #ef4444cc;
+    border-radius: 50%;
+}
+.yellow {
+    width: 0.75rem;
+    height: 0.75rem;
+    background-color: #eab308cc;
+    border-radius: 50%;
+}
+.green2 {
+    width: 0.75rem;
+    height: 0.75rem;
+    background-color: #22c55ecc;
+    border-radius: 50%;
+}
+.box1-flex {
+    display: flex;
+    gap:10px;
+}
+.circle-flex {
+    display:flex;
+    gap:5px;
+}
+.code-box1 p {
+    color:var(--muted);
+    font-size: 12px;
+}
+.about-flex {
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.skills-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.skill-item {
+  margin-bottom: 25px;
+}
+.skill-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 30px;
+}
+.skill-name {
+    color:#d1d5db;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight:100;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+.progress-track {
+    background-color: #09090b;
+    height: 5px;
+    width: 100%;
+    border-radius: 9999px;
+    overflow: hidden;
+    
+}
+
+
+.progress-bar {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 1s ease-in-out;
+    border-radius: 9999px;
+}
+.purple-text {
+    color:#8b5cf6;
+    font-weight: 700;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+.green-text {
+    color:#10b981;
+    font-weight: 700;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+.green-bar {
+    background-color: #10b981;
+    width:88%;
+}
+.text {
+    color:#06b6d4;
+    font-weight: 700;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+.text2 {
+    color:#c084fc;
+    font-weight: 700;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+.bar {
+    background-color: #06b6d4;
+    width:90%;
+}
+.blue-bar { 
+     background:linear-gradient(to right, #7b43fd, #7905ec, #ec4899);
+     width: 95%;
+}
+.about-container {
+    background-color: #09090b;
+    border: 1px solid white;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: flex-start;
+    padding: 1.1rem;
+    gap:4px;
+}
+.container-content {
+    color:#9ca3af;
+    line-height: 1.625;
+    font-style: italic;
+    font-size: 0.75rem;
+}   
