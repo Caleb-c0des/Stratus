@@ -1,4 +1,4 @@
-tsParticles.load("tsparticles", {
+tsParticles.load("megagarri", {
     fpsLimit: 120,
     interactivity: {
       events: {
