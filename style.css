@@ -794,9 +794,11 @@ nav button:hover {
     gap:4px;
 }
 .work {
-    padding: 40px;
     background-color: #1212141a;
-    border: 1px solid #121214;
+    border-top: 1px solid #121214;
+    height: 700px;
+    border-bottom: 1px solid #121214;
+    padding: 40px;
 }
 .work-des {
     font-weight: 300;
@@ -810,10 +812,124 @@ nav button:hover {
     justify-content: space-between;
 }
 .work-card {
-    width:50%;
-    height:400px;
+    width:600px;
+    height:500px;
     background-color: #121214;
+    position: relative;
+    border: 1px solid #1a1a1e;
+    border-radius: 1rem;
+    transition: 0.4s ease;
 }
-video {
+.work-card:hover {
+    border: 1px solid #7135fd;
+    cursor: pointer;
+}
+.work-head {
+    transition: 0.4s ease;
+}
+.work-card:hover .work-head {
+    color: #7135fd;
+}
+.work-card img {
+    width:100%;
+    height:300px;
+}
+.video-cover {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.video-card:hover .video-cover {
+  transform: scale(1.03);
+}
+
+/* Centers a play button right in the middle of your cover image */
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #333;
+  font-size: 24px;
+  padding: 15px 20px;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  pointer-events: none; /* Allows the click to pass through to the link */
+}
+.work-grid {
+    grid-template-columns: repeat(2,1fr);
+    display:grid;
+    margin-top: 30px;
+}
+.work-card-intro {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color:#09090b;
+    border-bottom: 1px solid #1a1a1e;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+
+}
+.work-card a {
+    text-decoration: none;
+    color:var(--accent);
+}
+.project-name {
+    display:flex;
+    gap:5px;
+    color:#ec4899;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+.project-utility {
+    color:#6b7280;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+.work-head {
+    color:#ffffff;
+    font-weight: 700;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-family: Space Grotesk, sans-serif;
+}
+.work-des-body {
+    padding-left: 10px;
+    width:100%;
+}
+.work-des {
+    color:#9ca3af;
+    font-weight: 300;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    margin-top: 0.5rem;
     width: 100%;
+    max-width: 95%;
+}
+.work-spec {
+    color:#9ca3af;
+    font-size: 10px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    gap: 0.5rem;
+    display:flex;
+    flex-wrap: wrap;
+    margin-top: 16px;
+}
+.work-spec span {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    padding-left: 0.625rem;
+    padding-right: 0.625rem;
+    background-color: #09090b;
+    border-radius: 0.25rem;
 }
