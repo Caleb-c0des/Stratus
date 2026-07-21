@@ -1,0 +1,2924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GrandVenice Transit Apartments | Premium Airport Lodging in Lagos</title>
+  <!-- Google Fonts for premium typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;650;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons via CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Premium Design Tokens & Resets */
+    :root {
+      --primary: #101b2e;       /* Deep Navy */
+      --primary-light: #1b2a41; /* Rich charcoal-navy representing security */
+      --accent: #d4af37;        /* Classic Gold representing luxury */
+      --accent-hover: #b8962e;  /* Darker Gold */
+      --accent-light: rgba(212, 175, 55, 0.1);
+      --bg-light: #f8fafc;      /* Clean background */
+      --text-dark: #0f172a;     /* Deep slate for text */
+      --text-light: #cbd5e1;    /* Slate-300 for dark backgrounds */
+      --text-muted: #64748b;    /* Muted text */
+      --white: #ffffff;
+      --success: #10b981;       /* Emerald */
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Montserrat', system-ui, sans-serif;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Helper Classes */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      cursor: pointer;
+      font-family: inherit;
+      border: none;
+      background: none;
+      outline: none;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      padding: 12px 24px;
+      border-radius: 8px;
+      transition: var(--transition);
+      text-align: center;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--accent), #c29b2f);
+      color: #0c121d;
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 15px -3px rgba(212, 175, 55, 0.3);
+    }
+
+    .btn-dark {
+      background-color: var(--primary);
+      color: var(--white);
+      border: 1px solid var(--primary-light);
+    }
+
+    .btn-dark:hover {
+      background-color: var(--primary-light);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      border: 2px solid #334155;
+      color: var(--white);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background-color: rgba(212, 175, 55, 0.05);
+    }
+
+    .section-title-wrapper {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 56px auto;
+    }
+
+    .badge-sub {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: var(--accent-light);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 6px 14px;
+      border-radius: 50px;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 16px;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+
+    /* Top Banner Alert */
+    .top-banner {
+      background-color: #050b14;
+      color: var(--text-light);
+      font-size: 12px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .top-banner .container {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    @media (min-width: 768px) {
+      .top-banner .container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
+    .banner-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pulse-dot {
+      height: 8px;
+      width: 8px;
+      background-color: var(--success);
+      border-radius: 50%;
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.9); opacity: 0.8; }
+      50% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(0.9); opacity: 0.8; }
+    }
+
+    .banner-contact {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .banner-contact a {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .banner-contact a:hover {
+      color: var(--accent);
+    }
+
+    /* Header & Navigation Bar */
+    .main-header {
+      background-color: rgba(16, 27, 46, 0.98);
+      border-bottom: 1px solid #1e293b;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .header-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-icon {
+      background: linear-gradient(135deg, var(--accent), #c29b2f);
+      color: #0c121d;
+      padding: 8px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-icon i {
+      transform: rotate(-45deg);
+    }
+
+    .logo-title {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .logo-subtitle {
+      font-size: 10px;
+      text-transform: uppercase;
+      color: #94a3b8;
+      letter-spacing: 2px;
+      display: block;
+      margin-top: -2px;
+    }
+
+    .desktop-nav {
+      display: none;
+      gap: 28px;
+    }
+
+    @media (min-width: 768px) {
+      .desktop-nav {
+        display: flex;
+      }
+    }
+
+    .nav-link {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #cbd5e1;
+      padding: 6px 0;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--accent);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--accent);
+      transition: var(--transition);
+    }
+
+    .nav-link.active::after, .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .currency-pill {
+      background-color: #1e293b;
+      padding: 4px;
+      border-radius: 6px;
+      border: 1px solid #334155;
+      display: flex;
+      gap: 2px;
+    }
+
+    .currency-btn {
+      padding: 4px 10px;
+      font-size: 10px;
+      font-weight: 800;
+      color: #94a3b8;
+      border-radius: 4px;
+    }
+
+    .currency-btn.active {
+      background-color: var(--accent);
+      color: #0c121d;
+    }
+
+    .mobile-menu-btn {
+      display: inline-flex;
+      background-color: #1e293b;
+      color: #cbd5e1;
+      border-radius: 8px;
+      padding: 8px;
+      border: 1px solid #334155;
+    }
+
+    @media (min-width: 768px) {
+      .mobile-menu-btn {
+        display: none;
+      }
+    }
+
+    /* Mobile Drawer */
+    .mobile-drawer {
+      display: none;
+      background-color: var(--primary);
+      border-top: 1px solid #1e293b;
+      padding: 16px 24px 28px 24px;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    .mobile-drawer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .mobile-nav-link {
+      color: #cbd5e1;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 12px;
+      border-radius: 8px;
+    }
+
+    .mobile-nav-link.active, .mobile-nav-link:hover {
+      background-color: rgba(212, 175, 55, 0.08);
+      color: var(--accent);
+    }
+
+    /* Section Control Logic */
+    .page-section {
+      display: none;
+    }
+
+    .page-section.active {
+      display: block;
+      animation: fadeIn 0.4s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* PAGE 1: HERO SECTION */
+    .hero {
+      position: relative;
+      background-color: #090e18;
+      color: var(--white);
+      padding: 100px 0;
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(to right, rgba(9, 14, 24, 0.95) 45%, rgba(9, 14, 24, 0.7) 100%), 
+                        url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=1600');
+      background-size: cover;
+      background-position: center;
+      z-index: 1;
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    @media (min-width: 992px) {
+      .hero-grid {
+        grid-template-columns: 1.2fr 0.8fr;
+      }
+    }
+
+    .hero-content {
+      max-width: 720px;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: 38px;
+      line-height: 1.2;
+      font-weight: 800;
+      margin: 16px 0;
+    }
+
+    @media (min-width: 576px) {
+      .hero-title {
+        font-size: 48px;
+      }
+    }
+
+    @media (min-width: 992px) {
+      .hero-title {
+        font-size: 56px;
+      }
+    }
+
+    .hero-title span {
+      background: linear-gradient(to right, var(--accent), #fef08a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-desc {
+      font-size: 16px;
+      color: var(--text-light);
+      margin-bottom: 28px;
+      max-width: 600px;
+    }
+
+    .hero-bullets {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .bullet-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .bullet-icon {
+      background-color: rgba(212, 175, 55, 0.15);
+      color: var(--accent);
+      padding: 6px;
+      border-radius: 6px;
+      display: inline-flex;
+    }
+
+    .bullet-text {
+      font-size: 13px;
+      font-weight: 600;
+      color: #e2e8f0;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    @media (min-width: 576px) {
+      .hero-actions {
+        flex-direction: row;
+      }
+    }
+
+    .hero-badge-card {
+      background-color: rgba(16, 27, 46, 0.85);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 20px;
+      padding: 32px;
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow-xl);
+      text-align: center;
+    }
+
+    .hero-badge-card h3 {
+      font-family: var(--font-serif);
+      color: var(--accent);
+      font-size: 20px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #1e293b;
+      padding-bottom: 12px;
+    }
+
+    .hero-badge-card ul {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 24px;
+    }
+
+    .hero-badge-card li {
+      font-size: 13px;
+      color: var(--text-light);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: start;
+      gap: 8px;
+    }
+
+    .hero-badge-card li i {
+      color: var(--success);
+      margin-top: 2px;
+    }
+
+    .price-box {
+      background-color: #0c121d;
+      border-radius: 12px;
+      padding: 16px;
+      border: 1px solid #1e293b;
+    }
+
+    .price-lbl {
+      font-size: 11px;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .price-val {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent);
+      margin-top: 4px;
+    }
+
+    /* ABOUT SUMMARY IN HOME & ABOUT US */
+    .about-summary {
+      padding: 100px 0;
+      background-color: var(--white);
+    }
+
+    .about-summary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    @media (min-width: 992px) {
+      .about-summary-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .about-img-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .about-card-stat {
+      background-color: var(--primary);
+      color: var(--white);
+      padding: 24px;
+      border-radius: 16px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .stat-number {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--accent);
+      font-family: var(--font-serif);
+    }
+
+    .stat-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #94a3b8;
+      margin-top: 4px;
+    }
+
+    .about-img-item {
+      border-radius: 16px;
+      width: 100%;
+      height: 200px;
+      object-cover: cover;
+      box-shadow: var(--shadow-md);
+    }
+
+    .about-img-item.shift {
+      margin-top: 32px;
+    }
+
+    .about-card-gold {
+      background-color: var(--accent);
+      color: #0c121d;
+      padding: 24px;
+      border-radius: 16px;
+      text-align: center;
+    }
+
+    .about-card-gold .stat-number {
+      color: #0c121d;
+      font-size: 32px;
+    }
+
+    .about-card-gold .stat-label {
+      color: #3f3513;
+      font-weight: 700;
+    }
+
+    .about-text-content h2 {
+      font-family: var(--font-serif);
+      font-size: 32px;
+      color: var(--primary);
+      margin-bottom: 20px;
+      line-height: 1.25;
+    }
+
+    .about-text-content p {
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+
+    .attributes-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .attr-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .attr-icon {
+      background-color: var(--bg-light);
+      padding: 10px;
+      border-radius: 10px;
+      display: inline-flex;
+      color: var(--primary);
+    }
+
+    .attr-text {
+      font-size: 13px;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    /* AMENITIES SECTION */
+    .amenities {
+      padding: 100px 0;
+      background-color: var(--primary);
+      color: var(--white);
+      position: relative;
+    }
+
+    .amenities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+    }
+
+    .amenity-card {
+      background-color: rgba(27, 42, 65, 0.4);
+      border: 1px solid #1e293b;
+      padding: 32px;
+      border-radius: 16px;
+      transition: var(--transition);
+    }
+
+    .amenity-card:hover {
+      border-color: rgba(212, 175, 55, 0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+
+    .amenity-icon {
+      background-color: rgba(212, 175, 55, 0.1);
+      color: var(--accent);
+      padding: 16px;
+      border-radius: 12px;
+      display: inline-flex;
+      margin-bottom: 24px;
+      transition: var(--transition);
+    }
+
+    .amenity-card:hover .amenity-icon {
+      background-color: var(--accent);
+      color: var(--primary);
+    }
+
+    .amenity-card h3 {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+
+    .amenity-card p {
+      font-size: 13px;
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+
+    /* ROOMS GRID PREVIEW */
+    .rooms-preview {
+      padding: 100px 0;
+      background-color: var(--bg-light);
+    }
+
+    .rooms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+    }
+
+    .room-card {
+      background-color: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .room-img-container {
+      position: relative;
+      height: 240px;
+      overflow: hidden;
+    }
+
+    .room-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .room-card:hover .room-img {
+      transform: scale(1.05);
+    }
+
+    .room-price-tag {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background-color: rgba(15, 23, 42, 0.9);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 13px;
+      padding: 6px 14px;
+      border-radius: 8px;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+
+    .room-info {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      flex-grow: 1;
+    }
+
+    .room-info h3 {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      color: var(--primary);
+    }
+
+    .room-info .tagline {
+      font-size: 12px;
+      color: var(--accent-hover);
+      font-weight: 650;
+      margin-top: -12px;
+    }
+
+    .room-meta {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      border-top: 1px solid #f1f5f9;
+      border-bottom: 1px solid #f1f5f9;
+      padding: 12px 0;
+    }
+
+    .meta-stat {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 650;
+      color: #475569;
+    }
+
+    .meta-stat i {
+      color: var(--accent);
+    }
+
+    .meta-wide {
+      grid-column: span 2;
+    }
+
+    .room-pill-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .room-pill {
+      background-color: var(--bg-light);
+      font-size: 10px;
+      color: #334155;
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+
+    .room-footer-btns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: auto;
+    }
+
+    /* SLIDING TESTIMONIALS */
+    .testimonials {
+      padding: 100px 0;
+      background-color: var(--primary-light);
+      color: var(--white);
+      text-align: center;
+      position: relative;
+    }
+
+    .testimonial-wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+      min-height: 250px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .testimonial-text {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-style: italic;
+      color: #e2e8f0;
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    @media (min-width: 768px) {
+      .testimonial-text {
+        font-size: 22px;
+      }
+    }
+
+    .testimonial-author {
+      margin-top: 24px;
+    }
+
+    .author-name {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .author-role {
+      font-size: 12px;
+      color: #94a3b8;
+    }
+
+    .author-location {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      background-color: #0f172a;
+      color: #cbd5e1;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-top: 6px;
+    }
+
+    .testimonial-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 32px;
+    }
+
+    .dot {
+      height: 10px;
+      width: 10px;
+      border-radius: 50%;
+      background-color: #334155;
+      transition: var(--transition);
+    }
+
+    .dot.active {
+      width: 28px;
+      background-color: var(--accent);
+      border-radius: 5px;
+    }
+
+    /* LOCATION & QUICK DETAILS */
+    .map-section {
+      padding: 100px 0;
+      background-color: var(--white);
+    }
+
+    .map-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    @media (min-width: 992px) {
+      .map-grid {
+        grid-template-columns: 1fr 1.2fr;
+      }
+    }
+
+    .contact-coords {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .coord-item {
+      display: flex;
+      align-items: start;
+      gap: 16px;
+    }
+
+    .coord-icon {
+      background-color: var(--bg-light);
+      color: var(--accent);
+      padding: 12px;
+      border-radius: 12px;
+      display: inline-flex;
+    }
+
+    .coord-title {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--primary);
+    }
+
+    .coord-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Vector Graphic Map Mock */
+    .vector-map-container {
+      background-color: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 24px;
+      padding: 24px;
+      min-height: 380px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .airport-card {
+      background-color: rgba(255, 255, 255, 0.95);
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 16px;
+      max-width: 320px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .airport-card h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .airport-card p {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .road-visualizer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .venice-pin-card {
+      background-color: var(--primary);
+      color: var(--white);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      padding: 12px 18px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .venice-pin-card .pin-icon {
+      background-color: var(--accent);
+      color: #0c121d;
+      padding: 8px;
+      border-radius: 8px;
+      display: inline-flex;
+    }
+
+    .venice-pin-card h5 {
+      color: var(--accent);
+      font-size: 13px;
+    }
+
+    .venice-pin-card span {
+      font-size: 10px;
+      color: #94a3b8;
+    }
+
+    .dashed-line {
+      height: 48px;
+      border-left: 2px dashed var(--accent);
+    }
+
+    .road-pill {
+      background-color: var(--white);
+      border: 1px solid #cbd5e1;
+      padding: 6px 12px;
+      font-size: 10px;
+      border-radius: 20px;
+    }
+
+    /* ROOMS PAGE DETAILED ROWS */
+    .rooms-list-container {
+      padding: 50px 0;
+    }
+
+    .room-row {
+      background-color: var(--white);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      margin-bottom: 56px;
+      display: grid;
+      grid-template-columns: 1fr;
+      border: 1px solid #f1f5f9;
+    }
+
+    @media (min-width: 992px) {
+      .room-row {
+        grid-template-columns: 1.2fr 1fr;
+      }
+      .room-row.reverse {
+        grid-template-columns: 1fr 1.2fr;
+      }
+    }
+
+    .room-row-img {
+      height: 320px;
+      position: relative;
+    }
+
+    @media (min-width: 992px) {
+      .room-row-img {
+        height: 100%;
+      }
+    }
+
+    .room-row-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .room-row-content {
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    @media (min-width: 768px) {
+      .room-row-content {
+        padding: 48px;
+      }
+    }
+
+    .room-row-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 16px;
+    }
+
+    .room-row-header h2 {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      color: var(--primary);
+    }
+
+    .room-row-header .price-col {
+      text-align: right;
+    }
+
+    .price-col-val {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .price-col-lbl {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .room-row-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .room-spec-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      background-color: var(--bg-light);
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .spec-item-lbl {
+      font-size: 9px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .spec-item-val {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .spec-item-val i {
+      color: var(--accent);
+    }
+
+    /* ABOUT US SUB-VALUES */
+    .values-row {
+      background-color: var(--primary);
+      color: var(--white);
+      border-radius: 24px;
+      padding: 48px;
+      margin-top: 56px;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 32px;
+      margin-top: 40px;
+    }
+
+    .value-item i {
+      color: var(--accent);
+      background-color: rgba(212, 175, 55, 0.1);
+      padding: 12px;
+      border-radius: 10px;
+      margin-bottom: 16px;
+      display: inline-block;
+    }
+
+    .value-item h4 {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .value-item p {
+      font-size: 13px;
+      color: #94a3b8;
+    }
+
+    /* FAQ ACCORDION */
+    .faq-wrapper {
+      max-width: 800px;
+      margin: 64px auto 0 auto;
+    }
+
+    .faq-card {
+      background-color: var(--white);
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+
+    .faq-card h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .faq-card h4 i {
+      color: var(--accent);
+    }
+
+    .faq-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      padding-left: 28px;
+      margin-top: 8px;
+    }
+
+    /* CONTACT FORM & DETAILS */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    @media (min-width: 992px) {
+      .contact-grid {
+        grid-template-columns: 0.8fr 1.2fr;
+      }
+    }
+
+    .contact-sidebar {
+      background-color: var(--primary);
+      color: var(--white);
+      padding: 40px;
+      border-radius: 24px;
+      box-shadow: var(--shadow-xl);
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .contact-sidebar h2 {
+      font-family: var(--font-serif);
+      color: var(--accent);
+    }
+
+    .form-box {
+      background-color: var(--white);
+      border-radius: 24px;
+      padding: 40px;
+      border: 1px solid #e2e8f0;
+      box-shadow: var(--shadow-md);
+    }
+
+    .form-box h3 {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .form-row-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .form-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #475569;
+      margin-bottom: 6px;
+    }
+
+    .form-input {
+      width: 100%;
+      background-color: #f8fafc;
+      border: 1px solid #cbd5e1;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      font-family: inherit;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .form-input:focus {
+      border-color: var(--accent);
+      background-color: var(--white);
+    }
+
+    .success-alert {
+      background-color: #ecfdf5;
+      border-left: 4px solid var(--success);
+      padding: 24px;
+      border-radius: 0 16px 16px 0;
+      margin-bottom: 24px;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    .success-alert h4 {
+      color: #065f46;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .success-alert p {
+      color: #047857;
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    /* BOOKING & CALCULATOR PAGE */
+    .calculator-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    @media (min-width: 992px) {
+      .calculator-grid {
+        grid-template-columns: 1.2fr 0.8fr;
+      }
+    }
+
+    .estimator-sidebar {
+      background-color: var(--primary);
+      color: var(--white);
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: var(--shadow-xl);
+      position: sticky;
+      top: 100px;
+    }
+
+    .sidebar-rate-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 1px;
+    }
+
+    .sidebar-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #1e293b;
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+    }
+
+    .sidebar-header-row h3 {
+      font-family: var(--font-serif);
+      font-size: 20px;
+    }
+
+    .room-estimator-img {
+      border-radius: 16px;
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      margin-bottom: 24px;
+    }
+
+    .price-summary-box {
+      border-bottom: 1px solid #1e293b;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 13px;
+    }
+
+    .summary-line {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .summary-line span {
+      color: #94a3b8;
+    }
+
+    .summary-line strong {
+      color: #cbd5e1;
+    }
+
+    .total-pricing-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .total-p-lbl {
+      font-size: 11px;
+      color: #94a3b8;
+      font-weight: 700;
+    }
+
+    .total-p-val {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--accent);
+      font-family: var(--font-serif);
+    }
+
+    .booking-hints {
+      background-color: #0c121d;
+      border-radius: 12px;
+      padding: 16px;
+      font-size: 11.5px;
+      color: #94a3b8;
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .booking-hints .hint-item {
+      display: flex;
+      gap: 8px;
+    }
+
+    .booking-hints .hint-item i {
+      color: var(--accent);
+      margin-top: 2px;
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: #050b14;
+      color: #cbd5e1;
+      padding: 80px 0 0 0;
+      border-top: 1px solid rgba(212, 175, 55, 0.1);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      margin-bottom: 56px;
+    }
+
+    @media (min-width: 576px) {
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 992px) {
+      .footer-grid {
+        grid-template-columns: 1.2fr 0.8fr 1fr 1fr;
+      }
+    }
+
+    .footer-col h4 {
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 24px;
+    }
+
+    .footer-col .logo {
+      margin-bottom: 16px;
+    }
+
+    .footer-col p {
+      font-size: 13px;
+      color: #94a3b8;
+      line-height: 1.7;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 13.5px;
+    }
+
+    .footer-links button {
+      color: #94a3b8;
+      text-align: left;
+      font-size: 13.5px;
+      transition: var(--transition);
+    }
+
+    .footer-links button:hover {
+      color: var(--white);
+    }
+
+    .footer-coords {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      font-size: 13px;
+    }
+
+    .footer-coords li {
+      display: flex;
+      gap: 10px;
+      color: #94a3b8;
+    }
+
+    .footer-coords li i {
+      color: var(--accent);
+      margin-top: 3px;
+    }
+
+    .newsletter-form {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .newsletter-input {
+      background-color: rgba(255, 255, 255, 0.04);
+      border: 1px solid #1e293b;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 12.5px;
+      color: var(--white);
+      outline: none;
+    }
+
+    .newsletter-input:focus {
+      border-color: var(--accent);
+    }
+
+    .sub-footer {
+      border-top: 1px solid #111a2e;
+      padding: 24px 0;
+      text-align: center;
+      font-size: 11.5px;
+      color: #64748b;
+    }
+
+    .sub-footer .container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .sub-footer .container {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+
+    .sub-footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Banner Alert -->
+  <div class="top-banner">
+    <div class="container">
+      <div class="banner-status">
+        <span class="pulse-dot"></span>
+        <span><strong>Open 24/7/365</strong> | Perfect for Murtala Muhammed International Airport (MMIA) Travelers</span>
+      </div>
+      <div class="banner-contact">
+        <a href="tel:+2347062566432">
+          <i data-lucide="phone" style="width:14px;height:14px;"></i> +234 706 256 6432
+        </a>
+        <span style="opacity: 0.3">|</span>
+        <span>Ajao Estate, Lagos</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Premium Navigation Bar -->
+  <header class="main-header">
+    <div class="container">
+      <div class="header-wrapper">
+        <!-- Logo -->
+        <div class="logo" onclick="navigateTo('home')" style="cursor: pointer;">
+          <div class="logo-icon">
+            <i data-lucide="plane" style="width: 20px; height: 20px;"></i>
+          </div>
+          <div>
+            <span class="logo-title">GrandVenice</span>
+            <span class="logo-subtitle">Transit Apartments</span>
+          </div>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav">
+          <button onclick="navigateTo('home')" class="nav-link active" data-page-btn="home">Home</button>
+          <button onclick="navigateTo('rooms')" class="nav-link" data-page-btn="rooms">Rooms & Suites</button>
+          <button onclick="navigateTo('about')" class="nav-link" data-page-btn="about">About Us</button>
+          <button onclick="navigateTo('contact')" class="nav-link" data-page-btn="contact">Contact & Location</button>
+        </nav>
+
+        <!-- Currency & Reservation Actions -->
+        <div class="header-actions">
+          <div class="currency-pill">
+            <button onclick="changeCurrency('NGN')" class="currency-btn active" id="currency-ngn-btn">₦ NGN</button>
+            <button onclick="changeCurrency('USD')" class="currency-btn" id="currency-usd-btn">$ USD</button>
+          </div>
+          <button onclick="navigateTo('book')" class="btn btn-gold" style="padding: 10px 20px; font-size: 13px; display: none; display: md: inline-flex;">Book Your Stay</button>
+          
+          <!-- Hamburger menu button -->
+          <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+            <i data-lucide="menu" id="menu-icon-state" style="width: 22px; height: 22px;"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer menu -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <div class="mobile-drawer-links">
+        <button onclick="navigateTo('home')" class="mobile-nav-link active" data-mob-btn="home">Home Page</button>
+        <button onclick="navigateTo('rooms')" class="mobile-nav-link" data-mob-btn="rooms">Rooms & Suites</button>
+        <button onclick="navigateTo('about')" class="mobile-nav-link" data-mob-btn="about">About Apartments</button>
+        <button onclick="navigateTo('contact')" class="mobile-nav-link" data-mob-btn="contact">Contact & Location</button>
+      </div>
+      <button onclick="navigateTo('book')" class="btn btn-gold" style="width: 100%; padding: 14px;">Book Your Stay Now</button>
+    </div>
+  </header>
+
+  <!-- SPA MAIN ROUTER CONTENT -->
+  <main>
+
+    <!-- PAGE 1: HOME SECTION -->
+    <section id="page-home" class="page-section active">
+      
+      <!-- Hero Header -->
+      <div class="hero">
+        <div class="hero-bg"></div>
+        <div class="container">
+          <div class="hero-grid">
+            <div class="hero-content">
+              <div class="badge-sub">
+                <i data-lucide="plane" style="width:14px; height:14px; transform: rotate(-45deg);"></i> Minutes from Murtala Muhammed Airport
+              </div>
+              <h1 class="hero-title">Your Premium Gateway to <br><span>Comfort & Rest</span> in Lagos</h1>
+              <p class="hero-desc">Designed specifically for transit passengers, corporate voyagers, and premium travelers seeking maximum security, 24/7 power, and instant airport proximity in the heart of Ajao Estate.</p>
+              
+              <div class="hero-bullets">
+                <div class="bullet-item">
+                  <div class="bullet-icon"><i data-lucide="clock" style="width:16px; height:16px;"></i></div>
+                  <span class="bullet-text">Open 24 Hours / 7 Days</span>
+                </div>
+                <div class="bullet-item">
+                  <div class="bullet-icon"><i data-lucide="shield" style="width:16px; height:16px;"></i></div>
+                  <span class="bullet-text">Fully Secured Estate</span>
+                </div>
+                <div class="bullet-item">
+                  <div class="bullet-icon"><i data-lucide="wifi" style="width:16px; height:16px;"></i></div>
+                  <span class="bullet-text">Free High-Speed Wi-Fi</span>
+                </div>
+              </div>
+
+              <div class="hero-actions">
+                <button onclick="navigateTo('book')" class="btn btn-gold" style="padding: 16px 32px; font-size: 15px;">Book Room Now <i data-lucide="arrow-right" style="width:16px;"></i></button>
+                <button onclick="navigateTo('rooms')" class="btn btn-outline" style="padding: 16px 32px; font-size: 15px;">Explore Premium Suites</button>
+              </div>
+            </div>
+
+            <!-- Promotion Sidebar card inside Hero -->
+            <div class="hero-badge-card">
+              <h3>Why Travelers Rate Us 4.2★</h3>
+              <ul>
+                <li><i data-lucide="check" style="width:14px; height:14px;"></i><span><strong>10-15 Mins Airport Drive:</strong> Beat the infamous Lagos traffic completely.</span></li>
+                <li><i data-lucide="check" style="width:14px; height:14px;"></i><span><strong>Uninterrupted Power:</strong> Dual generator backups ensure cold AC and hot showers.</span></li>
+                <li><i data-lucide="check" style="width:14px; height:14px;"></i><span><strong>Express Check-in:</strong> Direct access with minimal paperwork.</span></li>
+              </ul>
+              <div class="price-box">
+                <span class="price-lbl">Rooms start at only</span>
+                <span class="price-val" id="hero-price-display">₦45,000 / Night</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- About section summary -->
+      <div class="about-summary">
+        <div class="container">
+          <div class="about-summary-grid">
+            <div class="about-img-layout">
+              <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&q=80&w=600" alt="GrandVenice Cozy Bed" class="about-img-item">
+              <div class="about-card-stat">
+                <span class="stat-number">12</span>
+                <span class="stat-label">Fatai Irawo St, Ajao Estate</span>
+              </div>
+              <div class="about-card-gold">
+                <span class="stat-number">24/7</span>
+                <span class="stat-label">Express Guest Desk Support</span>
+              </div>
+              <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&q=80&w=600" alt="Gated Security Entrance" class="about-img-item shift">
+            </div>
+
+            <div class="about-text-content">
+              <span class="badge-sub"><i data-lucide="award" style="width:12px;height:12px;"></i> Luxury Transit Retreat</span>
+              <h2>Designed Specially for Airport Layovers and Serene Getaways</h2>
+              <p>At <strong>GrandVenice Transit Apartments</strong>, we represent premium, modern, and accessible hospitality. Perfectly situated in Ajao Estate, our proximity to the international and domestic wings of Lagos Airport makes us the top option for savvy corporate travelers and international transit guests.</p>
+              <p>We offer a peaceful alternative to noisy airport lounges. Experience the ease of 24/7 express reservation, fully air-conditioned rooms, absolute defense networks, and high-speed fiber-optic Wi-Fi to keep you synced with global business while resting before your next destination.</p>
+
+              <div class="attributes-list">
+                <div class="attr-item">
+                  <div class="attr-icon"><i data-lucide="shield" style="width:16px;height:16px;"></i></div>
+                  <span class="attr-text">Gated Secure Estate</span>
+                </div>
+                <div class="attr-item">
+                  <div class="attr-icon"><i data-lucide="plane" style="width:16px;height:16px;"></i></div>
+                  <span class="attr-text">Minutes to Terminals</span>
+                </div>
+                <div class="attr-item">
+                  <div class="attr-icon"><i data-lucide="wind" style="width:16px;height:16px;"></i></div>
+                  <span class="attr-text">Quiet Air Conditioning</span>
+                </div>
+                <div class="attr-item">
+                  <div class="attr-icon"><i data-lucide="clock" style="width:16px;height:16px;"></i></div>
+                  <span class="attr-text">Open All Holidays</span>
+                </div>
+              </div>
+
+              <div style="margin-top: 32px;">
+                <button onclick="navigateTo('about')" class="btn" style="color: var(--accent); padding: 0; font-weight: 700;">Read More About GrandVenice <i data-lucide="arrow-right" style="width:16px;"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Premium Amenities -->
+      <div class="amenities">
+        <div class="container">
+          <div class="section-title-wrapper">
+            <span class="badge-sub">In-House Perks</span>
+            <h2 class="section-title" style="color: var(--white);">Every Amenity Tailored for Perfect Relaxation</h2>
+            <p class="section-desc" style="color: #94a3b8;">We cover every essential amenity to guarantee premium comfort so you can lay down, unwind, or attend to your business meetings hassle-free.</p>
+          </div>
+
+          <div class="amenities-grid">
+            <div class="amenity-card">
+              <div class="amenity-icon"><i data-lucide="clock" style="width:24px;height:24px;"></i></div>
+              <h3>24/7 Seamless Power</h3>
+              <p>Lagos can be unpredictable, but GrandVenice isn't. Our dedicated automated dual power backups mean seamless climate cooling, hot showers, and constant lighting.</p>
+            </div>
+            <div class="amenity-card">
+              <div class="amenity-icon"><i data-lucide="wifi" style="width:24px;height:24px;"></i></div>
+              <h3>High-Speed Wi-Fi</h3>
+              <p>Stay updated with work zoom calls, stream high-definition media, or link up with family back home with our high-speed, fiber-optic wifi connection.</p>
+            </div>
+            <div class="amenity-card">
+              <div class="amenity-icon"><i data-lucide="wind" style="width:24px;height:24px;"></i></div>
+              <h3>Fully Air-Conditioned</h3>
+              <p>Every single transit room features individual modern high-capacity AC systems that chill rapidly to shield you from the equatorial Lagos heat.</p>
+            </div>
+            <div class="amenity-card">
+              <div class="amenity-icon"><i data-lucide="shield" style="width:24px;height:24px;"></i></div>
+              <h3>Maximum Security Shield</h3>
+              <p>Located in highly secure Ajao Estate with perimeter electric fences, strict gate clearance procedures, internal guards, and 24/7 CCTV surveillance loops.</p>
+            </div>
+            <div class="amenity-card">
+              <div class="amenity-icon"><i data-lucide="car" style="width:24px;height:24px;"></i></div>
+              <h3>Airport Shuttle Coordination</h3>
+              <p>Rest easy knowing you won't struggle with airport logistics. We organize secure, personalized arrival pickups and rapid departures back to the flight terminals.</p>
+            </div>
+            <div class="amenity-card">
+              <div class="amenity-icon"><i data-lucide="coffee" style="width:24px;height:24px;"></i></div>
+              <h3>24/7 Hospitality Support</h3>
+              <p>Whether you require an extra premium blanket, gourmet midnight snacks, cold refreshments, or local logistics counsel, our warm crew is on standby 24/7.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Room Gallery Preview -->
+      <div class="rooms-preview">
+        <div class="container">
+          <div class="section-title-wrapper" style="margin-bottom: 48px;">
+            <span class="badge-sub">Exquisite Lodging</span>
+            <h2 class="section-title">Explore Premium Rooms & Suites</h2>
+            <p class="section-desc">Select the room style that perfectly accommodates your travel schedule and comfort preferences.</p>
+          </div>
+
+          <div class="rooms-grid" id="home-rooms-list">
+            <!-- Programmatically injected by JavaScript to support currency toggling -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Sliding Testimonials Section -->
+      <div class="testimonials">
+        <div class="container">
+          <div class="testimonial-wrapper">
+            <span class="badge-sub" style="display:inline-flex; width:fit-content; margin: 0 auto 16px auto;"><i data-lucide="star" style="width:14px;height:14px;fill:var(--accent);"></i> 4.2 STAR GUEST REVIEWS</span>
+            <p class="testimonial-text" id="testimonialText">"Having a clean, secure space literally minutes away from the Lagos international airport is a lifesaver. The 24/7 reception meant my 2 AM arrival was seamless. The AC was chilling, and the bed was heavenly."</p>
+            <div class="testimonial-author">
+              <h4 class="author-name" id="testimonialAuthor">Dr. Amara Nwosu</h4>
+              <span class="author-role" id="testimonialRole">International Consultant</span>
+              <br>
+              <span class="author-location" id="testimonialLocation">United Kingdom</span>
+            </div>
+          </div>
+
+          <div class="testimonial-dots" id="testimonialDots">
+            <!-- Auto-generated dots -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Location Area Details with Vector Graphic Map Mock -->
+      <div class="map-section">
+        <div class="container">
+          <div class="map-grid">
+            <div class="contact-coords">
+              <div>
+                <span class="badge-sub">Airport Proximity</span>
+                <h2 class="section-title" style="text-align: left;">Easy To Find in Ajao Estate</h2>
+                <p class="section-desc">Located in the quiet, secure, residential enclave of Ajao Estate. GrandVenice offers the ultimate balance of noise isolation while keeping you only a few kilometers away from Murtala Muhammed Airport runways.</p>
+              </div>
+
+              <div class="coord-item">
+                <div class="coord-icon"><i data-lucide="map-pin" style="width:20px;height:20px;"></i></div>
+                <div>
+                  <h4 class="coord-title">Address Location</h4>
+                  <p class="coord-desc">12 Fatai Irawo St, Ajao Estate, Lagos 102214, Nigeria</p>
+                </div>
+              </div>
+
+              <div class="coord-item">
+                <div class="coord-icon"><i data-lucide="phone" style="width:20px;height:20px;"></i></div>
+                <div>
+                  <h4 class="coord-title">24/7 Telephone Hotline</h4>
+                  <p class="coord-desc">+234 706 256 6432 (Calls / WhatsApp text)</p>
+                </div>
+              </div>
+
+              <div class="coord-item">
+                <div class="coord-icon"><i data-lucide="clock" style="width:20px;height:20px;"></i></div>
+                <div>
+                  <h4 class="coord-title">Check-In Availability</h4>
+                  <p class="coord-desc">Open 24 hours daily. Continuous reception support.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Stylized Mock Route Map -->
+            <div class="vector-map-container">
+              <div class="airport-card">
+                <h4>Murtala Muhammed International (MMIA)</h4>
+                <p>Only 4.5km away via airport access road directly connecting to Ajao Estate.</p>
+              </div>
+
+              <div class="road-visualizer">
+                <div class="venice-pin-card">
+                  <div class="pin-icon"><i data-lucide="map-pin" style="width:16px;height:16px;"></i></div>
+                  <div>
+                    <h5>GrandVenice Transit Apartments</h5>
+                    <span>12 Fatai Irawo Street</span>
+                  </div>
+                </div>
+                <div class="dashed-line"></div>
+                <div class="road-pill"><i data-lucide="plane" style="width:12px;height:12px;display:inline-block;vertical-align:middle;"></i> International Access Way (10 Min Drive)</div>
+              </div>
+
+              <div style="text-align:center; font-size:11px; color:var(--text-muted);">
+                ✓ Gated private parking secure. Google Map Navigation support enabled.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 2: ROOMS & SUITES -->
+    <section id="page-rooms" class="page-section">
+      <div class="rooms-list-container">
+        <div class="container">
+          <div class="section-title-wrapper">
+            <span class="badge-sub">Exquisite Lodging</span>
+            <h1 class="section-title">Rooms Fitted for Maximum Recharging</h1>
+            <p class="section-desc">Select the style that aligns with your timeline. Whether a quick 6-hour layover, an overnight stay, or a multi-day corporate base, we have the perfect space.</p>
+          </div>
+
+          <div id="detailed-rooms-rows">
+            <!-- Dynamic Content Injected with Vanilla JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 3: ABOUT US -->
+    <section id="page-about" class="page-section">
+      <div style="background-color: var(--primary); color: var(--white); padding: 64px 0; text-align: center;">
+        <div class="container">
+          <span class="badge-sub">Our Hospitality Vision</span>
+          <h1 class="section-title" style="color: var(--white); margin-top: 8px;">Welcome to GrandVenice Transit</h1>
+          <p style="color: var(--text-light); max-width: 600px; margin: 0 auto;">A modern sanctuary for international and domestic airline travelers near Murtala Muhammed International Airport.</p>
+        </div>
+      </div>
+
+      <div class="container" style="padding: 80px 0;">
+        <div class="about-summary-grid">
+          <div>
+            <h2 class="section-title" style="text-align: left; margin-bottom: 24px;">Designed to Bridge the Gap Between Flights</h2>
+            <p style="color: var(--text-muted); margin-bottom: 16px;">GrandVenice Transit Apartments was birthed out of a simple realization: travelers arriving at the Lagos International Airport (MMIA) deserve a clean, highly secure, cooling, and premium space to sleep and recharge without having to risk sitting in long commute hours to Lagos Island or Ikeja.</p>
+            <p style="color: var(--text-muted); margin-bottom: 24px;">We pride ourselves on offering modern boutique rooms with strict hygienic protocols, super-fast Wi-Fi, and 24-hour kitchen capabilities so you never feel out of place.</p>
+            
+            <div style="border-left: 4px solid var(--accent); padding-left: 16px; font-style: italic; color: #475569; font-size: 14px;">
+              "We operate non-stop. Since planes land at 3 AM, our full-service kitchen, desk crew, and secure check-in systems operate 24/7/365 to greet you."
+            </div>
+          </div>
+          <div>
+            <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&q=80&w=800" alt="Hospitality Excellence" style="width:100%; border-radius:24px; box-shadow: var(--shadow-xl); height: 380px; object-fit: cover;">
+          </div>
+        </div>
+
+        <div class="values-row">
+          <h3 style="font-family: var(--font-serif); font-size: 24px; text-align: center; color: var(--accent);">Our Uncompromising Values</h3>
+          <p style="text-align: center; font-size: 13px; color: #cbd5e1; margin-top: 8px;">How we sustain 4.2-star ratings from hundreds of global transit guests.</p>
+          
+          <div class="values-grid">
+            <div class="value-item">
+              <i data-lucide="shield"></i>
+              <h4>Uncompromising Safety</h4>
+              <p>Located in the secure resident zone of Ajao Estate. Rigorous gated checks ensure you can rest with total peace of mind.</p>
+            </div>
+            <div class="value-item">
+              <i data-lucide="clock"></i>
+              <h4>Constant Availability</h4>
+              <p>Whether it's checking in at midnight or needing an extra towel at 4 AM, our front desk is always fully responsive.</p>
+            </div>
+            <div class="value-item">
+              <i data-lucide="sparkles"></i>
+              <h4>Hygiene Excellence</h4>
+              <p>We maintain hospital-grade room sanitization between check-ins. Expect crisp, fresh-scented linens, sparkling floors, and pristine restrooms.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 4: CONTACT & FAQ -->
+    <section id="page-contact" class="page-section">
+      <div class="container" style="padding: 64px 0;">
+        <div class="section-title-wrapper">
+          <span class="badge-sub">Reach Out to Us</span>
+          <h1 class="section-title">We are Here Round the Clock</h1>
+          <p class="section-desc">Have questions about airport shuttle scheduling, group booking, or facilities? Fill out the form below or reach our team directly over the phone.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-sidebar">
+            <div>
+              <h2>GrandVenice Apartments</h2>
+              <p style="color: #94a3b8; font-size: 13px; margin-top: 4px;">12 Fatai Irawo St, Ajao Estate, Lagos</p>
+            </div>
+
+            <div class="coord-item">
+              <div class="coord-icon" style="background-color: #1e293b;"><i data-lucide="map-pin" style="width:20px;height:20px;"></i></div>
+              <div>
+                <strong style="color: #cbd5e1; font-size:14px;">Our Street Address</strong>
+                <p style="color: #94a3b8; font-size:12.5px; margin-top:4px;">12 Fatai Irawo St, Ajao Estate, Lagos 102214, Nigeria</p>
+              </div>
+            </div>
+
+            <div class="coord-item">
+              <div class="coord-icon" style="background-color: #1e293b;"><i data-lucide="phone" style="width:20px;height:20px;"></i></div>
+              <div>
+                <strong style="color: #cbd5e1; font-size:14px;">24/7 Telephone Lines</strong>
+                <p style="color: #94a3b8; font-size:12.5px; margin-top:4px;">+234 706 256 6432 <br>(Calls & WhatsApp Support)</p>
+              </div>
+            </div>
+
+            <div class="coord-item">
+              <div class="coord-icon" style="background-color: #1e293b;"><i data-lucide="mail" style="width:20px;height:20px;"></i></div>
+              <div>
+                <strong style="color: #cbd5e1; font-size:14px;">Email Correspondence</strong>
+                <p style="color: #94a3b8; font-size:12.5px; margin-top:4px;">reservations@grandvenice.com</p>
+              </div>
+            </div>
+
+            <div style="background-color: #0c121d; padding: 16px; border-radius: 12px; font-size: 12px; color: #94a3b8; line-height: 1.6;">
+              <span style="color: var(--accent); font-weight: 700; text-transform: uppercase;">Transit Note:</span> If you need airport pickup assistance, please send us your flight landing times at least 4 hours ahead of your arrival.
+            </div>
+          </div>
+
+          <!-- Contact Form Panel -->
+          <div class="form-box">
+            <h3>Send Us an Instant Inquiry</h3>
+
+            <div id="contact-success-container" style="display: none;">
+              <div class="success-alert">
+                <h4><i data-lucide="check-circle" style="width:20px;height:20px;"></i> Inquiry Received Successfully!</h4>
+                <p>Thank you for reaching out. Our front desk manager will respond via email or call you within the next 15-30 minutes.</p>
+              </div>
+            </div>
+
+            <form id="contactForm" onsubmit="handleContactFormSubmit(event)">
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Your Full Name</label>
+                  <input type="text" class="form-input" placeholder="John Doe" required id="contactName">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Active Phone Number</label>
+                  <input type="tel" class="form-input" placeholder="+234..." required id="contactPhone">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-input" placeholder="johndoe@example.com" required id="contactEmail">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Message Details / Inquiries</label>
+                <textarea class="form-input" rows="4" style="resize: none;" placeholder="Write your questions or special transit arrangements..." required id="contactMessage"></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-dark" style="width: 100%; padding: 14px;">Submit Inquiry Message <i data-lucide="arrow-right" style="width: 16px;"></i></button>
+            </form>
+          </div>
+        </div>
+
+        <!-- FAQ Area -->
+        <div class="faq-wrapper">
+          <div style="text-align: center; margin-bottom: 32px;">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p style="color: var(--text-muted); font-size:13px;">Clear answers to help plan your upcoming stay with us</p>
+          </div>
+
+          <div id="faq-accordion-target">
+            <!-- Dynamic Injection of FAQs -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 5: BOOKING PAGE & ESTIMATOR -->
+    <section id="page-book" class="page-section">
+      <div class="container" style="padding: 64px 0;">
+        <div class="section-title-wrapper">
+          <span class="badge-sub">Direct Reservations</span>
+          <h1 class="section-title">Custom Bookings & Rates</h1>
+          <p class="section-desc">Plan your Lagos airport transit seamlessly. Use our interactive estimator to calculate pricing instantly and lock in your reservation with the front desk.</p>
+        </div>
+
+        <!-- Simulated Reservation Success -->
+        <div id="booking-success-box" style="display: none; max-width: 650px; margin: 0 auto;">
+          <div class="form-box" style="text-align: center;">
+            <div style="width: 72px; height: 72px; background-color: #ecfdf5; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px auto; color: var(--success);">
+              <i data-lucide="check" style="width: 40px; height: 40px; stroke-width: 3;"></i>
+            </div>
+            <h2 style="font-family: var(--font-serif); margin-bottom: 12px; font-size: 24px;">Reservation Request Sent!</h2>
+            <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 24px;">We have reserved a tentative hold under <strong id="success-guest-name" style="color: var(--primary);">Guest</strong>.</p>
+            
+            <div style="background-color: var(--bg-light); border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px; text-align: left; margin-bottom: 24px;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 13px;">
+                <span style="color: var(--text-muted);">Selected Room:</span>
+                <strong id="success-room-type" style="color: var(--primary);">Room</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 13px;">
+                <span style="color: var(--text-muted);">Check-In Date:</span>
+                <strong id="success-checkin" style="color: var(--primary);">TBD</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 13px;">
+                <span style="color: var(--text-muted);">Check-Out Date:</span>
+                <strong id="success-checkout" style="color: var(--primary);">TBD</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 13px;">
+                <span style="color: var(--text-muted);">Estimated Total:</span>
+                <strong id="success-est-total" style="color: var(--accent-hover); font-size: 15px;">Amount</strong>
+              </div>
+            </div>
+
+            <div style="background-color: var(--primary); color: var(--white); padding: 18px; border-radius: 12px; font-size: 12px; margin-bottom: 24px;">
+              <span style="color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 4px;">Next Step</span>
+              <p style="color: var(--text-light);">Our front desk officer will call or WhatsApp you at <strong id="success-phone-field"></strong> within 10 minutes to verify flight times and confirm final details!</p>
+            </div>
+
+            <div style="display: flex; justify-content: center; gap: 12px;">
+              <button onclick="resetBookingForm()" class="btn btn-dark">Book Another Room</button>
+              <button onclick="navigateTo('home')" class="btn btn-outline" style="color: var(--primary); border-color: #cbd5e1;">Back To Home</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Calculator Grid Layout -->
+        <div class="calculator-grid" id="booking-form-box">
+          
+          <!-- Booking Fields Input Form -->
+          <div class="form-box">
+            <h3 style="display: flex; align-items: center; gap: 8px;"><i data-lucide="calendar" style="color: var(--accent);"></i> Enter Booking Details</h3>
+            
+            <form id="bookingForm" onsubmit="handleBookingFormSubmit(event)">
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Full Name (Primary Guest)</label>
+                  <input type="text" id="bookName" class="form-input" placeholder="e.g. John Doe" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Active Mobile Number</label>
+                  <input type="tel" id="bookPhone" class="form-input" placeholder="e.g. +234..." required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" id="bookEmail" class="form-input" placeholder="johndoe@example.com" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Select Your Room Class</label>
+                <select id="bookRoomSelect" class="form-input" onchange="updateLiveEstimation()">
+                  <option value="standard" selected>Standard Transit Room</option>
+                  <option value="deluxe">Deluxe Executive Room</option>
+                  <option value="executive">GrandVenice Executive Suite</option>
+                </select>
+              </div>
+
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Check-In Date</label>
+                  <input type="date" id="bookCheckIn" class="form-input" required onchange="updateLiveEstimation()">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Check-Out Date</label>
+                  <input type="date" id="bookCheckOut" class="form-input" required onchange="updateLiveEstimation()">
+                </div>
+              </div>
+
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label class="form-label">Total Guests</label>
+                  <select id="bookGuests" class="form-input">
+                    <option value="1">1 Guest</option>
+                    <option value="2">2 Guests</option>
+                    <option value="3">3 Guests</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Do you need Airport Shuttle?</label>
+                  <select id="bookShuttle" class="form-input" onchange="updateLiveEstimation()">
+                    <option value="no" selected>No, I have my own transport</option>
+                    <option value="yes">Yes, please coordinate pickup/dropoff</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Special Requests / Flight Numbers</label>
+                <textarea id="bookRequests" class="form-input" rows="3" style="resize: none;" placeholder="Please let us know your flight landing time or preferred room setup..."></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-gold" style="width: 100%; padding: 16px; margin-top: 12px; text-transform: uppercase; letter-spacing: 1.5px;">Send Reservation Hold</button>
+            </form>
+          </div>
+
+          <!-- Estimator Live Cost Sidebar -->
+          <div class="estimator-sidebar">
+            <div class="sidebar-header-row">
+              <div>
+                <span class="sidebar-rate-title">ESTIMATED RATE SUMMARY</span>
+                <h3 style="margin-top: 2px;">Pricing Breakdown</h3>
+              </div>
+            </div>
+
+            <!-- Thumbnail Image for currently selected class -->
+            <img id="estimator-img-preview" src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&q=80&w=800" alt="Room Layout" class="room-estimator-img">
+
+            <div class="price-summary-box">
+              <div class="summary-line">
+                <span>Room Class:</span>
+                <strong id="summary-room-name">Standard Transit Room</strong>
+              </div>
+              <div class="summary-line">
+                <span>Nightly Rate:</span>
+                <strong id="summary-nightly-rate">₦45,000</strong>
+              </div>
+              <div class="summary-line">
+                <span>Total Nights:</span>
+                <strong id="summary-total-nights">1 Night</strong>
+              </div>
+              <div class="summary-line">
+                <span>Taxes & Levies:</span>
+                <span style="color: var(--success); font-weight: 700; font-size: 11px; background-color: rgba(16, 185, 129, 0.15); padding: 2px 8px; border-radius: 4px;">Inclusive</span>
+              </div>
+              <div class="summary-line">
+                <span>Airport Shuttle:</span>
+                <strong id="summary-shuttle-cost">Not Requested</strong>
+              </div>
+            </div>
+
+            <div class="total-pricing-row">
+              <div>
+                <span class="total-p-lbl">ESTIMATED GRAND TOTAL</span>
+                <span style="font-size: 10px; color: #94a3b8; display: block; font-style: italic; margin-top: 2px;">*Subject to nights stayed</span>
+              </div>
+              <div class="total-p-val" id="summary-grand-total">
+                ₦45,000
+              </div>
+            </div>
+
+            <div class="booking-hints">
+              <div class="hint-item">
+                <i data-lucide="check" style="width:14px;height:14px;flex-shrink: 0;"></i>
+                <span>No pre-payment details required online. Pay securely upon arrival.</span>
+              </div>
+              <div class="hint-item">
+                <i data-lucide="check" style="width:14px;height:14px;flex-shrink: 0;"></i>
+                <span>24-Hour continuous desk support covers any delayed flight arrivals.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Premium Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        
+        <!-- Bio and rating summary -->
+        <div class="footer-col">
+          <div class="logo">
+            <div class="logo-icon">
+              <i data-lucide="plane" style="width: 18px; height: 18px;"></i>
+            </div>
+            <div>
+              <span class="logo-title" style="color: var(--white);">GrandVenice</span>
+            </div>
+          </div>
+          <p style="margin-top: 16px;">Premium, serene, and secure transit apartments strategically located in Ajao Estate, Lagos, Nigeria. Engineered for modern global travelers needing premium layover rest and continuous 24/7 hospitality.</p>
+          
+          <div style="display: flex; align-items: center; gap: 8px; margin-top: 24px;">
+            <span style="font-size: 11px; color: #64748b; font-weight: 700; text-transform: uppercase;">Average Score:</span>
+            <div style="display: flex; gap: 2px; color: var(--accent);">
+              <i data-lucide="star" style="width:14px;height:14px;fill:currentColor;"></i>
+              <i data-lucide="star" style="width:14px;height:14px;fill:currentColor;"></i>
+              <i data-lucide="star" style="width:14px;height:14px;fill:currentColor;"></i>
+              <i data-lucide="star" style="width:14px;height:14px;fill:currentColor;"></i>
+              <span style="font-size: 11px; font-weight:700; color:#cbd5e1; margin-left: 4px;">4.2★ (280+ Reviews)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Directory Sitemap -->
+        <div class="footer-col">
+          <h4>Explore Website</h4>
+          <ul class="footer-links">
+            <li><button onclick="navigateTo('home')">Home Landing</button></li>
+            <li><button onclick="navigateTo('rooms')">Rooms & Rates</button></li>
+            <li><button onclick="navigateTo('about')">About Our Vision</button></li>
+            <li><button onclick="navigateTo('contact')">Contact Support</button></li>
+            <li><button onclick="navigateTo('book')" style="color: var(--accent); font-weight: 700;">Book A Room</button></li>
+          </ul>
+        </div>
+
+        <!-- Coordinates Details -->
+        <div class="footer-col">
+          <h4>Coordinates</h4>
+          <ul class="footer-coords">
+            <li>
+              <i data-lucide="map-pin"></i>
+              <span>12 Fatai Irawo St, Ajao Estate, Lagos 102214, Nigeria</span>
+            </li>
+            <li>
+              <i data-lucide="phone"></i>
+              <span>+234 706 256 6432</span>
+            </li>
+            <li>
+              <i data-lucide="clock"></i>
+              <span>Always Open 24/7 / 365 Days</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Offer Letter Subscribe -->
+        <div class="footer-col">
+          <h4>Offers & Flight Tips</h4>
+          <p style="font-size: 12.5px; margin-bottom: 16px;">Get exclusive airport transit discounts, flight layover tips, and promotional room rates.</p>
+          
+          <div id="newsletter-success-box" style="display: none; background-color: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2); padding: 12px; border-radius: 6px; font-size: 11px; color: var(--success); margin-bottom: 12px;">
+            ✓ Perfect! You've successfully subscribed.
+          </div>
+
+          <form class="newsletter-form" id="newsletterForm" onsubmit="handleNewsletterSubmit(event)">
+            <input type="email" placeholder="Enter email address" required class="newsletter-input" id="newsletterEmail">
+            <button type="submit" class="btn btn-gold" style="padding: 10px; font-size: 11.5px; font-weight: 700; border-radius: 6px;">Join Newsletter</button>
+          </form>
+        </div>
+
+      </div>
+
+      <div class="sub-footer">
+        <div class="container">
+          <div>
+            &copy; <span id="current-year-placeholder">2026</span> GrandVenice Transit Apartments. All Rights Reserved.
+          </div>
+          <div class="sub-footer-links">
+            <a href="#" class="footer-btn">Premium Airport Rest</a>
+            <span>·</span>
+            <a href="#" class="footer-btn">Privacy Shield Policy</a>
+            <span>·</span>
+            <a href="#" class="footer-btn">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- App Business Logic & Calculation Scripts -->
+  <script>
+    // Global Datastore mimicking the previous state
+    const ROOMS_DATA = [
+      {
+        id: 'standard',
+        name: 'Standard Transit Room',
+        tagline: 'Perfect for quick layovers & solo travelers',
+        priceNGN: 45000,
+        priceUSD: 60,
+        image: 'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&q=80&w=800',
+        capacity: '1 Guest',
+        bed: '1 Cozy Double Bed',
+        size: '22 m²',
+        amenities: ['24/7 Power', 'High-speed Wi-Fi', 'Smart TV', 'Air Conditioning', 'En-suite Bathroom']
+      },
+      {
+        id: 'deluxe',
+        name: 'Deluxe Executive Room',
+        tagline: 'Enhanced space with premium comforts',
+        priceNGN: 65000,
+        priceUSD: 85,
+        image: 'https://images.unsplash.com/photo-1611891404114-5090bc959071?auto=format&fit=crop&q=80&w=800',
+        capacity: '2 Guests',
+        bed: '1 Premium King Bed',
+        size: '30 m²',
+        amenities: ['24/7 Power', 'High-speed Wi-Fi', 'Smart TV', 'Air Conditioning', 'Workspace Desk', 'Complimentary Coffee']
+      },
+      {
+        id: 'executive',
+        name: 'GrandVenice Executive Suite',
+        tagline: 'The ultimate transit luxury experience',
+        priceNGN: 95000,
+        priceUSD: 125,
+        image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&q=80&w=800',
+        capacity: '3 Guests',
+        bed: '1 Super King Bed + Sofa Bed',
+        size: '45 m²',
+        amenities: ['24/7 Power', 'High-speed Wi-Fi', '65" OLED Smart TV', 'Climate Control', 'Mini Lounge Area', 'Mini Bar Fridge', 'Priority Airport Shuttle']
+      }
+    ];
+
+    const TESTIMONIALS = [
+      {
+        name: "Dr. Amara Nwosu",
+        role: "International Consultant",
+        location: "United Kingdom",
+        text: "Having a clean, secure space literally minutes away from the Lagos international airport is a lifesaver. The 24/7 reception meant my 2 AM arrival was seamless. The AC was chilling, and the bed was heavenly."
+      },
+      {
+        name: "Tunde Olowo",
+        role: "Frequent Business Traveler",
+        location: "Abuja, Nigeria",
+        text: "I stay at GrandVenice whenever I have overnight transits. Unbeatable location in Ajao Estate. The staff helped arrange my early morning shuttle, and the power supply didn't blink once. Strongly recommended!"
+      },
+      {
+        name: "Sarah Jenkins",
+        role: "Leisure Traveler",
+        location: "Canada",
+        text: "Exceeded my expectations for a transit stay. Secure environment, very friendly staff, and remarkably quiet despite the proximity to the airport. Standard of hygiene is outstanding."
+      }
+    ];
+
+    const FAQS = [
+      {
+        q: "How close are you to the Lagos Airport (MMIA)?",
+        a: "We are located at 12 Fatai Irawo St, Ajao Estate. This strategic location places us just 10-15 minutes away from both the International and Domestic terminals of Murtala Muhammed International Airport, depending on traffic."
+      },
+      {
+        q: "Do you offer 24-hour check-in and power?",
+        a: "Yes! We operate 24 hours a day, 7 days a week. We understand flights land at all hours of the night. We also feature a robust 24/7 power backup system (grid + generator) to guarantee continuous cooling and electricity."
+      },
+      {
+        q: "Do you provide airport shuttle assistance?",
+        a: "Absolutely. We coordinate secure, trusted airport pick-up and drop-off services for our guests. You can easily book this service during your reservation or by contacting our front desk directly."
+      },
+      {
+        q: "Is there secure parking and security?",
+        a: "Yes, security is our top priority. We feature fully secured compound gates, round-the-clock physical security guards, and modern CCTV surveillance systems in Ajao Estate's serene neighborhood."
+      }
+    ];
+
+    // State Variables
+    let currentCurrency = 'NGN';
+    let currentTestimonialIndex = 0;
+    let mobileMenuOpen = false;
+
+    // Run when DOM loads
+    window.addEventListener('DOMContentLoaded', () => {
+      // Set current year
+      document.getElementById('current-year-placeholder').textContent = new Date().getFullYear();
+      
+      // Initialize dynamic views
+      renderRoomsPreview();
+      renderDetailedRooms();
+      renderFAQs();
+      setupTestimonials();
+      initDateInputs();
+      updateLiveEstimation();
+
+      // Initialize Lucide icons
+      lucide.createIcons();
+
+      // Set up automatic testimonial carousel loop
+      setInterval(() => {
+        nextTestimonial();
+      }, 7000);
+    });
+
+    // SPA Navigation Router
+    function navigateTo(pageId) {
+      // Close mobile drawer if open
+      if (mobileMenuOpen) {
+        toggleMobileMenu();
+      }
+
+      // Deactivate all sections & activate target
+      document.querySelectorAll('.page-section').forEach(section => {
+        section.classList.remove('active');
+      });
+      document.getElementById('page-' + pageId).classList.add('active');
+
+      // Update Nav links highlighters
+      document.querySelectorAll('.nav-link').forEach(link => {
+        if (link.getAttribute('data-page-btn') === pageId) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+
+      document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        if (link.getAttribute('data-mob-btn') === pageId) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+
+      // Special action: if navigating to book and a specific room isn't selected, keep standard default
+      if (pageId === 'book') {
+        updateLiveEstimation();
+      }
+
+      // Smooth scroll back to top of page
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Toggle Mobile Navigation Drawer
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobileDrawer');
+      const icon = document.getElementById('menu-icon-state');
+      mobileMenuOpen = !mobileMenuOpen;
+
+      if (mobileMenuOpen) {
+        drawer.style.display = 'block';
+        icon.setAttribute('data-lucide', 'x');
+      } else {
+        drawer.style.display = 'none';
+        icon.setAttribute('data-lucide', 'menu');
+      }
+      lucide.createIcons();
+    }
+
+    // Change Currency system
+    function changeCurrency(currencyCode) {
+      currentCurrency = currencyCode;
+      
+      // Update toggle pills look
+      if (currencyCode === 'NGN') {
+        document.getElementById('currency-ngn-btn').classList.add('active');
+        document.getElementById('currency-usd-btn').classList.remove('active');
+      } else {
+        document.getElementById('currency-usd-btn').classList.add('active');
+        document.getElementById('currency-ngn-btn').classList.remove('active');
+      }
+
+      // Re-evaluate prices on components
+      updatePricesInViews();
+    }
+
+    // Utility formatter helper
+    function formatPrice(amountNGN, amountUSD) {
+      if (currentCurrency === 'NGN') {
+        return `₦${amountNGN.toLocaleString()}`;
+      } else {
+        return `$${amountUSD.toLocaleString()}`;
+      }
+    }
+
+    // Update prices across all rendered elements on dynamic currency switches
+    function updatePricesInViews() {
+      // 1. Hero Price box
+      const heroPrice = ROOMS_DATA[0];
+      document.getElementById('hero-price-display').innerText = `${formatPrice(heroPrice.priceNGN, heroPrice.priceUSD)} / Night`;
+
+      // 2. Refresh lists
+      renderRoomsPreview();
+      renderDetailedRooms();
+      updateLiveEstimation();
+    }
+
+    // Render Home Rooms 3-grid layout
+    function renderRoomsPreview() {
+      const target = document.getElementById('home-rooms-list');
+      if (!target) return;
+      target.innerHTML = '';
+
+      ROOMS_DATA.forEach(room => {
+        const pFormatted = formatPrice(room.priceNGN, room.priceUSD);
+        
+        let amenitiesHTML = '';
+        room.amenities.slice(0, 3).forEach(amen => {
+          amenitiesHTML += `<span class="room-pill">✓ ${amen}</span>`;
+        });
+
+        const card = document.createElement('div');
+        card.className = 'room-card';
+        card.innerHTML = `
+          <div class="room-img-container">
+            <img src="${room.image}" alt="${room.name}" class="room-img">
+            <div class="room-price-tag">${pFormatted} <span style="font-size:10px; font-weight:normal;">/ Night</span></div>
+          </div>
+          <div class="room-info">
+            <h3>${room.name}</h3>
+            <p class="tagline">${room.tagline}</p>
+            
+            <div class="room-meta">
+              <div class="meta-stat"><i data-lucide="users" style="width:14px;height:14px;"></i> <span>${room.capacity}</span></div>
+              <div class="meta-stat"><i data-lucide="wind" style="width:14px;height:14px;"></i> <span>${room.size}</span></div>
+              <div class="meta-stat meta-wide"><span><strong>Bed:</strong> ${room.bed}</span></div>
+            </div>
+
+            <div class="room-pill-container">
+              ${amenitiesHTML}
+            </div>
+
+            <div class="room-footer-btns">
+              <button onclick="bookDirect('${room.id}')" class="btn btn-dark" style="font-size:12px; padding:10px;">Rent Now</button>
+              <button onclick="navigateTo('rooms')" class="btn btn-outline" style="color:var(--primary); border-color:#e2e8f0; font-size:12px; padding:10px;">Details</button>
+            </div>
+          </div>
+        `;
+        target.appendChild(card);
+      });
+      lucide.createIcons();
+    }
+
+    // Render Room Details Page Items rows
+    function renderDetailedRooms() {
+      const target = document.getElementById('detailed-rooms-rows');
+      if (!target) return;
+      target.innerHTML = '';
+
+      ROOMS_DATA.forEach((room, index) => {
+        const isReverse = index % 2 === 1;
+        const pFormatted = formatPrice(room.priceNGN, room.priceUSD);
+
+        let amenitiesListHTML = '';
+        room.amenities.forEach(amen => {
+          amenitiesListHTML += `
+            <div style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--text-muted);">
+              <span style="color:var(--success);">✓</span>
+              <span>${amen}</span>
+            </div>
+          `;
+        });
+
+        const row = document.createElement('div');
+        row.className = `room-row ${isReverse ? 'reverse' : ''}`;
+        row.innerHTML = `
+          <div class="room-row-img">
+            <img src="${room.image}" alt="${room.name}">
+          </div>
+          <div class="room-row-content">
+            <div>
+              <div class="room-row-header">
+                <div>
+                  <h2>${room.name}</h2>
+                  <p style="color:var(--accent-hover); font-size:13px; font-weight:650; margin-top:4px;">${room.tagline}</p>
+                </div>
+                <div class="price-col">
+                  <div class="price-col-val">${pFormatted}</div>
+                  <div class="price-col-lbl">per night</div>
+                </div>
+              </div>
+
+              <p class="room-row-desc" style="margin:20px 0;">
+                Comfortable, clean, secure space equipped with pristine sheets, individual high-performance quiet air cooling, and specialized noise proofing so you sleep peacefully irrespective of airplane departures nearby.
+              </p>
+
+              <div class="room-spec-grid" style="margin-bottom: 20px;">
+                <div>
+                  <div class="spec-item-lbl">Capacity</div>
+                  <div class="spec-item-val"><i data-lucide="users" style="width:14px;height:14px;"></i> ${room.capacity}</div>
+                </div>
+                <div>
+                  <div class="spec-item-lbl">Bed Size</div>
+                  <div class="spec-item-val" style="font-size:10.5px;">${room.bed}</div>
+                </div>
+                <div>
+                  <div class="spec-item-lbl">Room Area</div>
+                  <div class="spec-item-val"><i data-lucide="wind" style="width:14px;height:14px;"></i> ${room.size}</div>
+                </div>
+              </div>
+
+              <div>
+                <span style="font-size:11px; font-weight:700; color:var(--primary); text-transform:uppercase; display:block; margin-bottom:8px;">Room Features Include:</span>
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px;">
+                  ${amenitiesListHTML}
+                </div>
+              </div>
+            </div>
+
+            <div style="display:flex; gap:12px; border-top:1px solid #f1f5f9; padding-top:20px;">
+              <button onclick="bookDirect('${room.id}')" class="btn btn-dark" style="flex:1; padding:14px;">Reserve This Room</button>
+              <a href="tel:+2347062566432" class="btn btn-outline" style="color:var(--primary); border-color:#cbd5e1; padding:14px;" title="Call front desk"><i data-lucide="phone" style="width:18px;height:18px;"></i></a>
+            </div>
+          </div>
+        `;
+        target.appendChild(row);
+      });
+      lucide.createIcons();
+    }
+
+    // Render Accordion FAQs
+    function renderFAQs() {
+      const target = document.getElementById('faq-accordion-target');
+      if (!target) return;
+      target.innerHTML = '';
+
+      FAQS.forEach((faq) => {
+        const card = document.createElement('div');
+        card.className = 'faq-card';
+        card.innerHTML = `
+          <h4><i data-lucide="help-circle" style="width:18px;height:18px;"></i> ${faq.q}</h4>
+          <p>${faq.a}</p>
+        `;
+        target.appendChild(card);
+      });
+      lucide.createIcons();
+    }
+
+    // Testimonial logic handlers
+    function setupTestimonials() {
+      const container = document.getElementById('testimonialDots');
+      if (!container) return;
+      container.innerHTML = '';
+
+      TESTIMONIALS.forEach((t, idx) => {
+        const dot = document.createElement('button');
+        dot.className = `dot ${idx === 0 ? 'active' : ''}`;
+        dot.onclick = () => jumpToTestimonial(idx);
+        container.appendChild(dot);
+      });
+    }
+
+    function jumpToTestimonial(index) {
+      currentTestimonialIndex = index;
+      updateTestimonialDisplay();
+    }
+
+    function nextTestimonial() {
+      currentTestimonialIndex = (currentTestimonialIndex + 1) % TESTIMONIALS.length;
+      updateTestimonialDisplay();
+    }
+
+    function updateTestimonialDisplay() {
+      const activeData = TESTIMONIALS[currentTestimonialIndex];
+      
+      document.getElementById('testimonialText').innerText = `"${activeData.text}"`;
+      document.getElementById('testimonialAuthor').innerText = activeData.name;
+      document.getElementById('testimonialRole').innerText = activeData.role;
+      document.getElementById('testimonialLocation').innerText = activeData.location;
+
+      // Update dots indicator active class
+      const dots = document.getElementById('testimonialDots').children;
+      for (let i = 0; i < dots.length; i++) {
+        if (i === currentTestimonialIndex) {
+          dots[i].classList.add('active');
+        } else {
+          dots[i].classList.remove('active');
+        }
+      }
+    }
+
+    // Quick reserve gateway from individual room buttons
+    function bookDirect(roomId) {
+      document.getElementById('bookRoomSelect').value = roomId;
+      navigateTo('book');
+    }
+
+    // Initialize default dates inside the Booking Form
+    function initDateInputs() {
+      const checkinInput = document.getElementById('bookCheckIn');
+      const checkoutInput = document.getElementById('bookCheckOut');
+      if (!checkinInput || !checkoutInput) return;
+
+      const today = new Date();
+      const tomorrow = new Date(today);
+      tomorrow.setDate(tomorrow.getDate() + 1);
+
+      // Format ISO string dates
+      checkinInput.value = today.toISOString().split('T')[0];
+      checkoutInput.value = tomorrow.toISOString().split('T')[0];
+
+      // Block past dates selection
+      checkinInput.min = today.toISOString().split('T')[0];
+      checkoutInput.min = tomorrow.toISOString().split('T')[0];
+    }
+
+    // Interactive Estimation Live Pricing Calculator logic
+    function updateLiveEstimation() {
+      const roomSelect = document.getElementById('bookRoomSelect');
+      if (!roomSelect) return;
+      const selectedRoomId = roomSelect.value;
+      const selectedRoomObj = ROOMS_DATA.find(r => r.id === selectedRoomId);
+
+      if (!selectedRoomObj) return;
+
+      // Update name & preview image in sidebar
+      document.getElementById('summary-room-name').innerText = selectedRoomObj.name;
+      document.getElementById('estimator-img-preview').src = selectedRoomObj.image;
+
+      // Nightly rate displaying base
+      const rateStr = formatPrice(selectedRoomObj.priceNGN, selectedRoomObj.priceUSD);
+      document.getElementById('summary-nightly-rate').innerText = rateStr;
+
+      // Parse dates and compute Nights stayed
+      const checkinVal = document.getElementById('bookCheckIn').value;
+      const checkoutVal = document.getElementById('bookCheckOut').value;
+      
+      let nights = 1;
+      if (checkinVal && checkoutVal) {
+        const cinDate = new Date(checkinVal);
+        const coutDate = new Date(checkoutVal);
+        const differenceInTime = coutDate.getTime() - cinDate.getTime();
+        const differenceInDays = Math.ceil(differenceInTime / (1000 * 3600 * 24));
+        
+        if (differenceInDays > 0) {
+          nights = differenceInDays;
+        }
+      }
+      document.getElementById('summary-total-nights').innerText = `${nights} ${nights === 1 ? 'Night' : 'Nights'}`;
+
+      // Shuttle cost string text
+      const shuttleSelect = document.getElementById('bookShuttle').value;
+      if (shuttleSelect === 'yes') {
+        document.getElementById('summary-shuttle-cost').innerText = "Coordinated Free Hold";
+      } else {
+        document.getElementById('summary-shuttle-cost').innerText = "Not Requested";
+      }
+
+      // Calculate overall grand totals
+      const roomCostBaseNGN = selectedRoomObj.priceNGN * nights;
+      const roomCostBaseUSD = selectedRoomObj.priceUSD * nights;
+      
+      const totalStr = formatPrice(roomCostBaseNGN, roomCostBaseUSD);
+      document.getElementById('summary-grand-total').innerText = totalStr;
+    }
+
+    // Handle Mock Newsletter Submit Action
+    function handleNewsletterSubmit(e) {
+      e.preventDefault();
+      document.getElementById('newsletterEmail').value = '';
+      const successBox = document.getElementById('newsletter-success-box');
+      successBox.style.display = 'block';
+
+      setTimeout(() => {
+        successBox.style.display = 'none';
+      }, 5000);
+    }
+
+    // Handle Mock Contact Form Message submit action
+    function handleContactFormSubmit(e) {
+      e.preventDefault();
+      document.getElementById('contactForm').style.display = 'none';
+      document.getElementById('contact-success-container').style.display = 'block';
+    }
+
+    // Handle Mock Booking Form Request action
+    function handleBookingFormSubmit(e) {
+      e.preventDefault();
+
+      const guestName = document.getElementById('bookName').value;
+      const phoneInput = document.getElementById('bookPhone').value;
+      const checkinDate = document.getElementById('bookCheckIn').value;
+      const checkoutDate = document.getElementById('bookCheckOut').value;
+
+      const roomSelect = document.getElementById('bookRoomSelect');
+      const selectedRoomId = roomSelect.value;
+      const selectedRoomObj = ROOMS_DATA.find(r => r.id === selectedRoomId);
+
+      // Compute total night counts
+      let nights = 1;
+      const cinDate = new Date(checkinDate);
+      const coutDate = new Date(checkoutDate);
+      const diffDays = Math.ceil((coutDate.getTime() - cinDate.getTime()) / (1000 * 3600 * 24));
+      if (diffDays > 0) nights = diffDays;
+
+      const totalCalculated = formatPrice(selectedRoomObj.priceNGN * nights, selectedRoomObj.priceUSD * nights);
+
+      // Load results into success template fields
+      document.getElementById('success-guest-name').innerText = guestName;
+      document.getElementById('success-room-type').innerText = selectedRoomObj.name;
+      document.getElementById('success-checkin').innerText = checkinDate;
+      document.getElementById('success-checkout').innerText = checkoutDate;
+      document.getElementById('success-est-total').innerText = totalCalculated;
+      document.getElementById('success-phone-field').innerText = phoneInput;
+
+      // Show/Hide page elements
+      document.getElementById('booking-form-box').style.display = 'none';
+      document.getElementById('booking-success-box').style.display = 'block';
+    }
+
+    // Reset fields back to clean state
+    function resetBookingForm() {
+      document.getElementById('bookingForm').reset();
+      initDateInputs();
+      document.getElementById('booking-form-box').style.display = 'grid';
+      document.getElementById('booking-success-box').style.display = 'none';
+      updateLiveEstimation();
+    }
+  </script>
+</body>
+</html>
