@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll Reveal Animation Demo</title>
+    <style>
+        /* Base page setup */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .header-space {
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .header-space h1 {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+            color: #38bdf8;
+        }
+
+        .header-space p {
+            color: #94a3b8;
+            font-size: 1.1rem;
+        }
+
+        /* Card styles */
+        .card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 32px;
+            margin: 40px 0;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        .card h2 {
+            color: #38bdf8;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        /* ===================================================
+           1. SCROLL REVEAL ANIMATION CSS
+           =================================================== */
+        
+        /* Initial state: Hidden and shifted down */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        /* Active state: Visible and restored to position */
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .r2{
+            opacity: 0;
+            transform: translatex(60px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .r3 {
+            opacity: 0;
+            transform:skewX(100px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="header-space">
+        <h1>Scroll Down</h1>
+        <p>↓ Watch the cards reveal as they enter the screen ↓</p>
+    </div>
+
+    <div class="card reveal">
+        <h2>Card 01</h2>
+        <p>This card fades in and slides up smoothly when it crosses into the viewport.</p>
+    </div>
+
+    <div class="card reveal r2">
+        <h2>Card 02</h2>
+        <p>Powered by JavaScript's <code>IntersectionObserver</code> API for maximum performance.</p>
+    </div>
+
+    <div class="card reveal r3">
+        <h2>Card 03</h2>
+        <p>You can add the <code>.reveal</code> class to any HTML element you want to animate on scroll!</p>
+    </div>
+
+    <div class="card reveal">
+        <h2>Card 04</h2>
+        <p>Notice how smooth the animation runs without lagging the browser scrolling.</p>
+    </div>
+
+    <script>
+        // Create an observer to watch for elements entering the screen
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                // Check if the element is currently visible in the viewport
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active'); // Add class to trigger CSS transition
+                    observer.unobserve(entry.target);     // Stop observing once animated
+                }
+            });
+        }, {
+            threshold: 0.15 // Triggers when 15% of the element is visible
+        });
+
+        // Find all elements with the .reveal class and observe them
+        const revealElements = document.querySelectorAll('.reveal');
+        revealElements.forEach((el) => observer.observe(el));
+    </script>
+</body>
+</html>

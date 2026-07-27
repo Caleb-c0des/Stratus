@@ -799,7 +799,6 @@ nav button:hover {
 .work {
     background-color: #1212141a;
     border-top: 1px solid #121214;
-    height: 1400px;
     border-bottom: 1px solid #121214;
     padding: 40px;
 }
@@ -1242,4 +1241,68 @@ a {
 .track-node.is-playing {
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
+}
+.time-box {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    padding: 1rem;
+    background-color: #09090b;
+    border-width: 1px;
+    border-radius: 0.75rem;
+    border:1px solid #e5e7eb;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+.r2 {
+    opacity: 0;
+    transform:translatex(-100px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.r3 {
+    opacity: 0;
+    transform:translatex(-100px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.r4 {
+    opacity: 0;
+    transform:translatex(100px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.r5 {
+    opacity: 0;
+    transform:translatex(200px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.time-flex {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+.frame {
+    color:#9ca3af;
+}
+.blue2 {
+    color:#06b6d4;
+}
+.green3 {
+    color:#10b981;
+}
+.motion {
+    background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: center;
+    padding: 40px;
+    padding-top: 100px;
 }

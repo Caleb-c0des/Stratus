@@ -1,62 +1,4 @@
-tsParticles.load("tsparticles", {
-    fpsLimit: 120,
-    interactivity: {
-      events: {
-        onHover: {
-          enable: true,
-          mode: "attract" /* Pulls nodes towards the mouse cursor */
-        },
-        resize: true
-      },
-      modes: {
-        attract: {
-          distance: 200,
-          duration: 0.4,
-          factor: 0.3 /* Strength of the magnetic pull */
-        }
-      }
-    },
-    particles: {
-      /* Color rotation matching the screenshot (Purples, Cyans, Emeralds) */
-      color: {
-        value: ["#a855f7", "#06b6d4", "#10b981", "#6366f1"]
-      },
-      links: {
-        color: "#ffffff",
-        distance: 120,
-        enable: true,
-        opacity: 0.02,
-        width: 1
-      },
-      move: {
-        direction: "none",
-        enable: true,
-        outModes: {
-          default: "out"
-        },
-        random: true,
-        speed: 3.9,
-        straight: false
-      },
-      number: {
-        density: {
-          enable: true,
-          area: 1000
-        },
-        value: 120
-      },
-      opacity: {
-        value: { min: 0.2, max: 0.9 }
-      },
-      shape: {
-        type: "circle"
-      },
-      size: {
-        value: { min: 1.3, max: 3.1 }
-      }
-    },
-    detectRetina: true
-  });
+
   let currentEasing = 'linear';
 
         // Select All Easing Options
@@ -91,3 +33,18 @@ tsParticles.load("tsparticles", {
                 node.classList.add('is-playing', 'anim-' + currentEasing);
             });
         });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                // Check if the element is currently visible in the viewport
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active'); // Add class to trigger CSS transition
+                    observer.unobserve(entry.target);     // Stop observing once animated
+                }
+            });
+        }, {
+            threshold: 0.15 // Triggers when 15% of the element is visible
+        });
+
+        // Find all elements with the .reveal class and observe them
+        const revealElements = document.querySelectorAll('.reveal');
+        revealElements.forEach((el) => observer.observe(el));
