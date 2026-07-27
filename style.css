@@ -1306,3 +1306,20 @@ a {
     padding: 40px;
     padding-top: 100px;
 }
+.hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 21px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+}
+.hamburger span {
+      height: 3px;
+      width: 100%;
+      background-color: #ffffff;
+      border-radius: 10px;
+      transition: all 0.3s ease-in-out;
+}

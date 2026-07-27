@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hamburger Menu Demo</title>
+  <style>
+    /* --- 1. BASE BASE & DESKTOP STYLES --- */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #0f172a;
+      color: #ffffff;
+    }
+
+    /* Navbar Container */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #1e293b;
+      padding: 1rem 2rem;
+      position: relative;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #38bdf8;
+    }
+
+    /* Desktop Navigation Links */
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #f8fafc;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #38bdf8;
+    }
+
+    /* Hamburger Button (Hidden by default on desktop) */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 21px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* The 3 lines inside the hamburger button */
+    .hamburger span {
+      height: 3px;
+      width: 100%;
+      background-color: #ffffff;
+      border-radius: 10px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    /* --- 2. MOBILE RESPONSIVE STYLES --- */
+    @media (max-width: 768px) {
+      /* Show the hamburger button on screens smaller than 768px */
+      .hamburger {
+        display: flex;
+      }
+
+      /* Hide and position the navigation menu off-screen */
+      .nav-links {
+        position: absolute;
+        top: 100%; /* Position right below the navbar */
+        left: 0;
+        width: 100%;
+        background-color: #1e293b;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        max-height: 0; /* Hidden state */
+        overflow: hidden;
+        transition: max-height 0.4s ease-out; /* Smooth slide effect */
+      }
+
+      .nav-links li {
+        width: 100%;
+        text-align: center;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 1rem;
+        border-top: 1px solid #334155;
+      }
+
+      /* --- ACTIVE STATE (Triggered by JavaScript) --- */
+      /* Expands the mobile menu */
+      .nav-links.active {
+        max-height: 300px; /* Adjust according to total links height */
+      }
+
+      /* Transforms 3 lines into an "X" icon */
+      .hamburger.active span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+      }
+
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.active span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">MyWebsite</div>
+
+    <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <script>
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const navLinks = document.getElementById('nav-links');
+
+    hamburgerBtn.addEventListener('click', () => {
+      // Toggle the 'active' class on both the button and the links menu
+      hamburgerBtn.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+  </script>
+
+</body>
+</html>

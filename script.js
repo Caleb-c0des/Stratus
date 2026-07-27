@@ -48,3 +48,12 @@
         // Find all elements with the .reveal class and observe them
         const revealElements = document.querySelectorAll('.reveal');
         revealElements.forEach((el) => observer.observe(el));
+        
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const navLinks = document.getElementById('nav-link');
+
+    hamburgerBtn.addEventListener('click', () => {
+      // Toggle the 'active' class on both the button and the links menu
+      hamburgerBtn.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
