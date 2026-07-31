@@ -1270,17 +1270,17 @@ a {
 }
 .r3 {
     opacity: 0;
-    transform:translatex(-100px);
+    transform:scale(1.1);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
+} 
 .r4 {
     opacity: 0;
-    transform:translatex(100px);
+    transform:scale(1.1);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 .r5 {
     opacity: 0;
-    transform:translatex(200px);
+    transform:scale(1.1);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 .time-flex {
