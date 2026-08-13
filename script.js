@@ -57,3 +57,69 @@
       hamburgerBtn.classList.toggle('active');
       navLinks.classList.toggle('active');
     });
+    function updateColorGrade() {
+            const lift = parseFloat(document.getElementById('slider-lift').value);
+            const gamma = parseFloat(document.getElementById('slider-gamma').value);
+            const gain = parseFloat(document.getElementById('slider-gain').value);
+            const hue = parseInt(document.getElementById('slider-hue').value);
+
+            document.getElementById('val-lift').innerText = lift.toFixed(1) + 'x';
+            document.getElementById('val-gamma').innerText = gamma.toFixed(1) + 'x';
+            document.getElementById('val-gain').innerText = gain.toFixed(1) + 'x';
+            document.getElementById('val-hue').innerText = hue + ' deg';
+
+            const viewport = document.getElementById('grade-viewport');
+            const lutIndicator = document.getElementById('lut-indicator');
+            const targetRing = document.getElementById('target-ring');
+            
+            const brightness = lift * 0.9;
+            const contrast = gamma * 1.1;
+            const saturate = gain * 1.25;
+            
+            viewport.style.filter = `brightness(${brightness}) contrast(${contrast}) saturate(${saturate}) hue-rotate(${hue}deg)`;
+            
+            // Subtle dynamic reaction on target ring
+            const scale = 0.9 + (gain * 0.1);
+            targetRing.style.transform = `scale(${scale})`;
+
+            // Dynamic LUT Labeling
+            if (lift === 1 && gamma === 1 && gain === 1 && hue === 0) {
+                lutIndicator.innerText = "REC.709 BASE";
+            } else {
+                lutIndicator.innerText = "CUSTOM GRADE ACTIVE";
+            }
+        }
+
+        function resetColorGrade() {
+            document.getElementById('slider-lift').value = 1.0;
+            document.getElementById('slider-gamma').value = 1.0;
+            document.getElementById('slider-gain').value = 1.0;
+            document.getElementById('slider-hue').value = 0;
+            updateColorGrade();
+            openModal('Color Grade', 'Restored video preview viewport to standard REC.709 baseline.');
+        }
+
+        function applyPreset(type) {
+            if(type === 'cyber') {
+                document.getElementById('slider-lift').value = 0.8;
+                document.getElementById('slider-gamma').value = 1.4;
+                document.getElementById('slider-gain').value = 1.8;
+                document.getElementById('slider-hue').value = 280;
+            } else if(type === 'teal') {
+                document.getElementById('slider-lift').value = 0.9;
+                document.getElementById('slider-gamma').value = 1.2;
+                document.getElementById('slider-gain').value = 1.3;
+                document.getElementById('slider-hue').value = 190;
+            } else if(type === 'vintage') {
+                document.getElementById('slider-lift').value = 1.2;
+                document.getElementById('slider-gamma').value = 0.9;
+                document.getElementById('slider-gain').value = 0.8;
+                document.getElementById('slider-hue').value = 35;
+            } else if(type === 'flat') {
+                document.getElementById('slider-lift').value = 1.1;
+                document.getElementById('slider-gamma').value = 0.8;
+                document.getElementById('slider-gain').value = 0.9;
+                document.getElementById('slider-hue').value = 0;
+            }
+            updateColorGrade();
+        }

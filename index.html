@@ -455,7 +455,124 @@
             </div>
         </div>        
     </section>
-    
+    <section class="color motion" id="color">
+        <div class="sec-flex reveal r3">
+            <div class="sec-circle green-text3 "></div>
+            <p class="green-text2">DA_VINCI_GRADER</p>
+        </div>
+        <h1 class="head reveal r3">
+            Cinematic Color Correction
+        </h1>
+        <p class="about-des reveal r3">
+           Color sets the mood of a story. Use the Lift, Gamma, and Gain sliders on the dashboard to grade the image in real-time. Witness standard rec709 transform into high-end dramatic sci-fi grading.
+        </p>
+        <div class="studio-grid">
+                
+                <div class="panel monitor-col reveal">
+                    <div>
+                        <div class="monitor-header">
+                            <span><i class="fa-solid fa-eye mr-1.5"></i> MONITOR_VIEW_LUT_RENDER</span>
+                            <span class="lut-tag" id="lut-indicator">REC.709 BASE</span>
+                        </div>
+
+                        <div id="grade-viewport" class="viewport">
+                            <div class="target-ring" id="target-ring">
+                                <div class="target-inner">
+                                    <i class="fa-solid fa-film text-white text-3xl"></i>
+                                </div>
+                            </div>
+
+                            <div class="phone-mock phone-1">
+                                <div class="phone-1-grad"></div>
+                            </div>
+                            <div class="phone-mock phone-2">
+                                <div class="phone-2-grad"></div>
+                            </div>
+                            <div class="phone-mock phone-3">
+                                <div class="phone-3-grad"></div>
+                            </div>
+                            <div class="phone-mock phone-4">
+                                <div class="phone-4-grad"></div>
+                            </div>
+                            <!-- <div class="graded-spectrum-pill">
+                                <span>GRADED SPECTRUM</span>
+                            </div> -->
+
+                            <button onclick="resetColorGrade()" class="reset-btn">
+                                <i class="ph ph-arrow-counter-clockwise" style="color: var(--accent-cyan);"></i> RESET TO REC709
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="presets-grid">
+                        <button onclick="applyPreset('cyber')" class="preset-card">
+                            
+                            <div class="preset-name">Cyber Neon</div>
+                        </button>
+                        <button onclick="applyPreset('teal')" class="preset-card">
+                            <div class="preset-name">Teal & Orange</div>
+                        </button>
+                        <button onclick="applyPreset('vintage')" class="preset-card">
+                            <div class="preset-name">Vintage Noir</div>
+                        </button>
+                        <button onclick="applyPreset('flat')" class="preset-card">
+                            <div class="preset-name">Flat Log (Raw)</div>
+                        </button>
+                        
+                    </div>
+                </div>
+
+                <div class="panel controls-col reveal">
+                    <div>
+                        <div class="control-header">
+                            <span>CONTROL DESK SLIDERS</span>
+                        </div>
+
+                        <div class="sliders-space">
+                            <div class="slider-group">
+                                <div class="slider-row">
+                                    <label>LIFT (Blacks / Brightness)</label>
+                                    <span id="val-lift" class="slider-val" style="color: var(--accent-purple);">1.0x</span>
+                                </div>
+                                <input type="range" id="slider-lift" min="0.5" max="2.0" step="0.05" value="1.0" oninput="updateColorGrade()">
+                            </div>
+
+                            <div class="slider-group">
+                                <div class="slider-row">
+                                    <label>GAMMA (Midtones / Contrast)</label>
+                                    <span id="val-gamma" class="slider-val" style="color: var(--accent-cyan);">1.0x</span>
+                                </div>
+                                <input type="range" id="slider-gamma" min="0.5" max="2.0" step="0.05" value="1.0" oninput="updateColorGrade()">
+                            </div>
+
+                            <div class="slider-group">
+                                <div class="slider-row">
+                                    <label>GAIN (Highlights / Color Sat)</label>
+                                    <span id="val-gain" class="slider-val" style="color: var(--accent-emerald);">1.0x</span>
+                                </div>
+                                <input type="range" id="slider-gain" min="0.5" max="2.0" step="0.05" value="1.0" oninput="updateColorGrade()">
+                            </div>
+
+                            <div class="slider-group">
+                                <div class="slider-row">
+                                    <label>HUE SPECTRUM OFFSET</label>
+                                    <span id="val-hue" class="slider-val" style="color: var(--accent-amber);">0 deg</span>
+                                </div>
+                                <input type="range" id="slider-hue" min="0" max="360" step="1" value="0" oninput="updateColorGrade()">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <i class="fa-solid fa-circle-info text-studio-cyan text-lg"></i>
+                        <p class="info-text">
+                            CSS engine uses dynamic compositing filters to render 32-bit floating point grading directly onto browser layers in real-time.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+    </section>
     <script src="./script.js"></script>
 </body>
 </html>    
