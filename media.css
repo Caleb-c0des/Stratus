@@ -121,6 +121,9 @@
         flex-direction: column;
         display:flex;
       }
+      .work {
+        padding: 10px;
+      }
       .work-grid {
         display:flex;
         flex-direction:column;
@@ -131,7 +134,15 @@
       .work-grid a {
         margin-left: auto;
         margin-right: auto;
+        width: 90%;
       }
+      .work-card {
+        width:100%;
+        margin-left: auto;
+        margin-right: auto;
+        height: fit-content;
+        padding-bottom: 10px;
+    }
 }
  @media (max-width:650px) {
     
@@ -240,3 +251,11 @@
         position: relative;
     }
 } 
+ @media (max-width:650px) {
+    .work {
+      padding: 1px;
+    }
+    .motion {
+      padding:30px;
+    }
+ }
