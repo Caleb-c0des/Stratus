@@ -2,9 +2,80 @@
 @media (min-width:1900px) {
     body {
         overflow-x: hidden;
+        width: 100vw;
+    }
+    .color{
+      padding-left: 200px;
+      padding-right: 200px;
+      overflow-x: hidden;
+    }
+    .pipeline {
+      padding-left: 200px;
+      padding-right: 200px;
+      overflow-x: hidden;
+    }
+    .pipe-card {
+      transform: scale(1.0);
+    }
+    .pipeline-flex {
+      transform: scale(1.1);
+    }
+    nav {
+      padding-left: 200px;
+      padding-right: 200px;
+      overflow-x: hidden;
+    }
+    .hero {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      height: auto;
+      background-image: 
+          linear-gradient(to right, rgba(255, 255, 255, 0.03) 3px, transparent 3px),
+          linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 3px, transparent 3px);
+      background-size: 40px 40px;
+      padding-bottom: 60px;
+      background-position: center;
+      padding-bottom: 60px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    }
+    .hero-flex {
+      padding-left: 200px;
+      padding-right: 200px;
+    }
+    .about {
+      padding-left: 200px;
+      padding-right: 200px;
+      overflow-x: hidden;
+    }
+    .code-box {
+      width: 900px;
+    }
+    .work {
+      padding-left: 200px;
+      padding-right: 200px;
+      overflow-x: hidden;
+    }
+    .motion {
+      padding-left: 200px;
+      padding-right: 200px;
+      overflow-x: hidden;
+    }
+    .node-card {
+      transform: scale(1.7);
+    }
+    .hero-first {
+      transform: scale(1.7);
+    }
+    .work-card {
+      width:900px;
+      font-size: 50px;
+    }
+    .work-spec {
+      font-size: 20px;
     }
 }
-@media (min-width:1500px) {
+@media (min-width:1300px) {
     .service {
       display: flex;
       flex-direction: column;
@@ -18,7 +89,7 @@
     transform: scale(1.8);
    }
 }
-@media (max-width:750px) {
+@media (max-width:900px) {
      .hamburger {
         display: flex;
       }
@@ -130,6 +201,17 @@
         justify-content: center;
         margin-left: auto;
         margin-right: auto;
+      }
+      .code-box {
+        margin-top: 30px;
+      }
+      .pipeline-flex {
+        display:flex;
+        justify-content: space-between;
+        justify-content: center;
+        margin-top: 30px;
+        gap:28px;
+        flex-direction: column;
       }
       .work-grid a {
         margin-left: auto;

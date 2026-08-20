@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Frontend Developer portfolio — HTML5, CSS3, Tailwind CSS, and growing JavaScript skills. Interactive projects, a live style lab, and a terminal easter egg.">
+  <meta property="og:title" content="Frontend Developer Portfolio">
+  <meta property="og:description" content="HTML, CSS, Tailwind, and growing JavaScript — projects, playground, and contact info.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23030712'/%3E%3Ctext x='50' y='62' font-size='36' font-family='monospace' font-weight='700' fill='%2310B981' text-anchor='middle'%3E%3C/%3E%3C/text%3E%3C/svg%3E">
+  <title>Frontend Developer Portfolio & Interactive Playground</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- FontAwesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts: Space Grotesk, Inter, & Fira Code -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Space Grotesk', 'sans-serif'],
+            mono: ['Fira Code', 'monospace'],
+          },
+          colors: {
+            brand: {
+              black: '#030712',
+              dark: '#0B0F19',
+              card: '#111827',
+              accent: '#10B981', // Emerald default
+              neonBlue: '#3B82F6',
+              neonPurple: '#8B5CF6',
+              pink: '#EC4899',
+            }
+          },
+          animation: {
+            'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 4s ease-in-out infinite',
+            'spin-slow': 'spin 12s linear infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-10px)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #030712;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1f2937;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent-color, #10B981);
+    }
+
+    :root {
+      --accent-color: #10B981;
+      --accent-glow: rgba(16, 185, 129, 0.3);
+    }
+
+    /* Dynamic Glow Utilities */
+    .glow-accent {
+      box-shadow: 0 0 25px var(--accent-glow);
+    }
+    .glow-text {
+      text-shadow: 0 0 15px var(--accent-glow);
+    }
+
+    /* Glassmorphism Classes */
+    .glass-card {
+      background: rgba(17, 24, 39, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-nav {
+      background: rgba(3, 7, 18, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    /* 3D Tilt Card */
+    .tilt-card {
+      transform-style: preserve-3d;
+      perspective: 1000px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    /* Typing Cursor Animation */
+    .typing-cursor::after {
+      content: '|';
+      animation: blink 1s step-start infinite;
+      color: var(--accent-color, #10B981);
+    }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    /* Custom Radio Input Toggle for Themes */
+    .theme-dot {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .theme-dot:hover {
+      transform: scale(1.2);
+    }
+
+    /* Accessible focus states */
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+      outline: 2px solid var(--accent-color, #10B981);
+      outline-offset: 2px;
+    }
+
+    /* Skip link */
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 1rem;
+      z-index: 100;
+      background: var(--accent-color, #10B981);
+      color: #030712;
+      font-weight: 700;
+      padding: 0.75rem 1.25rem;
+      border-radius: 0.75rem;
+      transition: top 0.2s ease;
+    }
+    .skip-link:focus {
+      top: 1rem;
+    }
+
+    /* Respect reduced-motion preference */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-brand-black text-gray-100 font-sans selection:bg-brand-accent selection:text-brand-black overflow-x-hidden relative">
+
+  <a href="#hero" class="skip-link">Skip to content</a>
+
+  <canvas id="particleCanvas" class="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none opacity-50"></canvas>
+
+  <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300" id="mainHeader">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20 glass-nav rounded-full px-6 mt-4 border border-white/10 shadow-2xl">
+        
+        <!-- Logo -->
+        <a href="#hero" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-brand-accent via-brand-neonBlue to-brand-neonPurple flex items-center justify-center text-white font-bold font-mono text-sm shadow-lg shadow-brand-accent/20 group-hover:rotate-180 transition-transform duration-700">
+            &lt;/&gt;
+          </div>
+          <span class="font-display font-extrabold text-lg tracking-wider bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent group-hover:text-brand-accent transition-colors duration-300">
+            DEV<span class="text-brand-accent font-mono">.STUDIO</span>
+          </span>
+        </a>
+
+        <!-- Navigation Links -->
+        <nav class="hidden md:flex items-center gap-1 bg-white/5 p-1 rounded-full border border-white/5">
+          <a href="#hero" class="nav-link px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider text-gray-300 hover:text-white transition-all duration-300">Home</a>
+          <a href="#about" class="nav-link px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider text-gray-300 hover:text-white transition-all duration-300">About</a>
+          <a href="#roadmap" class="nav-link px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider text-gray-300 hover:text-white transition-all duration-300">Roadmap</a>
+          <a href="#playground" class="nav-link px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider text-gray-300 hover:text-white transition-all duration-300">Playground</a>
+          <a href="#projects" class="nav-link px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider text-gray-300 hover:text-white transition-all duration-300">Projects</a>
+          <a href="#arcade" class="nav-link px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider text-gray-300 hover:text-white transition-all duration-300">Arcade</a>
+          <a href="#contact" class="nav-link px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider text-gray-300 hover:text-white transition-all duration-300">Contact</a>
+        </nav>
+
+        <!-- Right Utility Buttons -->
+        <div class="hidden md:flex items-center gap-3">
+          <!-- Theme Drawer Toggle -->
+          <button id="themeToggleBtn" class="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-gray-300 hover:text-brand-neonBlue transition-all duration-300" title="Change Theme Accent">
+            <i class="fa-solid fa-palette text-sm"></i>
+          </button>
+
+          <!-- Résumé Download -->
+          <a href="/resume.pdf" download class="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-gray-300 hover:text-brand-accent transition-all duration-300" title="Download Résumé">
+            <i class="fa-solid fa-file-arrow-down text-sm"></i>
+          </a>
+
+          <!-- CTA Button -->
+          <a href="#contact" class="px-5 py-2.5 rounded-full bg-brand-accent text-brand-black font-bold text-xs uppercase tracking-wider hover:shadow-lg hover:shadow-brand-accent/30 hover:scale-105 transition-all duration-300 flex items-center gap-2">
+            <span>Hire Me</span>
+            <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobileMenuBtn" class="md:hidden text-gray-300 hover:text-white text-xl p-2 focus:outline-none">
+          <i class="fa-solid fa-bars" id="mobileMenuIcon"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Nav -->
+    <div id="mobileMenu" class="hidden fixed inset-0 top-24 left-0 w-full h-[calc(100vh-6rem)] bg-brand-black/95 backdrop-blur-2xl z-40 px-6 py-8 flex flex-col gap-6 md:hidden transition-all duration-300 border-t border-white/10">
+      <a href="#hero" class="mobile-nav-link text-xl font-display font-bold text-gray-300 hover:text-brand-accent">01 // HOME</a>
+      <a href="#about" class="mobile-nav-link text-xl font-display font-bold text-gray-300 hover:text-brand-accent">02 // ABOUT & SKILLS</a>
+      <a href="#roadmap" class="mobile-nav-link text-xl font-display font-bold text-gray-300 hover:text-brand-accent">03 // ROADMAP</a>
+      <a href="#playground" class="mobile-nav-link text-xl font-display font-bold text-gray-300 hover:text-brand-accent">04 // LAB PLAYGROUND</a>
+      <a href="#projects" class="mobile-nav-link text-xl font-display font-bold text-gray-300 hover:text-brand-accent">05 // PROJECTS</a>
+      <a href="#arcade" class="mobile-nav-link text-xl font-display font-bold text-gray-300 hover:text-brand-accent">06 // DEV ARCADE</a>
+      <a href="#contact" class="mobile-nav-link text-xl font-display font-bold text-gray-300 hover:text-brand-accent">07 // CONTACT</a>
+      
+      <div class="mt-auto pt-6 border-t border-white/10 flex items-center justify-between">
+        <span class="text-xs font-mono text-gray-400">GET IN TOUCH</span>
+        <a href="/resume.pdf" download class="px-4 py-2.5 rounded-xl bg-brand-accent/10 border border-brand-accent/30 text-brand-accent text-xs font-mono font-bold flex items-center gap-2">
+          <i class="fa-solid fa-file-arrow-down"></i> Résumé
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div id="themeModal" class="fixed top-28 right-8 z-50 glass-card p-4 rounded-2xl border border-white/10 shadow-2xl hidden transition-all duration-300 w-64">
+    <div class="flex items-center justify-between mb-3 pb-2 border-b border-white/10">
+      <span class="text-xs font-mono font-bold uppercase text-gray-300">ACCENT THEME</span>
+      <button id="closeThemeBtn" class="text-gray-400 hover:text-white text-xs"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="grid grid-cols-4 gap-2">
+      <button onclick="setTheme('emerald')" class="theme-dot h-10 rounded-xl bg-emerald-500 border border-white/20 flex items-center justify-center text-black" title="Emerald"></button>
+      <button onclick="setTheme('cyan')" class="theme-dot h-10 rounded-xl bg-cyan-400 border border-white/20 flex items-center justify-center text-black" title="Cyber Cyan"></button>
+      <button onclick="setTheme('purple')" class="theme-dot h-10 rounded-xl bg-purple-500 border border-white/20 flex items-center justify-center text-white" title="Neon Violet"></button>
+      <button onclick="setTheme('amber')" class="theme-dot h-10 rounded-xl bg-amber-400 border border-white/20 flex items-center justify-center text-black" title="Sunset Amber"></button>
+    </div>
+  </div>
+
+  <section id="hero" class="min-h-screen flex items-center pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <!-- Ambient Blur Backgrounds -->
+    <div class="absolute top-1/3 left-1/4 w-96 h-96 bg-brand-accent/15 rounded-full blur-[140px] pointer-events-none animate-pulse-slow"></div>
+    <div class="absolute bottom-1/3 right-1/4 w-96 h-96 bg-brand-neonBlue/15 rounded-full blur-[140px] pointer-events-none animate-pulse-slow"></div>
+
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full relative z-10">
+      
+      <!-- Left Hero Column -->
+      <div class="lg:col-span-7 flex flex-col gap-6 text-center lg:text-left">
+        
+        <!-- Live Status Pill -->
+        <div class="inline-flex items-center gap-2.5 self-center lg:self-start bg-white/5 border border-white/10 px-4 py-2 rounded-full text-xs font-mono font-medium text-brand-accent tracking-wider uppercase backdrop-blur-md shadow-lg">
+          <span class="relative flex h-2.5 w-2.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-accent opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-accent"></span>
+          </span>
+          Status: Open To Frontend Opportunities
+        </div>
+
+        <!-- Headline -->
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold font-display leading-[1.05] tracking-tight">
+          Turning Designs <br class="hidden sm:inline">
+          Into Clean, <br>
+          <span class="bg-gradient-to-r from-brand-accent via-brand-neonBlue to-brand-neonPurple bg-clip-text text-transparent glow-text">
+            Living Interfaces.
+          </span>
+        </h1>
+
+        <!-- Subheading & Dynamic Typing -->
+        <p class="text-gray-300 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">
+          I'm a Frontend Developer building responsive, accessible sites with HTML, CSS, Tailwind, and steadily growing 
+          <span id="typingTarget" class="text-white font-mono font-semibold typing-cursor border-b-2 border-brand-accent pb-0.5 ml-1"></span>
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mt-2">
+          <a href="#projects" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-brand-accent hover:bg-emerald-400 text-brand-black font-bold text-sm shadow-xl shadow-brand-accent/25 hover:shadow-brand-accent/40 hover:-translate-y-1 transition-all duration-300 text-center flex items-center justify-center gap-3">
+            <span>Explore Projects</span>
+            <i class="fa-solid fa-code text-xs"></i>
+          </a>
+          <a href="#playground" class="w-full sm:w-auto px-8 py-4 rounded-2xl glass-card text-white font-semibold text-sm border border-white/10 hover:bg-white/10 hover:border-white/20 hover:-translate-y-1 transition-all duration-300 text-center flex items-center justify-center gap-3">
+            <span>Interactive Lab</span>
+            <i class="fa-solid fa-flask text-xs text-brand-neonBlue"></i>
+          </a>
+        </div>
+
+        <!-- Quick Social Stack -->
+        <div class="flex items-center justify-center lg:justify-start gap-6 mt-4 text-lg text-gray-400 font-mono text-xs">
+          <span class="text-gray-500 uppercase font-bold text-[10px] tracking-widest">CONNECT //</span>
+          <a href="https://github.com" target="_blank" class="hover:text-brand-accent transition-colors duration-300" title="GitHub"><i class="fa-brands fa-github text-xl"></i></a>
+          <a href="https://linkedin.com" target="_blank" class="hover:text-brand-neonBlue transition-colors duration-300" title="LinkedIn"><i class="fa-brands fa-linkedin text-xl"></i></a>
+          <a href="/resume.pdf" download class="hover:text-brand-neonPurple transition-colors duration-300" title="Download Résumé"><i class="fa-solid fa-file-arrow-down text-xl"></i></a>
+        </div>
+      </div>
+
+      <!-- Right Interactive CLI Terminal -->
+      <div class="lg:col-span-5 w-full">
+        <div class="w-full glass-card rounded-2xl overflow-hidden shadow-2xl border border-white/10 font-mono text-xs tilt-card relative" id="heroTerminalCard">
+          
+          <!-- Terminal Header -->
+          <div class="bg-slate-950/90 px-4 py-3 flex items-center justify-between border-b border-white/10 select-none">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
+            </div>
+            <div class="text-gray-400 font-semibold text-[11px] flex items-center gap-2">
+              <i class="fa-solid fa-terminal text-brand-accent text-xs"></i>
+              dev-portfolio-cli v2.4
+            </div>
+            <button onclick="clearTerminal()" class="text-gray-500 hover:text-gray-300 text-[10px]" title="Clear Terminal">CLEAR</button>
+          </div>
+
+          <!-- Terminal Screen Body -->
+          <div class="p-5 h-88 overflow-y-auto flex flex-col gap-3 text-emerald-400 bg-slate-950/80" id="terminalScreen">
+            <p class="text-gray-500 leading-relaxed">// Type <span class="text-brand-accent font-bold">'help'</span> to view available commands.</p>
+            <p class="text-gray-500 leading-relaxed">// Try commands like <span class="text-brand-neonBlue">'skills'</span>, <span class="text-brand-neonPurple">'projects'</span>, <span class="text-brand-pink">'sudo hire'</span>, or <span class="text-amber-400">'theme'</span>.</p>
+            
+            <!-- Terminal Output Target -->
+            <div id="terminalHistory" class="flex flex-col gap-2.5"></div>
+
+            <!-- Active Prompt Input -->
+            <div class="flex items-center gap-2 mt-auto pt-2 border-t border-white/5">
+              <span class="text-brand-neonBlue font-bold select-none">dev@guest:~$</span>
+              <input type="text" id="terminalInput" class="bg-transparent text-white border-none outline-none focus:ring-0 p-0 w-full caret-brand-accent font-mono text-xs" placeholder="Type command here..." autocomplete="off">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="about" class="py-24 bg-brand-dark/90 relative border-y border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-mono text-brand-accent font-bold uppercase tracking-widest block mb-2">// 01. CORE PROFILE</span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold font-display bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
+          About & Tech Stack
+        </h2>
+        <p class="text-gray-400 mt-3 text-sm sm:text-base">Combining semantic precision, accessible architecture, and responsive state management.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+        
+        <!-- Bio Glass Card -->
+        <div class="lg:col-span-6 glass-card p-8 rounded-3xl border border-white/10 flex flex-col justify-between hover:border-brand-accent/30 transition-all duration-500">
+          <div>
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-12 h-12 bg-brand-accent/10 rounded-2xl flex items-center justify-center text-brand-accent text-xl border border-brand-accent/20">
+                <i class="fa-solid fa-user-gear"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-display font-bold text-white">Frontend Developer</h3>
+                <span class="text-xs font-mono text-gray-400">Learning in public, building every week</span>
+              </div>
+            </div>
+
+            <p class="text-gray-300 text-sm leading-relaxed mb-4">
+              I focus on writing clean, semantic HTML and expressive CSS, styled quickly and consistently with Tailwind. I'm steadily leveling up my JavaScript so pages don't just look good, they respond, animate, and feel alive.
+            </p>
+            <p class="text-gray-300 text-sm leading-relaxed mb-6">
+              My core ethos: solid structure first, responsive layout always, and a little interactivity to make every project worth clicking around in.
+            </p>
+          </div>
+
+          <!-- Now Learning -->
+          <div class="border-t border-white/10 pt-6 mt-4">
+            <span class="text-[10px] font-mono text-gray-400 uppercase tracking-widest block mb-3">Currently Focused On</span>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1.5 rounded-lg bg-brand-accent/10 border border-brand-accent/30 text-brand-accent text-xs font-mono font-bold">JavaScript Fundamentals</span>
+              <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-gray-300 text-xs font-mono">Fetch API & Async/Await</span>
+              <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-gray-300 text-xs font-mono">Array Methods</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Skill Bars Container -->
+        <div class="lg:col-span-6 glass-card p-8 rounded-3xl border border-white/10 flex flex-col justify-between">
+          <h3 class="text-lg font-display font-bold text-white mb-6 flex items-center gap-2">
+            <i class="fa-solid fa-layer-group text-brand-neonBlue text-sm"></i>
+            <span>Technical Proficiency Stack</span>
+          </h3>
+
+          <div class="space-y-5">
+            <!-- Skill Bar: HTML5 -->
+            <div>
+              <div class="flex justify-between text-xs font-mono mb-1.5">
+                <span class="text-gray-200">HTML5 / Semantic Markup</span>
+                <span class="text-brand-accent font-bold">90%</span>
+              </div>
+              <div class="w-full bg-slate-950 rounded-full h-2.5 overflow-hidden border border-white/5">
+                <div class="bg-gradient-to-r from-brand-accent to-emerald-400 h-full rounded-full transition-all duration-1000 ease-out skill-bar" style="width: 90%"></div>
+              </div>
+            </div>
+
+            <!-- Skill Bar: CSS / Tailwind -->
+            <div>
+              <div class="flex justify-between text-xs font-mono mb-1.5">
+                <span class="text-gray-200">CSS3 & Tailwind CSS</span>
+                <span class="text-brand-neonBlue font-bold">85%</span>
+              </div>
+              <div class="w-full bg-slate-950 rounded-full h-2.5 overflow-hidden border border-white/5">
+                <div class="bg-gradient-to-r from-brand-neonBlue to-cyan-400 h-full rounded-full transition-all duration-1000 ease-out skill-bar" style="width: 85%"></div>
+              </div>
+            </div>
+
+            <!-- Skill Bar: JavaScript -->
+            <div>
+              <div class="flex justify-between text-xs font-mono mb-1.5">
+                <span class="text-gray-200">JavaScript (ES6+) — Growing Daily</span>
+                <span class="text-brand-neonPurple font-bold">55%</span>
+              </div>
+              <div class="w-full bg-slate-950 rounded-full h-2.5 overflow-hidden border border-white/5">
+                <div class="bg-gradient-to-r from-brand-neonPurple to-fuchsia-400 h-full rounded-full transition-all duration-1000 ease-out skill-bar" style="width: 55%"></div>
+              </div>
+            </div>
+
+            <!-- Skill Bar: Responsive Design -->
+            <div>
+              <div class="flex justify-between text-xs font-mono mb-1.5">
+                <span class="text-gray-200">Responsive & Accessible Layouts</span>
+                <span class="text-brand-pink font-bold">80%</span>
+              </div>
+              <div class="w-full bg-slate-950 rounded-full h-2.5 overflow-hidden border border-white/5">
+                <div class="bg-gradient-to-r from-brand-pink to-rose-400 h-full rounded-full transition-all duration-1000 ease-out skill-bar" style="width: 80%"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Tech Tags -->
+          <div class="flex flex-wrap gap-2 mt-6 pt-4 border-t border-white/10">
+            <span class="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] font-mono text-gray-300">Git / GitHub</span>
+            <span class="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] font-mono text-gray-300">Tailwind CSS</span>
+            <span class="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] font-mono text-gray-300">Flexbox / Grid</span>
+            <span class="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] font-mono text-gray-300">DOM APIs</span>
+            <span class="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] font-mono text-gray-300">VS Code</span>
+            <span class="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] font-mono text-gray-300">Chrome DevTools</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="roadmap" class="py-24 bg-brand-black relative">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Section Header -->
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs font-mono text-brand-neonPurple font-bold uppercase tracking-widest block mb-2">// 02. LEARNING ROADMAP</span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold font-display text-white">
+          Where I'm At, Honestly
+        </h2>
+        <p class="text-gray-400 mt-3 text-sm sm:text-base">No inflated résumé buzzwords — here's the real progression, one stage at a time.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <div class="glass-card p-6 rounded-3xl border border-brand-accent/30 relative">
+          <div class="w-10 h-10 rounded-xl bg-brand-accent/10 flex items-center justify-center text-brand-accent mb-4 border border-brand-accent/20">
+            <i class="fa-solid fa-check"></i>
+          </div>
+          <span class="text-[10px] font-mono text-brand-accent uppercase tracking-widest font-bold">Solid</span>
+          <h3 class="text-white font-display font-bold text-lg mt-1 mb-2">HTML & CSS Foundations</h3>
+          <p class="text-gray-400 text-xs leading-relaxed">Semantic markup, box model, Flexbox, Grid — the stuff every layout is built on.</p>
+        </div>
+
+        <div class="glass-card p-6 rounded-3xl border border-brand-neonBlue/30 relative">
+          <div class="w-10 h-10 rounded-xl bg-brand-neonBlue/10 flex items-center justify-center text-brand-neonBlue mb-4 border border-brand-neonBlue/20">
+            <i class="fa-solid fa-bolt"></i>
+          </div>
+          <span class="text-[10px] font-mono text-brand-neonBlue uppercase tracking-widest font-bold">Comfortable</span>
+          <h3 class="text-white font-display font-bold text-lg mt-1 mb-2">Tailwind CSS</h3>
+          <p class="text-gray-400 text-xs leading-relaxed">Building fast with utility classes, responsive breakpoints, and reusable design tokens.</p>
+        </div>
+
+        <div class="glass-card p-6 rounded-3xl border border-brand-neonPurple/30 relative">
+          <div class="w-10 h-10 rounded-xl bg-brand-neonPurple/10 flex items-center justify-center text-brand-neonPurple mb-4 border border-brand-neonPurple/20">
+            <i class="fa-solid fa-code"></i>
+          </div>
+          <span class="text-[10px] font-mono text-brand-neonPurple uppercase tracking-widest font-bold">In Progress</span>
+          <h3 class="text-white font-display font-bold text-lg mt-1 mb-2">JavaScript (ES6+)</h3>
+          <p class="text-gray-400 text-xs leading-relaxed">DOM events, array methods, fetch/async — practicing with small interactive builds like the ones on this page.</p>
+        </div>
+
+        <div class="glass-card p-6 rounded-3xl border border-white/10 relative opacity-80">
+          <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-gray-400 mb-4 border border-white/10">
+            <i class="fa-solid fa-flag"></i>
+          </div>
+          <span class="text-[10px] font-mono text-gray-400 uppercase tracking-widest font-bold">Up Next</span>
+          <h3 class="text-white font-display font-bold text-lg mt-1 mb-2">APIs & a JS Framework</h3>
+          <p class="text-gray-400 text-xs leading-relaxed">Consuming real APIs comfortably, then picking up React or Vue once JS fundamentals are second nature.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="playground" class="py-24 relative bg-brand-black">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-mono text-brand-neonBlue font-bold uppercase tracking-widest block mb-2">// 03. INTERACTIVE STUDIO</span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold font-display text-white">
+          Glassmorphism & Style Lab
+        </h2>
+        <p class="text-gray-400 mt-3 text-sm sm:text-base">Tweak real-time CSS controls below to customize an element and copy the resulting code directly!</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        
+        <!-- Controls Console -->
+        <div class="lg:col-span-6 glass-card p-8 rounded-3xl border border-white/10 flex flex-col gap-6">
+          <div class="flex items-center justify-between pb-3 border-b border-white/10">
+            <span class="text-xs font-mono font-bold text-white uppercase flex items-center gap-2">
+              <i class="fa-solid fa-sliders text-brand-accent"></i> Style Parameters
+            </span>
+            <button onclick="resetLab()" class="text-xs font-mono text-gray-400 hover:text-brand-accent">Reset Defaults</button>
+          </div>
+
+          <!-- Slider 1: Blur -->
+          <div>
+            <div class="flex justify-between text-xs font-mono text-gray-300 mb-2">
+              <span>Backdrop Blur:</span>
+              <span id="labBlurVal" class="text-brand-accent font-bold">16px</span>
+            </div>
+            <input type="range" id="labBlur" min="0" max="40" value="16" class="w-full accent-brand-accent cursor-pointer bg-slate-900 rounded-lg h-2">
+          </div>
+
+          <!-- Slider 2: Opacity -->
+          <div>
+            <div class="flex justify-between text-xs font-mono text-gray-300 mb-2">
+              <span>Background Opacity:</span>
+              <span id="labOpacityVal" class="text-brand-neonBlue font-bold">0.70</span>
+            </div>
+            <input type="range" id="labOpacity" min="0" max="100" value="70" class="w-full accent-brand-neonBlue cursor-pointer bg-slate-900 rounded-lg h-2">
+          </div>
+
+          <!-- Slider 3: Border Radius -->
+          <div>
+            <div class="flex justify-between text-xs font-mono text-gray-300 mb-2">
+              <span>Corner Radius:</span>
+              <span id="labRadiusVal" class="text-brand-neonPurple font-bold">24px</span>
+            </div>
+            <input type="range" id="labRadius" min="0" max="50" value="24" class="w-full accent-brand-neonPurple cursor-pointer bg-slate-900 rounded-lg h-2">
+          </div>
+
+          <!-- Selector 4: Glow Color Accent -->
+          <div>
+            <span class="text-xs font-mono text-gray-300 block mb-2">Glow Highlight Accent:</span>
+            <div class="flex gap-3">
+              <button onclick="setLabAccent('#10B981')" class="w-8 h-8 rounded-full bg-emerald-500 border border-white/20 focus:ring-2 ring-white"></button>
+              <button onclick="setLabAccent('#3B82F6')" class="w-8 h-8 rounded-full bg-blue-500 border border-white/20 focus:ring-2 ring-white"></button>
+              <button onclick="setLabAccent('#8B5CF6')" class="w-8 h-8 rounded-full bg-purple-500 border border-white/20 focus:ring-2 ring-white"></button>
+              <button onclick="setLabAccent('#EC4899')" class="w-8 h-8 rounded-full bg-pink-500 border border-white/20 focus:ring-2 ring-white"></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Preview Output Card -->
+        <div class="lg:col-span-6 flex flex-col items-center justify-center relative p-6">
+          
+          <!-- Background target graphic -->
+          <div class="absolute inset-0 bg-gradient-to-tr from-brand-accent/20 via-brand-neonBlue/20 to-brand-neonPurple/20 rounded-3xl blur-2xl -z-10"></div>
+          
+          <!-- Customizable Target Card -->
+          <div id="labTargetCard" class="w-full max-w-md p-8 border border-white/10 flex flex-col gap-4 text-center transition-all duration-200 shadow-2xl relative overflow-hidden" style="background: rgba(17, 24, 39, 0.7); backdrop-filter: blur(16px); border-radius: 24px;">
+            
+            <div class="w-14 h-14 mx-auto rounded-2xl bg-white/10 flex items-center justify-center text-white text-2xl border border-white/20">
+              <i class="fa-solid fa-gem text-brand-accent" id="labIcon"></i>
+            </div>
+
+            <h4 class="text-2xl font-display font-bold text-white">Live CSS Preview</h4>
+            <p class="text-xs text-gray-300 font-light">Inspect how modern glassmorphic parameters interact live over vibrant background layers.</p>
+
+            <!-- Export CSS Snippet Button -->
+            <button onclick="copyLabCSS()" class="mt-4 px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-xs font-mono text-white flex items-center justify-center gap-2 transition-all">
+              <i class="fa-solid fa-copy text-brand-accent"></i>
+              <span id="labCopyBtnText">Copy Generated CSS</span>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="py-24 bg-brand-dark relative border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header & Filter Controls -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div>
+          <span class="text-xs font-mono text-brand-accent font-bold uppercase tracking-widest block mb-2">// 04. FEATURED WORKS</span>
+          <h2 class="text-3xl sm:text-5xl font-extrabold font-display text-white">Curated Projects</h2>
+        </div>
+
+        <!-- Filter Tags -->
+        <div class="flex flex-wrap gap-2 bg-slate-950 p-1.5 rounded-2xl border border-white/10" id="projectFilters">
+          <button onclick="filterProjects('all')" class="project-filter-btn active-filter px-4 py-2 rounded-xl text-xs font-mono transition-all duration-300 bg-brand-accent text-brand-black font-bold">All</button>
+          <button onclick="filterProjects('landing')" class="project-filter-btn px-4 py-2 rounded-xl text-xs font-mono transition-all duration-300 text-gray-400 hover:text-white">Landing Pages</button>
+          <button onclick="filterProjects('app')" class="project-filter-btn px-4 py-2 rounded-xl text-xs font-mono transition-all duration-300 text-gray-400 hover:text-white">JS Mini-Apps</button>
+          <button onclick="filterProjects('ui')" class="project-filter-btn px-4 py-2 rounded-xl text-xs font-mono transition-all duration-300 text-gray-400 hover:text-white">UI Components</button>
+        </div>
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projectsGrid">
+        
+        <!-- Project Card 1 -->
+        <div class="project-card glass-card rounded-3xl overflow-hidden border border-white/10 group hover:border-brand-accent/40 transition-all duration-500 flex flex-col justify-between" data-category="landing">
+          <div class="p-6">
+            <div class="aspect-video rounded-2xl overflow-hidden mb-6 relative bg-slate-950 border border-white/10">
+              <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Landing Page Design" class="w-full h-full object-cover opacity-70 group-hover:scale-105 group-hover:opacity-90 transition-all duration-500">
+              <div class="absolute top-3 right-3 bg-slate-950/80 px-2.5 py-1 rounded-lg border border-white/10 text-[10px] font-mono text-brand-accent font-bold">LANDING PAGE</div>
+            </div>
+            
+            <h3 class="text-xl font-display font-bold text-white group-hover:text-brand-accent transition-colors mb-2">Aurora SaaS Landing Page</h3>
+            <p class="text-gray-400 text-xs leading-relaxed mb-4">Fully responsive marketing page built with semantic HTML and Tailwind, with a mobile-first layout from the ground up.</p>
+            
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[10px] font-mono text-gray-300">HTML5</span>
+              <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[10px] font-mono text-gray-300">Tailwind CSS</span>
+              <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[10px] font-mono text-gray-300">JavaScript</span>
+            </div>
+          </div>
+
+          <div class="px-6 pb-6 pt-0 flex items-center justify-between border-t border-white/5 mt-auto">
+            <button onclick="openProjectModal('Aurora SaaS Landing Page', 'A fully responsive marketing page built with semantic HTML5 and Tailwind CSS, with scroll reveal animations powered by vanilla JavaScript.', ['HTML5', 'Tailwind CSS', 'JavaScript'], 'https://github.com')" class="text-xs font-mono text-brand-accent hover:underline flex items-center gap-1.5 pt-4">
+              <span>View Details</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+            </button>
+            <a href="https://github.com" target="_blank" class="text-gray-400 hover:text-white pt-4 text-sm"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+
+        <!-- Project Card 2 -->
+        <div class="project-card glass-card rounded-3xl overflow-hidden border border-white/10 group hover:border-brand-neonBlue/40 transition-all duration-500 flex flex-col justify-between" data-category="app">
+          <div class="p-6">
+            <div class="aspect-video rounded-2xl overflow-hidden mb-6 relative bg-slate-950 border border-white/10">
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Weather App" class="w-full h-full object-cover opacity-70 group-hover:scale-105 group-hover:opacity-90 transition-all duration-500">
+              <div class="absolute top-3 right-3 bg-slate-950/80 px-2.5 py-1 rounded-lg border border-white/10 text-[10px] font-mono text-brand-neonBlue font-bold">JS APP</div>
+            </div>
+
+            <h3 class="text-xl font-display font-bold text-white group-hover:text-brand-neonBlue transition-colors mb-2">Weather Now</h3>
+            <p class="text-gray-400 text-xs leading-relaxed mb-4">Small weather lookup app using the Fetch API to pull live data and render it into a clean Tailwind card layout.</p>
+
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[10px] font-mono text-gray-300">JavaScript</span>
+              <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[10px] font-mono text-gray-300">Fetch API</span>
+              <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[10px] font-mono text-gray-300">CSS Grid</span>
+            </div>
+          </div>
+
+          <div class="px-6 pb-6 pt-0 flex items-center justify-between border-t border-white/5 mt-auto">
+            <button onclick="openProjectModal('Weather Now', 'A lightweight weather lookup app that fetches live data from a public API and renders it with a Tailwind-styled UI. Built while leveling up async JavaScript.', ['JavaScript', 'Fetch API', 'Tailwind CSS'], 'https://github.com')" class="text-xs font-mono text-brand-neonBlue hover:underline flex items-center gap-1.5 pt-4">
+              <span>View Details</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+            </button>
+            <a href="https://github.com" target="_blank" class="text-gray-400 hover:text-white pt-4 text-sm"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+
+        <!-- Project Card 3 -->
+        <div class="project-card glass-card rounded-3xl overflow-hidden border border-white/10 group hover:border-brand-neonPurple/40 transition-all duration-500 flex flex-col justify-between" data-category="ui">
+          <div class="p-6">
+            <div class="aspect-video rounded-2xl overflow-hidden mb-6 relative bg-slate-950 border border-white/10">
+              <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="UI Component Kit" class="w-full h-full object-cover opacity-70 group-hover:scale-105 group-hover:opacity-90 transition-all duration-500">
+              <div class="absolute top-3 right-3 bg-slate-950/80 px-2.5 py-1 rounded-lg border border-white/10 text-[10px] font-mono text-brand-neonPurple font-bold">UI KIT</div>
+            </div>
+
+            <h3 class="text-xl font-display font-bold text-white group-hover:text-brand-neonPurple transition-colors mb-2">Glassmorphic Component Kit</h3>
+            <p class="text-gray-400 text-xs leading-relaxed mb-4">A small library of reusable cards, buttons, and modals styled with Tailwind's glassmorphism utilities.</p>
+
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[10px] font-mono text-gray-300">HTML5</span>
+              <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[10px] font-mono text-gray-300">Tailwind CSS</span>
+              <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[10px] font-mono text-gray-300">Accessibility</span>
+            </div>
+          </div>
+
+          <div class="px-6 pb-6 pt-0 flex items-center justify-between border-t border-white/5 mt-auto">
+            <button onclick="openProjectModal('Glassmorphic Component Kit', 'A small, reusable library of cards, buttons, and modals styled with Tailwind CSS glassmorphism utilities, built with keyboard accessibility in mind.', ['HTML5', 'Tailwind CSS', 'Accessibility'], 'https://github.com')" class="text-xs font-mono text-brand-neonPurple hover:underline flex items-center gap-1.5 pt-4">
+              <span>View Details</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+            </button>
+            <a href="https://github.com" target="_blank" class="text-gray-400 hover:text-white pt-4 text-sm"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div id="projectModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="glass-card max-w-xl w-full p-8 rounded-3xl border border-white/10 relative shadow-2xl">
+      <button onclick="closeProjectModal()" class="absolute top-6 right-6 text-gray-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
+      
+      <span class="text-xs font-mono text-brand-accent uppercase font-bold block mb-1">// PROJECT DETAILS</span>
+      <h3 id="modalTitle" class="text-2xl font-display font-bold text-white mb-3">Project Title</h3>
+      
+      <p id="modalDesc" class="text-gray-300 text-sm leading-relaxed mb-6">Detailed description goes here.</p>
+      
+      <div class="mb-6">
+        <span class="text-xs font-mono text-gray-400 block mb-2">TECHNOLOGY STACK:</span>
+        <div id="modalTags" class="flex flex-wrap gap-2"></div>
+      </div>
+
+      <div class="flex justify-end gap-3 pt-4 border-t border-white/10">
+        <button onclick="closeProjectModal()" class="px-5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-xs font-mono text-gray-300">Close</button>
+        <a id="modalRepoBtn" href="#" target="_blank" class="px-5 py-2.5 rounded-xl bg-brand-accent text-brand-black font-bold text-xs font-mono flex items-center gap-2">
+          <span>GitHub Repository</span> <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <section id="arcade" class="py-24 bg-brand-black relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-mono text-brand-pink font-bold uppercase tracking-widest block mb-2">// 05. INTERACTIVE CHALLENGE</span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold font-display text-white">
+          Dev Speed Typer Arcade
+        </h2>
+        <p class="text-gray-400 mt-3 text-sm sm:text-base">Test your code typing speed and accuracy right now! Type the code snippet as fast as you can.</p>
+      </div>
+
+      <div class="max-w-2xl mx-auto glass-card p-8 rounded-3xl border border-white/10 shadow-2xl relative">
+        
+        <!-- Score Bar -->
+        <div class="flex items-center justify-between pb-6 border-b border-white/10 text-xs font-mono">
+          <div class="flex items-center gap-2">
+            <span class="text-gray-400">STATUS:</span>
+            <span id="arcadeStatus" class="text-brand-accent font-bold">READY</span>
+          </div>
+          <div class="flex items-center gap-6">
+            <div>WPM: <span id="arcadeWPM" class="text-brand-neonBlue font-bold">0</span></div>
+            <div>ACCURACY: <span id="arcadeAcc" class="text-brand-neonPurple font-bold">100%</span></div>
+          </div>
+        </div>
+
+        <!-- Code Snippet Display Target -->
+        <div class="my-6 bg-slate-950 p-6 rounded-2xl border border-white/10 font-mono text-sm sm:text-base leading-relaxed tracking-wide select-none min-h-[100px] flex items-center" id="arcadeCodeBox">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Typer Input Box -->
+        <input type="text" id="arcadeInput" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white font-mono text-sm focus:outline-none focus:border-brand-accent transition-colors" placeholder="Click 'Start Arcade' to test speed..." disabled autocomplete="off">
+
+        <!-- Controls -->
+        <div class="flex justify-between items-center mt-6">
+          <button id="arcadeStartBtn" onclick="startArcadeGame()" class="px-6 py-3 rounded-xl bg-brand-pink hover:bg-pink-500 text-white font-bold font-mono text-xs uppercase tracking-wider shadow-lg shadow-pink-500/20 transition-all flex items-center gap-2">
+            <i class="fa-solid fa-play"></i> Start Arcade Test
+          </button>
+          <span class="text-[11px] font-mono text-gray-500">Press ENTER when complete</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="py-24 bg-brand-dark relative border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Contact Info Column -->
+        <div class="lg:col-span-5 flex flex-col gap-6">
+          <span class="text-xs font-mono text-brand-accent font-bold uppercase tracking-widest block">// 06. GET IN TOUCH</span>
+          <h2 class="text-3xl sm:text-5xl font-extrabold font-display text-white leading-tight">
+            Let's Build Something Epic Together.
+          </h2>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Have an innovative web app idea, a job opportunity, or a collaborative project? Drop a message below and I will respond within 24 hours.
+          </p>
+
+          <div class="flex flex-col gap-4 mt-2">
+            <div class="flex items-center gap-4 glass-card p-4 rounded-2xl border border-white/5">
+              <div class="w-10 h-10 rounded-xl bg-brand-accent/10 flex items-center justify-center text-brand-accent">
+                <i class="fa-solid fa-envelope"></i>
+              </div>
+              <div>
+                <span class="text-[10px] font-mono text-gray-400 block uppercase">EMAIL ADDRESS</span>
+                <a href="mailto:dev@portfolio.io" class="text-sm font-mono text-white hover:text-brand-accent font-bold">dev@portfolio.io</a>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4 glass-card p-4 rounded-2xl border border-white/5">
+              <div class="w-10 h-10 rounded-xl bg-brand-neonBlue/10 flex items-center justify-center text-brand-neonBlue">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <div>
+                <span class="text-[10px] font-mono text-gray-400 block uppercase">LOCATION</span>
+                <span class="text-sm font-mono text-white font-bold">Remote / Worldwide</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Form Column -->
+        <div class="lg:col-span-7">
+          <!-- Free form backend via Formspree (formspree.io) — replace YOUR_FORM_ID with your own free-tier form ID -->
+          <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="glass-card p-8 rounded-3xl border border-white/10 flex flex-col gap-5 shadow-2xl relative">
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label for="contactName" class="text-xs font-mono text-gray-300 block mb-2">YOUR NAME</label>
+                <input type="text" id="contactName" name="name" required class="w-full bg-slate-950/80 border border-white/10 rounded-xl p-3 text-sm text-white font-mono focus:outline-none focus:border-brand-accent transition-colors" placeholder="Ada Lovelace">
+              </div>
+              <div>
+                <label for="contactEmail" class="text-xs font-mono text-gray-300 block mb-2">YOUR EMAIL</label>
+                <input type="email" id="contactEmail" name="email" required class="w-full bg-slate-950/80 border border-white/10 rounded-xl p-3 text-sm text-white font-mono focus:outline-none focus:border-brand-accent transition-colors" placeholder="ada@domain.com">
+              </div>
+            </div>
+
+            <div>
+              <label for="contactType" class="text-xs font-mono text-gray-300 block mb-2">PROJECT TYPE</label>
+              <select id="contactType" name="type" class="w-full bg-slate-950/80 border border-white/10 rounded-xl p-3 text-sm text-white font-mono focus:outline-none focus:border-brand-accent transition-colors">
+                <option value="website">Website / Landing Page</option>
+                <option value="ui">UI Component / Design Help</option>
+                <option value="collab">Learning Collaboration</option>
+                <option value="hire">Junior / Entry-Level Role</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="contactMessage" class="text-xs font-mono text-gray-300 block mb-2">PROJECT MESSAGE</label>
+              <textarea id="contactMessage" name="message" rows="4" required class="w-full bg-slate-950/80 border border-white/10 rounded-xl p-3 text-sm text-white font-mono focus:outline-none focus:border-brand-accent transition-colors" placeholder="Tell me about your project goals and timeline..."></textarea>
+            </div>
+
+            <button type="submit" id="contactSubmitBtn" class="w-full py-4 rounded-xl bg-brand-accent hover:bg-emerald-400 text-brand-black font-bold font-mono text-xs uppercase tracking-wider shadow-lg shadow-brand-accent/25 hover:shadow-brand-accent/40 transition-all duration-300 flex items-center justify-center gap-2">
+              <i class="fa-solid fa-paper-plane"></i>
+              <span>Transmit Message</span>
+            </button>
+
+            <div id="contactSuccessToast" class="hidden p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono text-center">
+              <i class="fa-solid fa-circle-check mr-2"></i> Message sent — thanks for reaching out!
+            </div>
+            <div id="contactErrorToast" class="hidden p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-mono text-center">
+              <i class="fa-solid fa-circle-exclamation mr-2"></i> Something went wrong — email me directly instead.
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-10 bg-brand-black border-t border-white/5 font-mono text-xs text-gray-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-brand-accent"></span>
+        <span>DEV.PORTFOLIO &copy; <span id="currentYear"></span> // CRAFTED WITH SEMANTIC HTML & TAILWIND</span>
+      </div>
+      
+      <div class="flex items-center gap-6">
+        <a href="#hero" class="hover:text-white transition-colors">BACK TO TOP <i class="fa-solid fa-arrow-up text-[10px] ml-1"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Confetti Canvas overlay for celebrations -->
+  <canvas id="confettiCanvas" class="fixed inset-0 pointer-events-none z-50"></canvas>
+
+  <script>
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    const themeModal = document.getElementById('themeModal');
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const closeThemeBtn = document.getElementById('closeThemeBtn');
+
+    themeToggleBtn.addEventListener('click', () => {
+      themeModal.classList.toggle('hidden');
+    });
+    closeThemeBtn.addEventListener('click', () => themeModal.classList.add('hidden'));
+
+    function setTheme(colorKey) {
+      const root = document.documentElement;
+      if (colorKey === 'emerald') {
+        root.style.setProperty('--accent-color', '#10B981');
+        root.style.setProperty('--accent-glow', 'rgba(16, 185, 129, 0.3)');
+      } else if (colorKey === 'cyan') {
+        root.style.setProperty('--accent-color', '#06B6D4');
+        root.style.setProperty('--accent-glow', 'rgba(6, 182, 212, 0.3)');
+      } else if (colorKey === 'purple') {
+        root.style.setProperty('--accent-color', '#8B5CF6');
+        root.style.setProperty('--accent-glow', 'rgba(139, 92, 246, 0.3)');
+      } else if (colorKey === 'amber') {
+        root.style.setProperty('--accent-color', '#F59E0B');
+        root.style.setProperty('--accent-glow', 'rgba(245, 158, 11, 0.3)');
+      }
+      themeModal.classList.add('hidden');
+    }
+
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileMenuIcon = document.getElementById('mobileMenuIcon');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      const isOpen = !mobileMenu.classList.contains('hidden');
+      if (isOpen) {
+        mobileMenu.classList.add('hidden');
+        mobileMenuIcon.className = 'fa-solid fa-bars';
+      } else {
+        mobileMenu.classList.remove('hidden');
+        mobileMenuIcon.className = 'fa-solid fa-xmark';
+      }
+    });
+
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        mobileMenuIcon.className = 'fa-solid fa-bars';
+      });
+    });
+
+    const canvas = document.getElementById('particleCanvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let mouse = { x: null, y: null, radius: 150 };
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      initParticles();
+    }
+    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.x;
+      mouse.y = e.y;
+    });
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 1;
+        this.baseX = this.x;
+        this.baseY = this.y;
+        this.vx = (Math.random() - 0.5) * 0.8;
+        this.vy = (Math.random() - 0.5) * 0.8;
+      }
+      draw() {
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.closePath();
+        ctx.fill();
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+
+        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+
+        // Mouse interaction
+        if (mouse.x && mouse.y) {
+          let dx = mouse.x - this.x;
+          let dy = mouse.y - this.y;
+          let dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < mouse.radius) {
+            let force = (mouse.radius - dist) / mouse.radius;
+            this.x -= (dx / dist) * force * 3;
+            this.y -= (dy / dist) * force * 3;
+          }
+        }
+      }
+    }
+
+    function initParticles() {
+      particles = [];
+      const count = Math.floor((canvas.width * canvas.height) / 15000);
+      for (let i = 0; i < count; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].draw();
+        particles[i].update();
+
+        // Draw connections
+        for (let j = i + 1; j < particles.length; j++) {
+          let dx = particles[i].x - particles[j].x;
+          let dy = particles[i].y - particles[j].y;
+          let dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 100) {
+            ctx.strokeStyle = `rgba(16, 185, 129, ${0.15 * (1 - dist / 100)})`;
+            ctx.lineWidth = 0.5;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(animateParticles);
+    }
+    resizeCanvas();
+    animateParticles();
+
+    const phrases = ["Semantic HTML.", "Tailwind Layouts.", "Responsive Interfaces.", "Interactive JavaScript."];
+    let phraseIdx = 0, charIdx = 0, isDeleting = false;
+    const typingTarget = document.getElementById('typingTarget');
+
+    function typeLoop() {
+      const current = phrases[phraseIdx];
+      if (isDeleting) {
+        typingTarget.textContent = current.substring(0, charIdx--);
+      } else {
+        typingTarget.textContent = current.substring(0, charIdx++);
+      }
+
+      let speed = isDeleting ? 40 : 80;
+      if (!isDeleting && charIdx === current.length + 1) {
+        speed = 2000;
+        isDeleting = true;
+      } else if (isDeleting && charIdx === 0) {
+        isDeleting = false;
+        phraseIdx = (phraseIdx + 1) % phrases.length;
+        speed = 500;
+      }
+      setTimeout(typeLoop, speed);
+    }
+    typeLoop();
+
+    const terminalInput = document.getElementById('terminalInput');
+    const terminalHistory = document.getElementById('terminalHistory');
+
+    terminalInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const cmd = terminalInput.value.trim().toLowerCase();
+        terminalInput.value = '';
+        executeCommand(cmd);
+      }
+    });
+
+    function executeCommand(cmd) {
+      if (!cmd) return;
+
+      const userLine = document.createElement('div');
+      userLine.className = 'flex items-center gap-2';
+      userLine.innerHTML = `<span class="text-brand-neonBlue font-bold">dev@guest:~$</span> <span class="text-white">${cmd}</span>`;
+      terminalHistory.appendChild(userLine);
+
+      const response = document.createElement('div');
+      response.className = 'text-gray-300 ml-4 font-mono text-[11px] leading-relaxed mb-2';
+
+      switch (cmd) {
+        case 'help':
+          response.innerHTML = `
+            Available Commands:<br>
+            - <span class="text-brand-accent font-bold">about</span> : Brief biography summary<br>
+            - <span class="text-brand-neonBlue font-bold">skills</span> : List primary tech stack<br>
+            - <span class="text-brand-neonPurple font-bold">projects</span> : View top featured builds<br>
+            - <span class="text-amber-400 font-bold">theme</span> : Switch accent color<br>
+            - <span class="text-brand-pink font-bold">sudo hire</span> : Direct contact trigger<br>
+            - <span class="text-gray-400 font-bold">clear</span> : Reset screen console
+          `;
+          break;
+        case 'about':
+          response.textContent = "Frontend Developer building clean, responsive interfaces with HTML, CSS, Tailwind, and steadily growing JavaScript skills.";
+          break;
+        case 'skills':
+          response.textContent = "Stack: HTML5, CSS3, Tailwind CSS, JavaScript (ES6+, growing), Git/GitHub, Responsive & Accessible Design.";
+          break;
+        case 'projects':
+          response.textContent = "Projects: Aurora SaaS Landing Page, Weather Now, Glassmorphic Component Kit. Scroll to #projects for full view.";
+          break;
+        case 'theme':
+          response.textContent = "Triggering theme selector modal...";
+          themeModal.classList.remove('hidden');
+          break;
+        case 'sudo hire':
+          response.innerHTML = '<span class="text-brand-accent font-bold">ACCESS GRANTED:</span> Redirecting to contact section with priority status!';
+          triggerConfetti();
+          setTimeout(() => window.location.href = '#contact', 800);
+          break;
+        case 'clear':
+          terminalHistory.innerHTML = '';
+          return;
+        default:
+          response.innerHTML = `<span class="text-red-400">Command not recognized: '${cmd}'. Type 'help' for options.</span>`;
+      }
+
+      terminalHistory.appendChild(response);
+      document.getElementById('terminalScreen').scrollTop = document.getElementById('terminalScreen').scrollHeight;
+    }
+
+    function clearTerminal() {
+      terminalHistory.innerHTML = '';
+    }
+
+    const labBlur = document.getElementById('labBlur');
+    const labOpacity = document.getElementById('labOpacity');
+    const labRadius = document.getElementById('labRadius');
+    const labTargetCard = document.getElementById('labTargetCard');
+    const labBlurVal = document.getElementById('labBlurVal');
+    const labOpacityVal = document.getElementById('labOpacityVal');
+    const labRadiusVal = document.getElementById('labRadiusVal');
+    let currentLabAccent = '#10B981';
+
+    function updateLab() {
+      const blur = labBlur.value;
+      const opacity = (labOpacity.value / 100).toFixed(2);
+      const radius = labRadius.value;
+
+      labBlurVal.textContent = `${blur}px`;
+      labOpacityVal.textContent = opacity;
+      labRadiusVal.textContent = `${radius}px`;
+
+      labTargetCard.style.backdropFilter = `blur(${blur}px)`;
+      labTargetCard.style.webkitBackdropFilter = `blur(${blur}px)`;
+      labTargetCard.style.background = `rgba(17, 24, 39, ${opacity})`;
+      labTargetCard.style.borderRadius = `${radius}px`;
+      labTargetCard.style.borderColor = currentLabAccent;
+      labTargetCard.style.boxShadow = `0 10px 30px ${currentLabAccent}33`;
+    }
+
+    [labBlur, labOpacity, labRadius].forEach(elem => elem.addEventListener('input', updateLab));
+
+    function setLabAccent(color) {
+      currentLabAccent = color;
+      document.getElementById('labIcon').style.color = color;
+      updateLab();
+    }
+
+    function resetLab() {
+      labBlur.value = 16;
+      labOpacity.value = 70;
+      labRadius.value = 24;
+      currentLabAccent = '#10B981';
+      document.getElementById('labIcon').style.color = '#10B981';
+      updateLab();
+    }
+
+    function copyLabCSS() {
+      const css = `background: rgba(17, 24, 39, ${(labOpacity.value / 100).toFixed(2)});\nbackdrop-filter: blur(${labBlur.value}px);\nborder-radius: ${labRadius.value}px;\nborder: 1px solid ${currentLabAccent};`;
+      
+      const tempTextArea = document.createElement('textarea');
+      tempTextArea.value = css;
+      document.body.appendChild(tempTextArea);
+      tempTextArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempTextArea);
+
+      const btnText = document.getElementById('labCopyBtnText');
+      btnText.textContent = "CSS Copied!";
+      setTimeout(() => btnText.textContent = "Copy Generated CSS", 2000);
+    }
+
+    function filterProjects(cat) {
+      const cards = document.querySelectorAll('.project-card');
+      const btns = document.querySelectorAll('.project-filter-btn');
+
+      btns.forEach(btn => {
+        btn.classList.remove('bg-brand-accent', 'text-brand-black', 'font-bold');
+        btn.classList.add('text-gray-400');
+      });
+      event.target.classList.add('bg-brand-accent', 'text-brand-black', 'font-bold');
+      event.target.classList.remove('text-gray-400');
+
+      cards.forEach(card => {
+        if (cat === 'all' || card.dataset.category === cat) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function openProjectModal(title, desc, tags, repo) {
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalDesc').textContent = desc;
+      document.getElementById('modalRepoBtn').href = repo;
+
+      const tagsContainer = document.getElementById('modalTags');
+      tagsContainer.innerHTML = '';
+      tags.forEach(t => {
+        const span = document.createElement('span');
+        span.className = 'px-2.5 py-1 rounded bg-white/10 text-xs font-mono text-gray-200 border border-white/10';
+        span.textContent = t;
+        tagsContainer.appendChild(span);
+      });
+
+      document.getElementById('projectModal').classList.remove('hidden');
+      document.getElementById('projectModal').classList.add('flex');
+    }
+
+    function closeProjectModal() {
+      document.getElementById('projectModal').classList.add('hidden');
+      document.getElementById('projectModal').classList.remove('flex');
+    }
+
+    const snippets = [
+      "const animate = () => requestAnimationFrame(animate);",
+      "function sum(a, b) { return a + b; }",
+      "const filtered = items.filter(x => x.active === true);",
+      "document.addEventListener('DOMContentLoaded', initApp);"
+    ];
+
+    let currentSnippet = "";
+    let arcadeStartTime = null;
+    let arcadeRunning = false;
+
+    function startArcadeGame() {
+      arcadeRunning = true;
+      currentSnippet = snippets[Math.floor(Math.random() * snippets.length)];
+      
+      const codeBox = document.getElementById('arcadeCodeBox');
+      codeBox.innerHTML = '';
+      currentSnippet.split('').forEach(char => {
+        const span = document.createElement('span');
+        span.textContent = char;
+        codeBox.appendChild(span);
+      });
+
+      const input = document.getElementById('arcadeInput');
+      input.value = '';
+      input.disabled = false;
+      input.focus();
+
+      document.getElementById('arcadeStatus').textContent = "TYPING...";
+      document.getElementById('arcadeWPM').textContent = "0";
+      document.getElementById('arcadeAcc').textContent = "100%";
+      arcadeStartTime = Date.now();
+    }
+
+    document.getElementById('arcadeInput').addEventListener('input', (e) => {
+      if (!arcadeRunning) return;
+
+      const typed = e.target.value;
+      const codeBoxSpans = document.getElementById('arcadeCodeBox').querySelectorAll('span');
+      let errors = 0;
+
+      codeBoxSpans.forEach((span, i) => {
+        const char = typed[i];
+        if (char == null) {
+          span.className = '';
+        } else if (char === span.textContent) {
+          span.className = 'text-brand-accent font-bold bg-emerald-500/10';
+        } else {
+          span.className = 'text-red-400 font-bold bg-red-500/20';
+          errors++;
+        }
+      });
+
+      // Calculate WPM
+      const timeElapsedSec = (Date.now() - arcadeStartTime) / 1000;
+      const words = typed.length / 5;
+      const wpm = Math.round((words / timeElapsedSec) * 60) || 0;
+      document.getElementById('arcadeWPM').textContent = wpm;
+
+      const accuracy = Math.max(0, Math.round(((typed.length - errors) / (typed.length || 1)) * 100));
+      document.getElementById('arcadeAcc').textContent = `${accuracy}%`;
+
+      if (typed === currentSnippet) {
+        arcadeRunning = false;
+        document.getElementById('arcadeStatus').textContent = "COMPLETED!";
+        document.getElementById('arcadeInput').disabled = true;
+        triggerConfetti();
+      }
+    });
+
+    // Submits to the Formspree endpoint set on the form's action attribute.
+    // Falls back to a plain error message (with no confetti/false success) if the request fails.
+    async function handleContactSubmit(e) {
+      e.preventDefault();
+      const form = document.getElementById('contactForm');
+      const btn = document.getElementById('contactSubmitBtn');
+      const successToast = document.getElementById('contactSuccessToast');
+      const errorToast = document.getElementById('contactErrorToast');
+
+      successToast.classList.add('hidden');
+      errorToast.classList.add('hidden');
+      btn.disabled = true;
+      btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Sending...`;
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          triggerConfetti();
+          successToast.classList.remove('hidden');
+          form.reset();
+        } else {
+          errorToast.classList.remove('hidden');
+        }
+      } catch (err) {
+        errorToast.classList.remove('hidden');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<i class="fa-solid fa-paper-plane"></i> Transmit Message`;
+        setTimeout(() => {
+          successToast.classList.add('hidden');
+          errorToast.classList.add('hidden');
+        }, 5000);
+      }
+    }
+    document.getElementById('contactForm').addEventListener('submit', handleContactSubmit);
+
+    // Canvas Confetti Engine
+    const confettiCanvas = document.getElementById('confettiCanvas');
+    const confettiCtx = confettiCanvas.getContext('2d');
+    let confettiParticles = [];
+
+    function resizeConfetti() {
+      confettiCanvas.width = window.innerWidth;
+      confettiCanvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeConfetti);
+    resizeConfetti();
+
+    function triggerConfetti() {
+      confettiParticles = [];
+      for (let i = 0; i < 80; i++) {
+        confettiParticles.push({
+          x: confettiCanvas.width / 2,
+          y: confettiCanvas.height / 2,
+          vx: (Math.random() - 0.5) * 12,
+          vy: (Math.random() - 0.8) * 12,
+          size: Math.random() * 8 + 4,
+          color: ['#10B981', '#3B82F6', '#8B5CF6', '#EC4899', '#F59E0B'][Math.floor(Math.random() * 5)],
+          life: 100
+        });
+      }
+      animateConfetti();
+    }
+
+    function animateConfetti() {
+      confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+      confettiParticles.forEach((p, idx) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.2; // gravity
+        p.life--;
+
+        confettiCtx.fillStyle = p.color;
+        confettiCtx.fillRect(p.x, p.y, p.size, p.size);
+
+        if (p.life <= 0) confettiParticles.splice(idx, 1);
+      });
+
+      if (confettiParticles.length > 0) {
+        requestAnimationFrame(animateConfetti);
+      }
+    }
+
+    // 3D tilt effect for the hero terminal card
+    const tiltCard = document.getElementById('heroTerminalCard');
+    if (tiltCard && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      tiltCard.addEventListener('mousemove', (e) => {
+        const rect = tiltCard.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const rotateX = ((y / rect.height) - 0.5) * -8;
+        const rotateY = ((x / rect.width) - 0.5) * 8;
+        tiltCard.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+      tiltCard.addEventListener('mouseleave', () => {
+        tiltCard.style.transform = 'rotateX(0deg) rotateY(0deg)';
+      });
+    }
+  </script>
+</body>
+</html>
