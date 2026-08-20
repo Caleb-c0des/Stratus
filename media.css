@@ -20,6 +20,9 @@
     .pipeline-flex {
       transform: scale(1.1);
     }
+    .hide-overscroll {
+      overflow-x: hidden !important;
+    }
     nav {
       padding-left: 200px;
       padding-right: 200px;
@@ -95,6 +98,9 @@
       }
       body {
         overflow-x: hidden;
+      }
+      .hide-overscroll {
+        overflow-x: hidden !important;
       }
       .nav-link {
         position: absolute;
@@ -227,7 +233,9 @@
     }
 }
  @media (max-width:650px) {
-    
+    .hide-overscroll {
+        overflow-x: hidden !important;
+    }
     .intro h1 {
         font-size: 36px;
     }
