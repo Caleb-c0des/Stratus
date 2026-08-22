@@ -476,4 +476,41 @@
     .hero-first h1 {
       font-size: 50px;
     }
+    .hero-first {
+      padding: 30px;
+    }
+    .app1 {
+        width: 500px;
+        height: 30px;
+        border-radius: 7px;
+        align-items: center;
+        color: #d3d3f1;
+        gap: 40px;
+        height: 40px;
+        font-size: 17px;
+    }
+    .ctas {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+    }
+    .node-card {
+          max-width: 33rem;
+          font-size: 20px;
+    }
+    .node-des {
+      font-size: 20px;
+    }
+    .core-card p {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      letter-spacing: -0.025em;
+      font-size: 15px;
+    }
+    .about-sec1 {
+        width: 108%;
+        padding: 0;
+    }
+    .purple-intro {
+      margin-top: 30px;
+    }
 } 
