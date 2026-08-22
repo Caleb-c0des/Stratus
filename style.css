@@ -202,10 +202,10 @@ nav button {
     color: white;
     font-size: 15px;
 }
-nav button:hover {
+/* nav button:hover {
     background-color: rgb(121, 59, 236);
     box-shadow: 0 0 15px rgb(121, 59, 236);
-}
+} */
 .name-flex {
     color:white;
 }
