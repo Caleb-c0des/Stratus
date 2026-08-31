@@ -49,10 +49,11 @@
         </div>
     </nav>
     <div class="hero">
-        <div id="tsparticles"></div>
+        <!-- <div id="tsparticles"></div> -->
+        <canvas id="heroCanvas" class="absolute inset-0 w-full h-full pointer-events-auto z-10 opacity-70"></canvas>
         <div class="hero-flex">
             <div class="hero-first reveal">
-                <h1>MOVING STORIES FRAME BY FRAME.</h1>
+                <h1>MOVING STORIES <span class="gridient">FRAME BY FRAME.</span></h1>
                 <div class="des">High-end video editor & motion graphics director crafting bespoke brand experiences, title designs, and complex visual effects. Move fast, render faster. </div>
                 <div class="apps">
                     <div class="app1">
@@ -607,6 +608,79 @@
                 <div class="pipe-content">Calibrating precision color-correction suites, building atmospheric soundscapes, tracking Foley cues, and rendering final pro-res files.</div>
             </div>
         </div>
+    </section>
+    <section class=" hide-overscroll contact" id="contact">
+        <div class="contact-intro">
+            <div class="sec-flex reveal r3">
+                <div class="sec-circle purple-text "></div>
+                <p class="purple-text2">INITIALIZE TRANSMISSION</p>
+            </div>
+            <h1 class="head reveal r3">Let's Render Something Exceptional</h1>
+            <p class="about-des reveal r3">Have an upcoming project, commercial, or creative brand reel? Send through your metrics and let's structure the pipeline.</p>
+        </div>
+        <div class="contact-card reveal">
+            <div class="card-header font-mono">
+                <span class="header-title">
+                    <i class="fa-solid fa-paper-plane header-icon"></i>SECURE_ENCRYPTED_CONTACT_FORM
+                </span>
+                <span class="header-status">SSL_ACTIVE</span>
+            </div>
+            <form id="portfolioContactForm" onsubmit="handleFormSubmit(event)" class="contact-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="clientName" class="form-label font-mono">YOUR IDENTIFICATION / NAME</label>
+                        <input type="text" id="clientName" required placeholder="e.g. Director Sterling" class="form-input">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="clientEmail" class="form-label font-mono">SECURE EMAIL ADDRESS</label>
+                        <input type="email" id="clientEmail" required placeholder="e.g. contact@studio.co" class="form-input">
+                    </div>
+                </div>
+
+                 <div class="form-row">
+                    <div class="form-group">
+                        <label for="projectScope" class="form-label font-mono">PROJECT CORE SCOPE</label>
+                        <select id="projectScope" class="form-select">
+                            <option value="motion-graphics">3D Motion Graphics Design</option>
+                            <option value="commercial-edit">Commercial / Brand Editing</option>
+                            <option value="youtube-promo">Promo Reels & Shorts Campaign</option>
+                            <option value="vfx-grade">VFX & Precision Color Grading</option>
+                            <option value="full-pipeline">Full Post-Production Pipeline</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="projectBudget" class="form-label font-mono">BUDGET METRIC RANGE</label>
+                        <select id="projectBudget" class="form-select">
+                            <option value="bracket-a">Under $2,500</option>
+                            <option value="bracket-b">$2,500 - $5,000</option>
+                            <option value="bracket-c">$5,000 - $10,000</option>
+                            <option value="bracket-d">$10,000+ (High Fidelity)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="projectMessage" class="form-label font-mono">BRIEF METRICS / PROJECT DETAILS</label>
+                    <textarea id="projectMessage" class="text-large" rows="5" required placeholder="Detail the core message, deadline parameters, visual requirements, or custom visual themes..." class="form-textarea"></textarea>
+                </div>
+
+                <div id="formFeedback" class="feedback-toast font-mono hidden">
+                    <i class="fa-solid fa-circle-check text-lg"></i>
+                    <span>TRANSMISSION RENDERED SUCCESSFULLY! I will get back to your query within 12 standard business hours.</span>
+                </div>
+
+                <div class="form-footer">
+                    <span class="footer-tagline font-mono">PREPARED BY STRATUS KLOUD STUDIO</span>
+                    <button type="submit" class="submit-btn">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span>INITIATE PIPELINE</span>
+                    </button>    
+                </div> 
+            </form>
+        </div>
+        
     </section>
     <script src="./script.js"></script>
 </body>

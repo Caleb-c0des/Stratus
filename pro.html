@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* CSS Variables */
+        :root {
+            --bg-studio-950: #090a0f;
+            --bg-studio-900: #0f111a;
+            --border-studio-800: #1e2235;
+            --color-text-main: #ffffff;
+            --color-text-muted: #9ca3af;
+            --color-text-dim: #6b7280;
+            --color-cyan: #00f2fe;
+            --color-accent: #6366f1;
+            --color-pink: #db2777;
+            --color-neon: #00ff66;
+            --radius-xl: 12px;
+            --radius-2xl: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: #050508;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Helper Classes */
+        .font-mono {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Card Container */
+        .card-container {
+            width: 100%;
+            max-width: 800px;
+            background-color: var(--bg-studio-900);
+            border: 1px solid var(--border-studio-800);
+            border-radius: var(--radius-2xl);
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Header Bar */
+        .card-header {
+            background-color: var(--bg-studio-950);
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-studio-800);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        .header-title {
+            color: var(--color-text-muted);
+        }
+
+        .header-icon {
+            color: var(--color-accent);
+            margin-right: 6px;
+        }
+
+        .header-status {
+            color: var(--color-cyan);
+        }
+
+        /* Form Body */
+        .contact-form {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        @media (min-width: 640px) {
+            .contact-form {
+                padding: 40px;
+            }
+        }
+
+        /* Form Grid Layout */
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        @media (min-width: 640px) {
+            .form-row {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* Input Controls */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-label {
+            font-size: 12px;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            display: block;
+        }
+
+        .form-input, 
+        .form-select, 
+        .form-textarea {
+            width: 100%;
+            background-color: var(--bg-studio-950);
+            border: 1px solid var(--border-studio-800);
+            border-radius: var(--radius-xl);
+            padding: 14px 16px;
+            color: var(--color-text-main);
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .form-select {
+            color: #d1d5db;
+        }
+
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: #4b5563;
+        }
+
+        .form-input:focus, 
+        .form-select:focus, 
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--color-accent);
+        }
+
+        .form-textarea {
+            resize: none;
+        }
+
+        /* Toast Feedback */
+        .feedback-toast {
+            padding: 16px;
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(0, 255, 102, 0.4);
+            background-color: rgba(0, 255, 102, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 12px;
+            color: var(--color-neon);
+        }
+
+        .feedback-toast i {
+            font-size: 18px;
+        }
+
+        /* Submit Action Footer */
+        .form-footer {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: center;
+            padding-top: 16px;
+        }
+
+        @media (min-width: 640px) {
+            .form-footer {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+
+        .footer-tagline {
+            font-size: 12px;
+            color: var(--color-text-dim);
+            letter-spacing: 0.05em;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px 32px;
+            border: none;
+            border-radius: var(--radius-xl);
+            background: linear-gradient(to right, var(--color-accent), var(--color-pink));
+            font-weight: bold;
+            color: var(--color-text-main);
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.2);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        @media (min-width: 640px) {
+            .submit-btn {
+                width: auto;
+            }
+        }
+
+        .submit-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card-container">
+        <div class="card-header font-mono">
+            <span class="header-title">
+                <i class="fa-solid fa-paper-plane header-icon"></i>SECURE_ENCRYPTED_CONTACT_FORM
+            </span>
+            <span class="header-status">SSL_ACTIVE</span>
+        </div>
+
+        <form id="portfolioContactForm" onsubmit="handleFormSubmit(event)" class="contact-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="clientName" class="form-label font-mono">YOUR IDENTIFICATION / NAME</label>
+                    <input type="text" id="clientName" required placeholder="e.g. Director Sterling" class="form-input">
+                </div>
+                
+                <div class="form-group">
+                    <label for="clientEmail" class="form-label font-mono">SECURE EMAIL ADDRESS</label>
+                    <input type="email" id="clientEmail" required placeholder="e.g. contact@studio.co" class="form-input">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="projectScope" class="form-label font-mono">PROJECT CORE SCOPE</label>
+                    <select id="projectScope" class="form-select">
+                        <option value="motion-graphics">3D Motion Graphics Design</option>
+                        <option value="commercial-edit">Commercial / Brand Editing</option>
+                        <option value="youtube-promo">Promo Reels & Shorts Campaign</option>
+                        <option value="vfx-grade">VFX & Precision Color Grading</option>
+                        <option value="full-pipeline">Full Post-Production Pipeline</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="projectBudget" class="form-label font-mono">BUDGET METRIC RANGE</label>
+                    <select id="projectBudget" class="form-select">
+                        <option value="bracket-a">Under $2,500</option>
+                        <option value="bracket-b">$2,500 - $5,000</option>
+                        <option value="bracket-c">$5,000 - $10,000</option>
+                        <option value="bracket-d">$10,000+ (High Fidelity)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="projectMessage" class="form-label font-mono">BRIEF METRICS / PROJECT DETAILS</label>
+                <textarea id="projectMessage" rows="5" required placeholder="Detail the core message, deadline parameters, visual requirements, or custom visual themes..." class="form-textarea"></textarea>
+            </div>
+
+            <div id="formFeedback" class="feedback-toast font-mono hidden">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>TRANSMISSION RENDERED SUCCESSFULLY! I will get back to your query within 12 standard business hours.</span>
+            </div>
+
+            <div class="form-footer">
+                <span class="footer-tagline font-mono">PREPARED BY ALEX STERLING STUDIO</span>
+                <button type="submit" class="submit-btn">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>INITIATE PIPELINE</span>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function handleFormSubmit(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const feedback = document.getElementById('formFeedback');
+
+            // Retrieve form input values
+            const clientName = document.getElementById('clientName').value;
+            const clientEmail = document.getElementById('clientEmail').value;
+            const projectScope = document.getElementById('projectScope').value;
+            const projectBudget = document.getElementById('projectBudget').value;
+            const projectMessage = document.getElementById('projectMessage').value;
+
+            const payload = {
+                name: clientName,
+                email: clientEmail,
+                scope: projectScope,
+                budget: projectBudget,
+                message: projectMessage,
+                timestamp: new Date().toISOString()
+            };
+
+            // Show the success feedback indicator
+            if (feedback) {
+                feedback.classList.remove('hidden');
+            }
+
+            // Reset form inputs after submission
+            form.reset();
+        }
+    </script>
+</body>
+</html>
