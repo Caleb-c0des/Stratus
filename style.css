@@ -2146,6 +2146,7 @@ canvas {
     padding: 16px 12px;
     padding-right: 2rem;
 }
+
 button .fa-paper-plane {
     color:#ffffff;
 }
@@ -2163,4 +2164,47 @@ button .fa-paper-plane {
 .text-large:focus{
     outline: none;
     border-color: #7f00ff;
+}
+
+.contact button svg {
+    font-weight: bold;
+    color: #ffffff;
+    font-weight: 700;
+}
+.contact-button {
+    margin-top: 30px;
+}
+.contact a {
+    text-decoration: none;
+}
+.contact-flex {
+    display: flex;
+    margin-top: 20px;
+    gap:30px;
+    transition: 0.4s;
+    justify-content: center;
+}
+.contact-flex i:hover {
+    color:#818898;
+
+}
+.contact-flex .fa {
+    color:#4b5563;
+    transition: 0.4s;
+    font-size: 20px;
+}
+footer {
+    text-align: center;
+    color:#818898;
+    font-family: "Sansita", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    padding-bottom: 1rem;
+    padding-top: 10px;
+}
+.last{
+    background: #1a1a1e;
+    color:#1a1a1e;
+    border: 1px solid #1a1a1e;
+    margin-bottom:30px;
 }

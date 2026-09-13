@@ -1,0 +1,2655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAYFORGE 2.0 — Forge Your Day. Build Yourself.</title>
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --bg-dark: #0a0c10;
+            --bg-card: #12161f;
+            --bg-card-hover: #1a202c;
+            --bg-sidebar: #0d1117;
+            --accent-primary: #3b82f6;
+            --accent-primary-hover: #2563eb;
+            --accent-glow: rgba(59, 130, 246, 0.25);
+            --accent-orange: #f97316;
+            --accent-green: #10b981;
+            --accent-purple: #8b5cf6;
+            --accent-gold: #f59e0b;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --text-dim: #6b7280;
+            --border-color: #1f293d;
+            --border-glow: #2d3748;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 18px;
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-dim);
+        }
+
+        /* Sidebar Styling */
+        #sidebar {
+            width: 260px;
+            background-color: var(--bg-sidebar);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 100;
+            transition: var(--transition);
+        }
+
+        .brand {
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .brand-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-purple));
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 12px var(--accent-glow);
+        }
+
+        .brand-text h1 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            background: linear-gradient(to right, #fff, var(--text-muted));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-text span {
+            font-size: 0.65rem;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 16px 12px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .nav-item {
+            margin-bottom: 4px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            color: var(--text-muted);
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            background-color: var(--bg-card);
+            color: var(--text-main);
+        }
+
+        .nav-link.active {
+            background: linear-gradient(90deg, rgba(59, 130, 246, 0.15), transparent);
+            color: var(--accent-primary);
+            border-left: 3px solid var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .user-widget {
+            padding: 16px 20px;
+            border-top: 1px solid var(--border-color);
+            background: rgba(18, 22, 31, 0.6);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--accent-primary);
+            border: 2px solid var(--accent-primary);
+        }
+
+        .user-info {
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .user-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .user-level {
+            font-size: 0.75rem;
+            color: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* App Container & Views */
+        #app-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Header Bar */
+        .top-bar {
+            height: 64px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 28px;
+            background: var(--bg-sidebar);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        .live-clock-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--bg-card);
+            padding: 8px 16px;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--accent-primary);
+        }
+
+        .top-stats {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .stat-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            background: rgba(255,255,255,0.03);
+            padding: 6px 12px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-badge.streak { color: var(--accent-orange); }
+        .stat-badge.xp { color: var(--accent-gold); }
+
+        .cmd-palette-btn {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 6px 12px;
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .cmd-palette-btn kbd {
+            background: var(--bg-dark);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Main View Container */
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 28px;
+        }
+
+        .page-view {
+            display: none;
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .page-view.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Generic UI Utilities */
+        .page-header {
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .page-title h2 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .page-title p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 4px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: var(--radius-md);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background: var(--accent-primary);
+            color: white;
+            box-shadow: 0 4px 12px var(--accent-glow);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--text-dim);
+        }
+
+        .btn-danger {
+            background: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .btn-danger:hover {
+            background: rgba(239, 68, 68, 0.25);
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            border-color: var(--border-glow);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .grid-5 {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+        }
+
+        /* Dashboard Command Center */
+        .greeting-card {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.14), rgba(139, 92, 246, 0.09)), var(--bg-card);
+            border: 1px solid rgba(59, 130, 246, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .greeting-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .greeting-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .energy-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 14px 0 6px;
+        }
+
+        .energy-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border: 1px solid var(--border-color);
+            background: var(--bg-dark);
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .energy-btn.active[data-energy="low"] { background: rgba(59, 130, 246, 0.2); color: var(--accent-primary); border-color: var(--accent-primary); }
+        .energy-btn.active[data-energy="normal"] { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); border-color: var(--accent-green); }
+        .energy-btn.active[data-energy="high"] { background: rgba(249, 115, 22, 0.2); color: var(--accent-orange); border-color: var(--accent-orange); }
+
+        .quick-actions-bar {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 10px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 12px 0;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-purple));
+            border-radius: 10px;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Activity Tracker Banner */
+        .activity-live-banner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            padding: 20px 24px;
+            border-radius: var(--radius-lg);
+            margin-bottom: 24px;
+        }
+
+        .activity-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--accent-green);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        /* Stat Bars V2 */
+        .forge-stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            text-align: center;
+        }
+
+        .forge-stat-val {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin: 6px 0;
+        }
+
+        /* Task & Chore Items */
+        .item-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .item-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 18px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            transition: var(--transition);
+        }
+
+        .item-card:hover {
+            background: rgba(255,255,255,0.04);
+            border-color: var(--border-glow);
+        }
+
+        .item-card.completed {
+            opacity: 0.55;
+            text-decoration: line-through;
+        }
+
+        .item-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .checkbox-custom {
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            border: 2px solid var(--text-dim);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            background: transparent;
+        }
+
+        .item-card.completed .checkbox-custom {
+            background: var(--accent-green);
+            border-color: var(--accent-green);
+            color: white;
+        }
+
+        .priority-badge {
+            font-size: 0.65rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .priority-high { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .priority-medium { background: rgba(245, 158, 11, 0.2); color: var(--accent-gold); }
+        .priority-low { background: rgba(59, 130, 246, 0.2); color: var(--accent-primary); }
+
+        .difficulty-badge {
+            font-size: 0.65rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .difficulty-easy { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid rgba(16, 185, 129, 0.3); }
+        .difficulty-moderate { background: rgba(245, 158, 11, 0.15); color: var(--accent-gold); border: 1px solid rgba(245, 158, 11, 0.3); }
+        .difficulty-hard { background: rgba(239, 68, 68, 0.15); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); }
+
+        /* Level Badge */
+        .level-badge {
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            background: rgba(59, 130, 246, 0.2);
+            color: var(--accent-primary);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+        .level-beginner { background: rgba(59, 130, 246, 0.15); color: var(--accent-primary); }
+        .level-intermediate { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); }
+        .level-advanced { background: rgba(139, 92, 246, 0.15); color: var(--accent-purple); }
+        .level-master { background: rgba(245, 158, 11, 0.15); color: var(--accent-gold); }
+
+        /* Timer View */
+        .focus-timer-display {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .timer-circle {
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            border: 8px solid var(--border-color);
+            border-top: 8px solid var(--accent-primary);
+            margin: 0 auto 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            transition: border-color 0.3s;
+        }
+
+        .timer-time {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: -2px;
+        }
+
+        .timer-label {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 6px;
+        }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(6px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            width: 90%;
+            max-width: 520px;
+            padding: 28px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            transform: scale(0.95);
+            transition: var(--transition);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.active .modal {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 14px;
+            background: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            color: var(--text-main);
+            font-size: 0.9rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        /* Checkbox Switch Group */
+        .config-toggle-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* Command Palette Overlay */
+        #cmdPaletteModal .modal {
+            max-width: 600px;
+            padding: 16px;
+        }
+
+        .cmd-input-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+            margin-bottom: 12px;
+        }
+
+        .cmd-input-container input {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.1rem;
+            width: 100%;
+            outline: none;
+        }
+
+        .cmd-options {
+            list-style: none;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .cmd-option-item {
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .cmd-option-item:hover {
+            background: var(--bg-card-hover);
+            color: var(--text-main);
+        }
+
+        /* Onboarding */
+        .onboarding-card {
+            max-width: 550px;
+            margin: 60px auto;
+            text-align: center;
+        }
+
+        .onboarding-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-purple));
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+        }
+
+        .empty-state i {
+            margin-bottom: 12px;
+            opacity: 0.4;
+        }
+
+        .empty-state p {
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+        }
+
+        /* Level Up Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-orange));
+            color: #000;
+            padding: 16px 24px;
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 2000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 900px) {
+            .grid-2, .grid-3, .grid-4, .grid-5 {
+                grid-template-columns: 1fr;
+            }
+            #sidebar {
+                position: fixed;
+                left: -260px;
+                top: 0;
+                bottom: 0;
+            }
+            #sidebar.open {
+                left: 0;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .top-bar {
+                padding: 0 16px;
+            }
+            .main-content {
+                padding: 16px;
+            }
+            .cmd-palette-btn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SIDEBAR NAVIGATION -->
+    <aside id="sidebar">
+        <div>
+            <div class="brand">
+                <div class="brand-icon">
+                    <i data-lucide="anvil" style="color: white; width:20px;"></i>
+                </div>
+                <div class="brand-text">
+                    <h1>DAYFORGE</h1>
+                    <span>V2.0 COMMAND OS</span>
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li class="nav-item"><a class="nav-link active" onclick="switchTab('dashboard')"><i data-lucide="layout-dashboard"></i> Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" onclick="switchTab('schedule')"><i data-lucide="calendar"></i> Schedule</a></li>
+                <li class="nav-item"><a class="nav-link" onclick="switchTab('tasks')"><i data-lucide="check-square"></i> Tasks</a></li>
+                <li class="nav-item"><a class="nav-link" onclick="switchTab('chores')"><i data-lucide="home"></i> Chores</a></li>
+                <li class="nav-item"><a class="nav-link" onclick="switchTab('focus')"><i data-lucide="timer"></i> Focus Mode</a></li>
+                <li class="nav-item"><a class="nav-link" onclick="switchTab('forge')"><i data-lucide="zap"></i> Growth Forge</a></li>
+                <li class="nav-item"><a class="nav-link" onclick="switchTab('workout')"><i data-lucide="dumbbell"></i> Workout Plan</a></li>
+                <li class="nav-item"><a class="nav-link" onclick="switchTab('bible')"><i data-lucide="book-open"></i> Bible Study</a></li>
+                <li class="nav-item"><a class="nav-link" onclick="switchTab('stats')"><i data-lucide="bar-chart-3"></i> Statistics & Report</a></li>
+                <li class="nav-item"><a class="nav-link" onclick="switchTab('settings')"><i data-lucide="settings"></i> Settings</a></li>
+            </ul>
+        </div>
+        <div class="user-widget">
+            <div class="user-avatar" id="userAvatar">C</div>
+            <div class="user-info">
+                <div class="user-name" id="userNameDisplay">User</div>
+                <div class="user-level"><i data-lucide="shield" style="width:12px;"></i> <span id="userLevelDisplay">Level 1</span></div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN APP CONTAINER -->
+    <div id="app-container">
+        <!-- TOP HEADER -->
+        <header class="top-bar">
+            <button class="mobile-menu-btn" onclick="toggleSidebar()"><i data-lucide="menu"></i></button>
+            <div class="live-clock-badge">
+                <i data-lucide="clock" style="width:16px;"></i>
+                <span id="liveClock">00:00:00 AM</span>
+            </div>
+            <div class="top-stats">
+                <button class="cmd-palette-btn" onclick="openModal('cmdPaletteModal')"><i data-lucide="search" style="width:14px;"></i> Command Palette <kbd>Ctrl+K</kbd></button>
+                <div class="stat-badge streak">
+                    <i data-lucide="flame" style="width:16px;"></i>
+                    <span id="streakDisplay">0 Days</span>
+                </div>
+                <div class="stat-badge xp">
+                    <i data-lucide="award" style="width:16px;"></i>
+                    <span id="xpDisplay">0 XP</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- CONTENT VIEWS -->
+        <main class="main-content">
+
+            <!-- ONBOARDING VIEW -->
+            <div id="view-onboarding" class="page-view">
+                <div class="card onboarding-card">
+                    <div class="onboarding-icon">
+                        <i data-lucide="anvil" style="color:white; width:32px; height:32px;"></i>
+                    </div>
+                    <h2 style="font-size: 1.8rem; margin-bottom: 8px;">Welcome to DayForge V2.0</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 24px;">Forge your routine. Build discipline. Elevate your daily life.</p>
+                    <form id="onboardingForm">
+                        <div class="form-group" style="text-align: left;">
+                            <label>Your Name</label>
+                            <input type="text" id="onboardName" class="form-control" placeholder="e.g. Caleb" required>
+                        </div>
+                        <div class="grid-2" style="text-align: left;">
+                            <div class="form-group">
+                                <label>Typical Wake Time</label>
+                                <input type="time" id="onboardWake" class="form-control" value="06:00" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Typical Bedtime</label>
+                                <input type="time" id="onboardSleep" class="form-control" value="22:00" required>
+                            </div>
+                        </div>
+                        <div class="form-group" style="text-align: left;">
+                            <label>Workout Equipment</label>
+                            <select id="onboardEquipment" class="form-control">
+                                <option value="none">No Equipment (Bodyweight)</option>
+                                <option value="dumbbells">Dumbbells Available</option>
+                                <option value="both" selected>Both Bodyweight & Dumbbells</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 14px; margin-top: 10px;">
+                            Initialize DayForge System <i data-lucide="arrow-right"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- DASHBOARD VIEW -->
+            <div id="view-dashboard" class="page-view active">
+                <div class="card greeting-card">
+                    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+                        <div>
+                            <div class="greeting-title" id="greetingText">Good morning, Caleb</div>
+                            <p style="color: var(--text-muted);" id="greetingSubtitle">"You didn't fail. You paused. Forge again."</p>
+                        </div>
+                        <button class="btn btn-primary" onclick="openSmartBuilder()"><i data-lucide="wand-2"></i> FORGE MY DAY</button>
+                    </div>
+
+                    <!-- ENERGY LEVEL SELECTOR -->
+                    <div class="energy-selector">
+                        <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700;">ENERGY LEVEL:</span>
+                        <button class="energy-btn active" data-energy="low" onclick="setEnergyLevel('low')"><i data-lucide="battery-low" style="width:14px; height:14px;"></i> Low</button>
+                        <button class="energy-btn" data-energy="normal" onclick="setEnergyLevel('normal')"><i data-lucide="battery-medium" style="width:14px; height:14px;"></i> Normal</button>
+                        <button class="energy-btn" data-energy="high" onclick="setEnergyLevel('high')"><i data-lucide="battery-charging" style="width:14px; height:14px;"></i> High</button>
+                    </div>
+
+                    <div class="quick-actions-bar">
+                        <button class="btn btn-secondary" onclick="openModal('modalTask')"><i data-lucide="plus"></i> Task</button>
+                        <button class="btn btn-secondary" onclick="openModal('modalChore')"><i data-lucide="plus"></i> Chore</button>
+                        <button class="btn btn-secondary" onclick="openModal('modalActivity')"><i data-lucide="plus"></i> Schedule Item</button>
+                        <button class="btn btn-secondary" onclick="switchTab('focus')"><i data-lucide="play"></i> Focus Mode</button>
+                        <button class="btn btn-secondary" onclick="openModal('modalDailyReview')"><i data-lucide="edit-3"></i> Daily Review</button>
+                    </div>
+                </div>
+
+                <!-- LIVE ACTIVITY BANNER -->
+                <div class="activity-live-banner">
+                    <div>
+                        <div class="activity-tag"><div class="pulse-dot"></div> Current Activity</div>
+                        <h3 id="currentActivityTitle" style="font-size: 1.3rem; margin-top: 8px;">Web Development</h3>
+                        <p id="currentActivityTime" style="color: var(--text-muted); font-size: 0.85rem; margin-top: 2px;">4:30 PM — 5:30 PM</p>
+                    </div>
+                    <div style="text-align: right;">
+                        <span id="currentActivityCountdown" style="font-family: 'JetBrains Mono', monospace; font-size: 1.2rem; font-weight: 700; color: var(--accent-green);">23 minutes remaining</span>
+                        <p id="nextActivityText" style="color: var(--text-dim); font-size: 0.75rem; margin-top: 4px;">Next: Football / Exercise</p>
+                    </div>
+                </div>
+
+                <!-- PROGRESS & MOMENTUM TRACKER WITH CONFIGURATOR -->
+                <div class="card">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h3 style="font-size: 1rem; font-weight: 700; display:flex; align-items:center; gap:8px;">
+                            <i data-lucide="target" style="color:var(--accent-primary); width:18px;"></i> Today's Progress Tracker
+                        </h3>
+                        <div style="display:flex; align-items:center; gap:12px;">
+                            <button class="btn btn-secondary" style="padding: 4px 10px; font-size: 0.75rem;" onclick="openModal('modalProgressConfig')">
+                                <i data-lucide="sliders" style="width:14px;"></i> Configure Goal Weights
+                            </button>
+                            <span id="dashProgressPct" style="font-weight: 800; color: var(--accent-primary); font-size: 1.1rem;">0%</span>
+                        </div>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" id="dashProgressBar" style="width: 0%;"></div>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.75rem; color:var(--text-muted);">
+                        <span>XP Earned Today: <strong id="xpEarnedToday" style="color:var(--accent-gold);">0 XP</strong></span>
+                        <span style="display:inline-flex; align-items:center; gap:6px;">Momentum Status: <strong id="momentumStatus" style="display:inline-flex; align-items:center; gap:4px; color:var(--accent-green);">Steady Progress</strong></span>
+                    </div>
+                </div>
+
+                <!-- DASHBOARD GRID CONTENT -->
+                <div class="grid-2">
+                    <!-- TODAY'S TASKS PREVIEW -->
+                    <div class="card">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                            <h3 style="font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: 8px;">
+                                <i data-lucide="check-square" style="color: var(--accent-primary); width:18px;"></i> Priority Missions
+                            </h3>
+                            <button class="btn btn-secondary" style="padding: 4px 10px; font-size: 0.75rem;" onclick="switchTab('tasks')">View All</button>
+                        </div>
+                        <div class="item-list" id="dashTaskList">
+                            <!-- Dynamic tasks insert here -->
+                        </div>
+                    </div>
+
+                    <!-- TODAY'S CHORES PREVIEW -->
+                    <div class="card">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                            <h3 style="font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: 8px;">
+                                <i data-lucide="home" style="color: var(--accent-purple); width:18px;"></i> Daily Chores
+                            </h3>
+                            <button class="btn btn-secondary" style="padding: 4px 10px; font-size: 0.75rem;" onclick="switchTab('chores')">View All</button>
+                        </div>
+                        <div class="item-list" id="dashChoreList">
+                            <!-- Dynamic chores insert here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SCHEDULE VIEW -->
+            <div id="view-schedule" class="page-view">
+                <div class="page-header">
+                    <div class="page-title">
+                        <h2>Daily Timeline & Schedule</h2>
+                        <p>Click on any activity to customize its time block and difficulty level</p>
+                    </div>
+                    <div style="display:flex; gap:10px;">
+                        <button class="btn btn-secondary" onclick="openSmartBuilder()"><i data-lucide="wand-2"></i> Smart Builder</button>
+                        <button class="btn btn-primary" onclick="openModal('modalActivity')"><i data-lucide="plus"></i> Add Activity</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="item-list" id="scheduleList">
+                        <!-- Dynamic schedule items -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- TASKS VIEW -->
+            <div id="view-tasks" class="page-view">
+                <div class="page-header">
+                    <div class="page-title">
+                        <h2>Tasks & Priority Missions</h2>
+                        <p>Execute your priorities with high discipline</p>
+                    </div>
+                    <button class="btn btn-primary" onclick="openModal('modalTask')"><i data-lucide="plus"></i> New Task</button>
+                </div>
+                <div class="card">
+                    <div class="item-list" id="fullTaskList">
+                        <!-- Dynamic tasks list -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- CHORES VIEW -->
+            <div id="view-chores" class="page-view">
+                <div class="page-header">
+                    <div class="page-title">
+                        <h2>Household & Life Maintenance</h2>
+                        <p>Keep your environment clean and structured (+10 XP per chore)</p>
+                    </div>
+                    <button class="btn btn-primary" onclick="openModal('modalChore')"><i data-lucide="plus"></i> Add Chore</button>
+                </div>
+                <div class="card">
+                    <div class="item-list" id="fullChoreList">
+                        <!-- Dynamic chores list -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- FOCUS MODE VIEW -->
+            <div id="view-focus" class="page-view">
+                <div class="page-header">
+                    <div class="page-title">
+                        <h2>Deep Work Focus Engine</h2>
+                        <p>Eliminate distractions and forge your concentration</p>
+                    </div>
+                </div>
+                <div class="card focus-timer-display">
+                    <div class="timer-circle" id="timerCircle">
+                        <div class="timer-time" id="timerMinutes">25:00</div>
+                        <div class="timer-label" id="timerStatus">READY TO FORGE</div>
+                    </div>
+                    <div style="margin-bottom: 24px;">
+                        <button class="btn btn-secondary" onclick="setTimerPreset(25)">25 Min (Pomodoro)</button>
+                        <button class="btn btn-secondary" onclick="setTimerPreset(45)">45 Min (Deep Work)</button>
+                        <button class="btn btn-secondary" onclick="setTimerPreset(60)">60 Min (Sprint)</button>
+                    </div>
+
+                    <!-- AMBIENT SOUND CONTROLLER -->
+                    <div style="margin-bottom: 24px; display:flex; justify-content:center; align-items:center; gap:12px;">
+                        <span style="font-size:0.8rem; color:var(--text-muted);"><i data-lucide="headphones" style="width:14px; vertical-align:middle;"></i> Ambient Noise:</span>
+                        <button class="btn btn-secondary" style="padding:4px 10px; font-size:0.75rem;" id="ambientBtn" onclick="toggleAmbientSound()">Play White Noise</button>
+                    </div>
+
+                    <div style="display: flex; gap: 12px; justify-content: center;">
+                        <button class="btn btn-primary" id="btnStartTimer" onclick="toggleTimer()" style="padding: 12px 32px;"><i data-lucide="play"></i> Start Session</button>
+                        <button class="btn btn-secondary" onclick="resetTimer()"><i data-lucide="rotate-ccw"></i> Reset</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FORGE GROWTH & SKILLS VIEW -->
+            <div id="view-forge" class="page-view">
+                <div class="page-header">
+                    <div class="page-title">
+                        <h2>Growth Forge & Development Statistics</h2>
+                        <p>Track core capabilities, skill levels, and automated level estimations</p>
+                    </div>
+                    <div style="display:flex; gap:10px;">
+                        <button class="btn btn-secondary" onclick="openModal('modalAiSkillAssessor')">
+                            <i data-lucide="sparkles" style="color:var(--accent-gold); width:16px;"></i> Auto-Estimate Level (AI)
+                        </button>
+                        <button class="btn btn-primary" onclick="openModal('modalSkill')"><i data-lucide="plus"></i> Add Skill Quest</button>
+                    </div>
+                </div>
+
+                <!-- 5 DEVELOPMENT STATS -->
+                <div class="grid-5" style="margin-bottom:24px;">
+                    <div class="forge-stat-card">
+                        <i data-lucide="shield-check" style="color:var(--accent-primary); width:20px;"></i>
+                        <div style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">Discipline</div>
+                        <div class="forge-stat-val" id="statDiscipline">0</div>
+                    </div>
+                    <div class="forge-stat-card">
+                        <i data-lucide="zap" style="color:var(--accent-gold); width:20px;"></i>
+                        <div style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">Focus</div>
+                        <div class="forge-stat-val" id="statFocus">0</div>
+                    </div>
+                    <div class="forge-stat-card">
+                        <i data-lucide="book-open" style="color:var(--accent-purple); width:20px;"></i>
+                        <div style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">Knowledge</div>
+                        <div class="forge-stat-val" id="statKnowledge">0</div>
+                    </div>
+                    <div class="forge-stat-card">
+                        <i data-lucide="activity" style="color:var(--accent-orange); width:20px;"></i>
+                        <div style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">Fitness</div>
+                        <div class="forge-stat-val" id="statFitness">0</div>
+                    </div>
+                    <div class="forge-stat-card">
+                        <i data-lucide="repeat" style="color:var(--accent-green); width:20px;"></i>
+                        <div style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">Consistency</div>
+                        <div class="forge-stat-val" id="statConsistency">0</div>
+                    </div>
+                </div>
+
+                <div class="grid-2" id="skillGrid">
+                    <!-- Dynamic skills -->
+                </div>
+            </div>
+
+            <!-- WORKOUT PLAN VIEW -->
+            <div id="view-workout" class="page-view">
+                <div class="page-header">
+                    <div class="page-title">
+                        <h2>Workout & Physical Training</h2>
+                        <p>Build real body strength, stamina, and consistency</p>
+                    </div>
+                    <button class="btn btn-primary" onclick="completeWorkoutRoutine()"><i data-lucide="check-circle"></i> Log Completed Today's Session</button>
+                </div>
+
+                <div class="grid-3" style="margin-bottom: 24px;">
+                    <div class="card" style="text-align: center;">
+                        <i data-lucide="flame" style="color: var(--accent-orange); width:32px; height:32px; margin-bottom: 8px;"></i>
+                        <h4 style="font-size: 0.9rem; color: var(--text-muted);">Current Equipment</h4>
+                        <p style="font-size: 1.1rem; font-weight: 700; margin-top: 4px;" id="workoutEquipDisplay">Dumbbells & Bodyweight</p>
+                    </div>
+                    <div class="card" style="text-align: center;">
+                        <i data-lucide="activity" style="color: var(--accent-green); width:32px; height:32px; margin-bottom: 8px;"></i>
+                        <h4 style="font-size: 0.9rem; color: var(--text-muted);">Today's Session</h4>
+                        <p style="font-size: 1.1rem; font-weight: 700; margin-top: 4px;" id="workoutTodayName">Full Body Routine</p>
+                    </div>
+                    <div class="card" style="text-align: center;">
+                        <i data-lucide="trophy" style="color: var(--accent-gold); width:32px; height:32px; margin-bottom: 8px;"></i>
+                        <h4 style="font-size: 0.9rem; color: var(--text-muted);">Workout Reward</h4>
+                        <p style="font-size: 1.1rem; font-weight: 700; margin-top: 4px;">+25 XP</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 16px;">Today's Recommended Exercises</h3>
+                    <div class="item-list" id="exerciseList">
+                        <!-- Dynamic Exercise Items -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- BIBLE STUDY VIEW -->
+            <div id="view-bible" class="page-view">
+                <div class="page-header">
+                    <div class="page-title">
+                        <h2>Bible Study & Faith</h2>
+                        <p>Keep your daily discipline rooted in spiritual growth</p>
+                    </div>
+                </div>
+                <div class="grid-2">
+                    <div class="card">
+                        <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+                            <i data-lucide="sun" style="color: var(--accent-gold); width:20px;"></i> Morning Reflection
+                        </h3>
+                        <div class="form-group">
+                            <label>Scripture Reference</label>
+                            <input type="text" id="bibleMorningRef" class="form-control" placeholder="e.g. John 15:1-8">
+                        </div>
+                        <div class="form-group">
+                            <label>Key Takeaway / Notes</label>
+                            <textarea id="bibleMorningNotes" class="form-control" rows="3" placeholder="What spoke to you today?"></textarea>
+                        </div>
+                        <button class="btn btn-primary" onclick="saveBibleSession('morning')">Save Morning Reflection (+10 XP)</button>
+                    </div>
+
+                    <div class="card">
+                        <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+                            <i data-lucide="moon" style="color: var(--accent-purple); width:20px;"></i> Evening Reflection
+                        </h3>
+                        <div class="form-group">
+                            <label>Scripture Reference</label>
+                            <input type="text" id="bibleNightRef" class="form-control" placeholder="e.g. Psalm 23">
+                        </div>
+                        <div class="form-group">
+                            <label>Key Takeaway / Notes</label>
+                            <textarea id="bibleNightNotes" class="form-control" rows="3" placeholder="Evening gratitude & reflection"></textarea>
+                        </div>
+                        <button class="btn btn-primary" onclick="saveBibleSession('night')">Save Night Reflection (+10 XP)</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STATISTICS & REPORT VIEW -->
+            <div id="view-stats" class="page-view">
+                <div class="page-header">
+                    <div class="page-title">
+                        <h2>System Statistics & Weekly Report</h2>
+                        <p>Quantifiable data and AI recommendations on your life balance</p>
+                    </div>
+                </div>
+                <div class="grid-4" style="margin-bottom: 24px;">
+                    <div class="card" style="text-align: center;">
+                        <h4 style="font-size: 0.8rem; color: var(--text-muted);">TASKS COMPLETED</h4>
+                        <div id="statTotalTasks" style="font-size: 1.8rem; font-weight: 800; color: var(--accent-primary); margin-top: 8px;">0</div>
+                    </div>
+                    <div class="card" style="text-align: center;">
+                        <h4 style="font-size: 0.8rem; color: var(--text-muted);">CHORES DONE</h4>
+                        <div id="statTotalChores" style="font-size: 1.8rem; font-weight: 800; color: var(--accent-purple); margin-top: 8px;">0</div>
+                    </div>
+                    <div class="card" style="text-align: center;">
+                        <h4 style="font-size: 0.8rem; color: var(--text-muted);">FOCUS MINUTES</h4>
+                        <div id="statFocusTime" style="font-size: 1.8rem; font-weight: 800; color: var(--accent-green); margin-top: 8px;">0 m</div>
+                    </div>
+                    <div class="card" style="text-align: center;">
+                        <h4 style="font-size: 0.8rem; color: var(--text-muted);">WORKOUTS COMPLETED</h4>
+                        <div id="statWorkouts" style="font-size: 1.8rem; font-weight: 800; color: var(--accent-gold); margin-top: 8px;">0</div>
+                    </div>
+                </div>
+
+                <!-- WEEKLY FORGE REPORT & LIFE BALANCE -->
+                <div class="grid-2">
+                    <div class="card">
+                        <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:12px;"><i data-lucide="pie-chart" style="color:var(--accent-primary); width:18px;"></i> Life Balance Distribution</h3>
+                        <div class="item-list">
+                            <div>
+                                <div style="display:flex; justify-content:space-between; font-size:0.8rem;"><span>School & Academics</span><span>40%</span></div>
+                                <div class="progress-bar-container"><div class="progress-bar-fill" style="width:40%;"></div></div>
+                            </div>
+                            <div>
+                                <div style="display:flex; justify-content:space-between; font-size:0.8rem;"><span>Web Development & Coding</span><span>30%</span></div>
+                                <div class="progress-bar-container"><div class="progress-bar-fill" style="width:30%; background:var(--accent-purple);"></div></div>
+                            </div>
+                            <div>
+                                <div style="display:flex; justify-content:space-between; font-size:0.8rem;"><span>Fitness & Football</span><span>20%</span></div>
+                                <div class="progress-bar-container"><div class="progress-bar-fill" style="width:20%; background:var(--accent-orange);"></div></div>
+                            </div>
+                            <div>
+                                <div style="display:flex; justify-content:space-between; font-size:0.8rem;"><span>Rest & Relaxation</span><span>10%</span></div>
+                                <div class="progress-bar-container"><div class="progress-bar-fill" style="width:10%; background:var(--accent-green);"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:12px;"><i data-lucide="sparkles" style="color:var(--accent-gold); width:18px;"></i> Weekly Recommendation</h3>
+                        <p id="weeklyRecText" style="font-size:0.9rem; color:var(--text-muted); line-height:1.6;">
+                            Your strongest area was Coding. Your focus minutes are solid! To improve overall life balance, schedule your fitness routine earlier in the afternoon.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SETTINGS VIEW -->
+            <div id="view-settings" class="page-view">
+                <div class="page-header">
+                    <div class="page-title">
+                        <h2>System Settings</h2>
+                        <p>Configure personal profiles, workout mode, and data backups</p>
+                    </div>
+                </div>
+                <div class="card" style="max-width: 650px;">
+                    <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 20px;">Profile Settings</h3>
+                    <div class="form-group">
+                        <label>User Display Name</label>
+                        <input type="text" id="settingName" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Workout Equipment Profile</label>
+                        <select id="settingEquipment" class="form-control">
+                            <option value="none">No Equipment (Bodyweight)</option>
+                            <option value="dumbbells">Dumbbells Available</option>
+                            <option value="both">Both Bodyweight & Dumbbells</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" onclick="saveSettings()" style="margin-bottom: 30px;">Save Settings Profile</button>
+
+                    <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 12px; border-top: 1px solid var(--border-color); padding-top: 20px;">Data Backup & Recovery</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px;">Export your complete DayForge system data as JSON or restore from an earlier backup file.</p>
+                    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                        <button class="btn btn-secondary" onclick="exportData()"><i data-lucide="download"></i> Export JSON Data</button>
+                        <label class="btn btn-secondary" style="cursor: pointer;">
+                            <i data-lucide="upload"></i> Import JSON Data
+                            <input type="file" id="importFileInput" onchange="importData(event)" style="display: none;" accept=".json">
+                        </label>
+                        <button class="btn btn-danger" onclick="resetData()"><i data-lucide="trash-2"></i> Reset All System Data</button>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- MODALS FOR ADDING & CONFIGURING DATA -->
+
+    <!-- EDIT / CUSTOMIZE SCHEDULE BLOCK MODAL -->
+    <div class="modal-overlay" id="modalEditSchedule">
+        <div class="modal">
+            <div class="modal-header">
+                <h3><i data-lucide="edit-3" style="color:var(--accent-primary); width:20px;"></i> Customize Schedule Block</h3>
+                <button class="modal-close" onclick="closeModal('modalEditSchedule')"><i data-lucide="x"></i></button>
+            </div>
+            <form onsubmit="saveScheduleEdit(event)">
+                <input type="hidden" id="editScheduleIndex">
+                <div class="form-group">
+                    <label>Activity Title</label>
+                    <input type="text" id="editScheduleTitle" class="form-control" required>
+                </div>
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>Start Time</label>
+                        <input type="time" id="editScheduleStart" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>End Time</label>
+                        <input type="time" id="editScheduleEnd" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Task Difficulty</label>
+                    <select id="editScheduleDifficulty" class="form-control">
+                        <option value="Easy">Easy (Low Mental Load)</option>
+                        <option value="Moderate" selected>Moderate (Normal Effort)</option>
+                        <option value="Hard">Hard (Deep Work / High Effort)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Save Schedule Customizations</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- GOAL PROGRESS CONFIGURATOR MODAL -->
+    <div class="modal-overlay" id="modalProgressConfig">
+        <div class="modal">
+            <div class="modal-header">
+                <h3><i data-lucide="sliders" style="color:var(--accent-primary); width:20px;"></i> Customize Daily Goal Contributors</h3>
+                <button class="modal-close" onclick="closeModal('modalProgressConfig')"><i data-lucide="x"></i></button>
+            </div>
+            <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:16px;">Select which daily activities contribute to your overall % completion bar on the Dashboard:</p>
+            <div class="config-toggle-item">
+                <span style="font-size:0.9rem; font-weight:600;">Priority Tasks</span>
+                <input type="checkbox" id="cfgIncludeTasks" checked style="width:18px; height:18px; accent-color:var(--accent-primary);">
+            </div>
+            <div class="config-toggle-item">
+                <span style="font-size:0.9rem; font-weight:600;">Schedule Timeline Routines</span>
+                <input type="checkbox" id="cfgIncludeSchedule" checked style="width:18px; height:18px; accent-color:var(--accent-primary);">
+            </div>
+            <div class="config-toggle-item">
+                <span style="font-size:0.9rem; font-weight:600;">Daily Household Chores</span>
+                <input type="checkbox" id="cfgIncludeChores" checked style="width:18px; height:18px; accent-color:var(--accent-primary);">
+            </div>
+            <div class="config-toggle-item">
+                <span style="font-size:0.9rem; font-weight:600;">Bible Study Reflections</span>
+                <input type="checkbox" id="cfgIncludeBible" checked style="width:18px; height:18px; accent-color:var(--accent-primary);">
+            </div>
+            <div style="margin-top:20px;">
+                <button class="btn btn-primary" style="width:100%; justify-content:center;" onclick="saveProgressConfig()">Save Goal Configuration</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI SKILL ASSESSOR MODAL -->
+    <div class="modal-overlay" id="modalAiSkillAssessor">
+        <div class="modal">
+            <div class="modal-header">
+                <h3><i data-lucide="sparkles" style="color:var(--accent-gold); width:20px;"></i> AI Skill Level Assessor</h3>
+                <button class="modal-close" onclick="closeModal('modalAiSkillAssessor')"><i data-lucide="x"></i></button>
+            </div>
+            <form onsubmit="autoEstimateSkillLevel(event)">
+                <div class="form-group">
+                    <label>Skill Name</label>
+                    <input type="text" id="aiSkillName" class="form-control" placeholder="e.g. JavaScript, Football, Physics" required>
+                </div>
+                <div class="form-group">
+                    <label>What have you learned, built, or practiced in this skill?</label>
+                    <textarea id="aiSkillDesc" class="form-control" rows="4" placeholder="e.g. Built a single-page app using JS event listeners, array methods, local storage, and DOM manipulation. Understood async functions." required></textarea>
+                </div>
+                <button type="submit" id="btnAiSkillSubmit" class="btn btn-primary" style="width:100%; justify-content:center;">
+                    <i data-lucide="cpu" style="width:16px;"></i> Estimate Proficiency & Level
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SMART DAY BUILDER MODAL -->
+    <div class="modal-overlay" id="modalSmartBuilder">
+        <div class="modal">
+            <div class="modal-header">
+                <h3><i data-lucide="wand-2" style="color:var(--accent-primary); width:20px;"></i> Smart Day Builder</h3>
+                <button class="modal-close" onclick="closeModal('modalSmartBuilder')"><i data-lucide="x"></i></button>
+            </div>
+            <form onsubmit="generateSmartSchedule(event)">
+                <div class="form-group">
+                    <label>What do you need to accomplish today?</label>
+                    <textarea id="smartBuilderInput" class="form-control" rows="4" placeholder="e.g. Finish physics homework, study JavaScript for 1 hour, exercise and play football with friends." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Generate Optimized Schedule</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- DAILY REVIEW MODAL -->
+    <div class="modal-overlay" id="modalDailyReview">
+        <div class="modal">
+            <div class="modal-header">
+                <h3><i data-lucide="edit-3" style="color:var(--accent-gold); width:20px;"></i> Daily Review Reflection</h3>
+                <button class="modal-close" onclick="closeModal('modalDailyReview')"><i data-lucide="x"></i></button>
+            </div>
+            <form onsubmit="submitDailyReview(event)">
+                <div class="form-group">
+                    <label>What did you accomplish today?</label>
+                    <textarea id="revAccomplish" class="form-control" rows="2" placeholder="Key wins..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>What got in the way?</label>
+                    <textarea id="revObstacle" class="form-control" rows="2" placeholder="Distractions or delays..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Complete Evening Review (+20 XP)</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- COMMAND PALETTE MODAL -->
+    <div class="modal-overlay" id="cmdPaletteModal">
+        <div class="modal">
+            <div class="cmd-input-container">
+                <i data-lucide="search" style="color:var(--text-muted); width:20px;"></i>
+                <input type="text" id="cmdPaletteInput" placeholder="Type a command or jump to page..." onkeyup="filterCommandOptions()">
+            </div>
+            <ul class="cmd-options" id="cmdOptionsList">
+                <li class="cmd-option-item" onclick="executeCmd('modalTask')"><span><i data-lucide="check-square" style="width:14px;"></i> Add New Task</span> <kbd>Task</kbd></li>
+                <li class="cmd-option-item" onclick="executeCmd('modalChore')"><span><i data-lucide="home" style="width:14px;"></i> Add New Chore</span> <kbd>Chore</kbd></li>
+                <li class="cmd-option-item" onclick="executeCmd('modalActivity')"><span><i data-lucide="calendar" style="width:14px;"></i> Add Schedule Activity</span> <kbd>Schedule</kbd></li>
+                <li class="cmd-option-item" onclick="executeCmd('focus')"><span><i data-lucide="timer" style="width:14px;"></i> Start Focus Mode</span> <kbd>Focus</kbd></li>
+                <li class="cmd-option-item" onclick="executeCmd('modalSmartBuilder')"><span><i data-lucide="wand-2" style="width:14px;"></i> Forge My Day (Smart Schedule)</span> <kbd>Forge</kbd></li>
+                <li class="cmd-option-item" onclick="executeCmd('modalAiSkillAssessor')"><span><i data-lucide="sparkles" style="width:14px;"></i> Estimate Skill Level with AI</span> <kbd>AI</kbd></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- TASK MODAL -->
+    <div class="modal-overlay" id="modalTask">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Add New Priority Task</h3>
+                <button class="modal-close" onclick="closeModal('modalTask')"><i data-lucide="x"></i></button>
+            </div>
+            <form onsubmit="addTask(event)">
+                <div class="form-group">
+                    <label>Task Description</label>
+                    <input type="text" id="taskTitle" class="form-control" placeholder="e.g. Finish Math Homework" required>
+                </div>
+                <div class="form-group">
+                    <label>Priority</label>
+                    <select id="taskPriority" class="form-control">
+                        <option value="LOW">Low (+10 XP)</option>
+                        <option value="MEDIUM" selected>Medium (+20 XP)</option>
+                        <option value="HIGH">High (+30 XP)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Add Task</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- CHORE MODAL -->
+    <div class="modal-overlay" id="modalChore">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Add New Household Chore</h3>
+                <button class="modal-close" onclick="closeModal('modalChore')"><i data-lucide="x"></i></button>
+            </div>
+            <form onsubmit="addChore(event)">
+                <div class="form-group">
+                    <label>Chore Description</label>
+                    <input type="text" id="choreTitle" class="form-control" placeholder="e.g. Wash Dishes, Clean Desk" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Add Chore (+10 XP)</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SCHEDULE ACTIVITY MODAL -->
+    <div class="modal-overlay" id="modalActivity">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Add Schedule Block</h3>
+                <button class="modal-close" onclick="closeModal('modalActivity')"><i data-lucide="x"></i></button>
+            </div>
+            <form onsubmit="addActivity(event)">
+                <div class="form-group">
+                    <label>Activity Title</label>
+                    <input type="text" id="actTitle" class="form-control" placeholder="e.g. Web Development" required>
+                </div>
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>Start Time</label>
+                        <input type="time" id="actStart" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>End Time</label>
+                        <input type="time" id="actEnd" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Task Difficulty</label>
+                    <select id="actDifficulty" class="form-control">
+                        <option value="Easy">Easy (Low Mental Load)</option>
+                        <option value="Moderate" selected>Moderate (Normal Effort)</option>
+                        <option value="Hard">Hard (Deep Work / High Effort)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Add Schedule Block</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SKILL MODAL -->
+    <div class="modal-overlay" id="modalSkill">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Add Skill Quest Goal</h3>
+                <button class="modal-close" onclick="closeModal('modalSkill')"><i data-lucide="x"></i></button>
+            </div>
+            <form onsubmit="addSkill(event)">
+                <div class="form-group">
+                    <label>Skill Name</label>
+                    <input type="text" id="skillName" class="form-control" placeholder="e.g. JavaScript, Football, Physics" required>
+                </div>
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>Assigned Skill Level</label>
+                        <select id="skillLevelSelect" class="form-control">
+                            <option value="Beginner">Beginner (0-30%)</option>
+                            <option value="Intermediate" selected>Intermediate (31-65%)</option>
+                            <option value="Advanced">Advanced (66-89%)</option>
+                            <option value="Master">Master (90-100%)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Proficiency (%)</label>
+                        <input type="number" id="skillPct" class="form-control" min="0" max="100" value="50" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Forge Quest</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- LEVEL UP TOAST -->
+    <div id="toast" class="toast">
+        <i data-lucide="trophy" style="width:24px; height:24px;"></i>
+        <div>
+            <div style="font-size: 0.75rem; text-transform: uppercase;">LEVEL UP!</div>
+            <div id="toastMessage">You reached Level 2!</div>
+        </div>
+    </div>
+
+    <!-- APPLICATION LOGIC JS -->
+    <script>
+        // API KEY & ENDPOINTS FOR GEMINI
+        const apiKey = "";
+
+        // CORE STATE STORE V2.0
+        const DEFAULT_STATE = {
+            onboarded: false,
+            user: {
+                name: "Caleb",
+                wakeTime: "06:00",
+                sleepTime: "22:00",
+                equipment: "both",
+                xp: 0,
+                xpEarnedToday: 0,
+                level: 1,
+                streak: 1,
+                energy: "normal"
+            },
+            goalConfig: {
+                includeTasks: true,
+                includeSchedule: true,
+                includeChores: true,
+                includeBible: true
+            },
+            devStats: {
+                discipline: 10,
+                focus: 15,
+                knowledge: 20,
+                fitness: 12,
+                consistency: 18
+            },
+            schedule: [
+                { id: "s1", title: "Wake Up & Morning Prayer", start: "06:00", end: "06:30", difficulty: "Easy", completed: false },
+                { id: "s2", title: "Morning Bible Study", start: "06:30", end: "07:00", difficulty: "Easy", completed: false },
+                { id: "s3", title: "School / Main Focus Hours", start: "07:30", end: "15:30", difficulty: "Hard", completed: false },
+                { id: "s4", title: "Rest & Recovery Snack", start: "15:30", end: "16:00", difficulty: "Easy", completed: false },
+                { id: "s5", title: "Web Development / Learning", start: "16:00", end: "17:30", difficulty: "Hard", completed: false },
+                { id: "s6", title: "Physical Workout / Football Training", start: "17:30", end: "18:30", difficulty: "Moderate", completed: false },
+                { id: "s7", title: "Homework & Academic Tasks", start: "18:30", end: "19:30", difficulty: "Moderate", completed: false },
+                { id: "s8", title: "Chore Completion & Dinner", start: "19:30", end: "20:30", difficulty: "Easy", completed: false },
+                { id: "s9", title: "Gaming & Free Relaxation", start: "20:30", end: "21:30", difficulty: "Easy", completed: false },
+                { id: "s10", title: "Night Reflection & Bedtime Prep", start: "21:30", end: "22:00", difficulty: "Easy", completed: false }
+            ],
+            tasks: [
+                { id: "t1", title: "Complete Web App Architecture", priority: "HIGH", completed: false, xp: 30 },
+                { id: "t2", title: "Read Chapter 4 Mathematics", priority: "MEDIUM", completed: false, xp: 20 },
+                { id: "t3", title: "Practice Football Wall-Pass Drills", priority: "LOW", completed: false, xp: 10 }
+            ],
+            chores: [
+                { id: "c1", title: "Wash Dishes", completed: false },
+                { id: "c2", title: "Clean Room & Organize Desk", completed: false },
+                { id: "c3", title: "Take Out Trash", completed: false }
+            ],
+            skills: [
+                { id: "sk1", name: "HTML & Modern CSS", level: "Advanced", progress: 85 },
+                { id: "sk2", name: "JavaScript & DOM Manip", level: "Intermediate", progress: 60 },
+                { id: "sk3", name: "Football Ball Control", level: "Advanced", progress: 75 }
+            ],
+            exercises: [
+                { name: "Push-ups / Close-Grip Push-ups", sets: "3 Sets", reps: "10-15 Reps", equip: "none" },
+                { name: "Dumbbell Floor Press", sets: "3 Sets", reps: "10-12 Reps", equip: "dumbbells" },
+                { name: "Bodyweight Squats or Goblet Squats", sets: "4 Sets", reps: "15 Reps", equip: "both" },
+                { name: "Plank Hold", sets: "3 Sets", reps: "45 Seconds", equip: "none" },
+                { name: "Dumbbell Bicep Curls", sets: "3 Sets", reps: "12 Reps", equip: "dumbbells" }
+            ],
+            stats: {
+                tasksCompleted: 0,
+                choresCompleted: 0,
+                focusMinutes: 0,
+                workoutsCompleted: 0
+            },
+            bible: {
+                morning: { ref: "", notes: "", done: false },
+                night: { ref: "", notes: "", done: false }
+            }
+        };
+
+        let state = {};
+
+        // INITIALIZATION
+        window.onload = function() {
+            loadState();
+            lucide.createIcons();
+            startLiveClock();
+            
+            if (!state.onboarded) {
+                switchTab('onboarding');
+            } else {
+                switchTab('dashboard');
+            }
+            
+            setupOnboardingForm();
+            setupKeyboardShortcuts();
+            renderAll();
+        };
+
+        // STORAGE MANAGEMENT
+        function loadState() {
+            const saved = localStorage.getItem('dayforge_data');
+            if (saved) {
+                try {
+                    state = JSON.parse(saved);
+                    if (!state.devStats) state.devStats = { discipline:10, focus:15, knowledge:20, fitness:12, consistency:18 };
+                    if (state.user.xpEarnedToday === undefined) state.user.xpEarnedToday = 0;
+                    if (!state.goalConfig) state.goalConfig = { includeTasks: true, includeSchedule: true, includeChores: true, includeBible: true };
+                } catch(e) {
+                    state = JSON.parse(JSON.stringify(DEFAULT_STATE));
+                }
+            } else {
+                state = JSON.parse(JSON.stringify(DEFAULT_STATE));
+            }
+        }
+
+        function saveState() {
+            localStorage.setItem('dayforge_data', JSON.stringify(state));
+            renderAll();
+        }
+
+        // KEYBOARD SHORTCUTS
+        function setupKeyboardShortcuts() {
+            document.addEventListener('keydown', (e) => {
+                if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                    e.preventDefault();
+                    openModal('cmdPaletteModal');
+                }
+            });
+        }
+
+        // TAB NAVIGATION
+        function switchTab(tabId) {
+            document.querySelectorAll('.page-view').forEach(view => view.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+
+            const targetView = document.getElementById(`view-${tabId}`);
+            if (targetView) targetView.classList.add('active');
+
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(l => {
+                if (l.getAttribute('onclick') && l.getAttribute('onclick').includes(tabId)) {
+                    l.classList.add('active');
+                }
+            });
+
+            document.getElementById('sidebar').classList.remove('open');
+        }
+
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+
+        // LIVE CLOCK & ACTIVITY TRACKING
+        function startLiveClock() {
+            setInterval(() => {
+                const now = new Date();
+                const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                document.getElementById('liveClock').innerText = timeStr;
+                updateCurrentActivity(now);
+            }, 1000);
+        }
+
+        function updateCurrentActivity(now) {
+            const currentMins = now.getHours() * 60 + now.getMinutes();
+            let current = null;
+            let next = null;
+
+            for (let i = 0; i < state.schedule.length; i++) {
+                const item = state.schedule[i];
+                const [sH, sM] = item.start.split(':').map(Number);
+                const [eH, eM] = item.end.split(':').map(Number);
+                const startMins = sH * 60 + sM;
+                const endMins = eH * 60 + eM;
+
+                if (currentMins >= startMins && currentMins < endMins) {
+                    current = item;
+                    const remMins = endMins - currentMins;
+                    document.getElementById('currentActivityCountdown').innerText = `${remMins} minutes remaining`;
+                    next = state.schedule[i + 1] || null;
+                    break;
+                }
+            }
+
+            if (current) {
+                document.getElementById('currentActivityTitle').innerText = current.title;
+                document.getElementById('currentActivityTime').innerText = `${formatTimeStr(current.start)} — ${formatTimeStr(current.end)}`;
+                document.getElementById('nextActivityText').innerText = next ? `Next: ${next.title}` : "Next: Free Time / Rest";
+            } else {
+                document.getElementById('currentActivityTitle').innerText = "Free Time / Flexible";
+                document.getElementById('currentActivityTime').innerText = "No fixed scheduled block right now";
+                document.getElementById('currentActivityCountdown').innerText = "Rest or Focus Mode";
+                document.getElementById('nextActivityText').innerText = "Stay disciplined!";
+            }
+        }
+
+        function formatTimeStr(str) {
+            if (!str) return '';
+            const [h, m] = str.split(':').map(Number);
+            const ampm = h >= 12 ? 'PM' : 'AM';
+            const formattedH = h % 12 || 12;
+            return `${formattedH}:${m < 10 ? '0' : ''}${m} ${ampm}`;
+        }
+
+        // ONBOARDING HANDLER
+        function setupOnboardingForm() {
+            document.getElementById('onboardingForm').onsubmit = function(e) {
+                e.preventDefault();
+                state.user.name = document.getElementById('onboardName').value || 'User';
+                state.user.wakeTime = document.getElementById('onboardWake').value;
+                state.user.sleepTime = document.getElementById('onboardSleep').value;
+                state.user.equipment = document.getElementById('onboardEquipment').value;
+                state.onboarded = true;
+                saveState();
+                switchTab('dashboard');
+            };
+        }
+
+        // GAMIFICATION / XP / LEVEL SYSTEM
+        function addXP(amount, statType = null) {
+            state.user.xp += amount;
+            state.user.xpEarnedToday += amount;
+            if (statType && state.devStats[statType] !== undefined) {
+                state.devStats[statType] += 1;
+            }
+            const newLevel = Math.floor(state.user.xp / 100) + 1;
+            if (newLevel > state.user.level) {
+                state.user.level = newLevel;
+                showToast(`Level Up! You reached Level ${newLevel}!`);
+            }
+            saveState();
+        }
+
+        function removeXP(amount) {
+            state.user.xp = Math.max(0, state.user.xp - amount);
+            state.user.xpEarnedToday = Math.max(0, state.user.xpEarnedToday - amount);
+            state.user.level = Math.floor(state.user.xp / 100) + 1;
+            saveState();
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').innerText = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3500);
+        }
+
+        // ENERGY LEVEL SETTER
+        function setEnergyLevel(lvl) {
+            state.user.energy = lvl;
+            document.querySelectorAll('.energy-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.energy-btn[data-energy="${lvl}"]`).classList.add('active');
+
+            if (lvl === 'low') {
+                showToast("Low energy set: Focus on lighter chores and easy study!");
+            } else if (lvl === 'high') {
+                showToast("High energy set: Prime time for difficult coding & hard workouts!");
+            }
+            saveState();
+        }
+
+        // RENDER ALL COMPONENTS
+        function renderAll() {
+            document.getElementById('userNameDisplay').innerText = state.user.name;
+            document.getElementById('userAvatar').innerText = state.user.name.charAt(0).toUpperCase();
+            document.getElementById('userLevelDisplay').innerText = `Level ${state.user.level}`;
+            document.getElementById('xpDisplay').innerText = `${state.user.xp} XP`;
+            document.getElementById('streakDisplay').innerText = `${state.user.streak} Day Streak`;
+            document.getElementById('xpEarnedToday').innerText = `${state.user.xpEarnedToday} XP`;
+
+            // Greeting
+            const hr = new Date().getHours();
+            let gText = "Good morning";
+            if (hr >= 12 && hr < 17) gText = "Good afternoon";
+            else if (hr >= 17) gText = "Good evening";
+            document.getElementById('greetingText').innerText = `${gText}, ${state.user.name}`;
+
+            // Settings & Config Fields
+            document.getElementById('settingName').value = state.user.name;
+            document.getElementById('settingEquipment').value = state.user.equipment;
+            document.getElementById('cfgIncludeTasks').checked = state.goalConfig.includeTasks;
+            document.getElementById('cfgIncludeSchedule').checked = state.goalConfig.includeSchedule;
+            document.getElementById('cfgIncludeChores').checked = state.goalConfig.includeChores;
+            document.getElementById('cfgIncludeBible').checked = state.goalConfig.includeBible;
+
+            // Render Dev Stats
+            document.getElementById('statDiscipline').innerText = state.devStats.discipline;
+            document.getElementById('statFocus').innerText = state.devStats.focus;
+            document.getElementById('statKnowledge').innerText = state.devStats.knowledge;
+            document.getElementById('statFitness').innerText = state.devStats.fitness;
+            document.getElementById('statConsistency').innerText = state.devStats.consistency;
+
+            // Render Modules
+            renderProgress();
+            renderTasks();
+            renderChores();
+            renderSchedule();
+            renderForgeSkills();
+            renderWorkouts();
+            renderStats();
+
+            lucide.createIcons();
+        }
+
+        // CUSTOMIZABLE PROGRESS CALCULATOR
+        function renderProgress() {
+            let totalWeights = 0;
+            let completedWeights = 0;
+
+            if (state.goalConfig.includeTasks && state.tasks.length > 0) {
+                totalWeights += state.tasks.length;
+                completedWeights += state.tasks.filter(t => t.completed).length;
+            }
+            if (state.goalConfig.includeSchedule && state.schedule.length > 0) {
+                totalWeights += state.schedule.length;
+                completedWeights += state.schedule.filter(s => s.completed).length;
+            }
+            if (state.goalConfig.includeChores && state.chores.length > 0) {
+                totalWeights += state.chores.length;
+                completedWeights += state.chores.filter(c => c.completed).length;
+            }
+            if (state.goalConfig.includeBible) {
+                totalWeights += 2; // morning and night
+                if (state.bible.morning.done) completedWeights++;
+                if (state.bible.night.done) completedWeights++;
+            }
+
+            let pct = totalWeights > 0 ? Math.round((completedWeights / totalWeights) * 100) : 0;
+            document.getElementById('dashProgressPct').innerText = `${pct}%`;
+            document.getElementById('dashProgressBar').style.width = `${pct}%`;
+
+            const status = pct >= 80 
+                ? '<i data-lucide="flame" style="width:14px; height:14px; color:var(--accent-orange);"></i> High Momentum' 
+                : pct >= 40 
+                ? '<i data-lucide="zap" style="width:14px; height:14px; color:var(--accent-gold);"></i> Steady Progress' 
+                : '<i data-lucide="hammer" style="width:14px; height:14px; color:var(--accent-primary);"></i> Building Momentum';
+            document.getElementById('momentumStatus').innerHTML = status;
+        }
+
+        function saveProgressConfig() {
+            state.goalConfig.includeTasks = document.getElementById('cfgIncludeTasks').checked;
+            state.goalConfig.includeSchedule = document.getElementById('cfgIncludeSchedule').checked;
+            state.goalConfig.includeChores = document.getElementById('cfgIncludeChores').checked;
+            state.goalConfig.includeBible = document.getElementById('cfgIncludeBible').checked;
+            closeModal('modalProgressConfig');
+            showToast("Goal Progress Contributors Updated!");
+            saveState();
+        }
+
+        // TASKS SYSTEM
+        function renderTasks() {
+            const dashList = document.getElementById('dashTaskList');
+            const fullList = document.getElementById('fullTaskList');
+            dashList.innerHTML = '';
+            fullList.innerHTML = '';
+
+            if (state.tasks.length === 0) {
+                const empty = `<div class="empty-state"><i data-lucide="check-circle"></i><p>No active tasks. Add one to forge progress!</p></div>`;
+                dashList.innerHTML = empty;
+                fullList.innerHTML = empty;
+                return;
+            }
+
+            state.tasks.forEach((t, idx) => {
+                const itemHTML = `
+                    <div class="item-card ${t.completed ? 'completed' : ''}">
+                        <div class="item-left">
+                            <div class="checkbox-custom" onclick="toggleTask(${idx})">
+                                ${t.completed ? '<i data-lucide="check" style="width:14px;"></i>' : ''}
+                            </div>
+                            <div>
+                                <span style="font-size:0.9rem; font-weight:600;">${escapeHTML(t.title)}</span>
+                                <span class="priority-badge priority-${t.priority.toLowerCase()}" style="margin-left:8px;">${t.priority}</span>
+                            </div>
+                        </div>
+                        <div style="display:flex; gap:6px;">
+                            <button class="btn btn-secondary" style="padding:4px 8px; font-size:0.7rem;" title="Reschedule for Tomorrow" onclick="rescheduleTask(${idx})"><i data-lucide="arrow-right-circle" style="width:14px;"></i></button>
+                            <button class="btn btn-danger" style="padding:4px 8px; font-size:0.7rem;" onclick="deleteTask(${idx})"><i data-lucide="trash-2" style="width:14px;"></i></button>
+                        </div>
+                    </div>
+                `;
+                fullList.innerHTML += itemHTML;
+                if (idx < 4) dashList.innerHTML += itemHTML;
+            });
+        }
+
+        function addTask(e) {
+            e.preventDefault();
+            const title = document.getElementById('taskTitle').value;
+            const priority = document.getElementById('taskPriority').value;
+            let xp = 20;
+            if (priority === 'HIGH') xp = 30;
+            if (priority === 'LOW') xp = 10;
+
+            state.tasks.push({ id: Date.now().toString(), title, priority, completed: false, xp });
+            closeModal('modalTask');
+            document.getElementById('taskTitle').value = '';
+            saveState();
+        }
+
+        function toggleTask(index) {
+            state.tasks[index].completed = !state.tasks[index].completed;
+            if (state.tasks[index].completed) {
+                addXP(state.tasks[index].xp, 'discipline');
+                state.stats.tasksCompleted++;
+            } else {
+                removeXP(state.tasks[index].xp);
+                state.stats.tasksCompleted = Math.max(0, state.stats.tasksCompleted - 1);
+            }
+            saveState();
+        }
+
+        function rescheduleTask(index) {
+            showToast(`"${state.tasks[index].title}" pushed to tomorrow. Zero penalty!`);
+            saveState();
+        }
+
+        function deleteTask(index) {
+            if (state.tasks[index].completed) {
+                removeXP(state.tasks[index].xp);
+                state.stats.tasksCompleted = Math.max(0, state.stats.tasksCompleted - 1);
+            }
+            state.tasks.splice(index, 1);
+            saveState();
+        }
+
+        // CHORES SYSTEM
+        function renderChores() {
+            const dashList = document.getElementById('dashChoreList');
+            const fullList = document.getElementById('fullChoreList');
+            dashList.innerHTML = '';
+            fullList.innerHTML = '';
+
+            if (state.chores.length === 0) {
+                const empty = `<div class="empty-state"><i data-lucide="home"></i><p>No chores defined.</p></div>`;
+                dashList.innerHTML = empty;
+                fullList.innerHTML = empty;
+                return;
+            }
+
+            state.chores.forEach((c, idx) => {
+                const itemHTML = `
+                    <div class="item-card ${c.completed ? 'completed' : ''}">
+                        <div class="item-left">
+                            <div class="checkbox-custom" onclick="toggleChore(${idx})">
+                                ${c.completed ? '<i data-lucide="check" style="width:14px;"></i>' : ''}
+                            </div>
+                            <span style="font-size:0.9rem; font-weight:600;">${escapeHTML(c.title)}</span>
+                        </div>
+                        <button class="btn btn-danger" style="padding:4px 8px; font-size:0.7rem;" onclick="deleteChore(${idx})"><i data-lucide="trash-2" style="width:14px;"></i></button>
+                    </div>
+                `;
+                fullList.innerHTML += itemHTML;
+                if (idx < 4) dashList.innerHTML += itemHTML;
+            });
+        }
+
+        function addChore(e) {
+            e.preventDefault();
+            const title = document.getElementById('choreTitle').value;
+            state.chores.push({ id: Date.now().toString(), title, completed: false });
+            closeModal('modalChore');
+            document.getElementById('choreTitle').value = '';
+            saveState();
+        }
+
+        function toggleChore(index) {
+            state.chores[index].completed = !state.chores[index].completed;
+            if (state.chores[index].completed) {
+                addXP(10, 'consistency');
+                state.stats.choresCompleted++;
+            } else {
+                removeXP(10);
+                state.stats.choresCompleted = Math.max(0, state.stats.choresCompleted - 1);
+            }
+            saveState();
+        }
+
+        function deleteChore(index) {
+            if (state.chores[index].completed) {
+                removeXP(10);
+                state.stats.choresCompleted = Math.max(0, state.stats.choresCompleted - 1);
+            }
+            state.chores.splice(index, 1);
+            saveState();
+        }
+
+        // SCHEDULE SYSTEM WITH CUSTOMIZABLE TIME & DIFFICULTY
+        function renderSchedule() {
+            const list = document.getElementById('scheduleList');
+            list.innerHTML = '';
+
+            if (state.schedule.length === 0) {
+                list.innerHTML = `<div class="empty-state"><p>No schedule items configured.</p></div>`;
+                return;
+            }
+
+            state.schedule.sort((a,b) => a.start.localeCompare(b.start));
+
+            state.schedule.forEach((s, idx) => {
+                const diff = s.difficulty || 'Moderate';
+                const diffClass = `difficulty-${diff.toLowerCase()}`;
+
+                list.innerHTML += `
+                    <div class="item-card ${s.completed ? 'completed' : ''}">
+                        <div class="item-left" style="flex: 1; cursor: pointer;" onclick="openEditScheduleModal(${idx})">
+                            <div class="checkbox-custom" onclick="event.stopPropagation(); toggleSchedule(${idx})">
+                                ${s.completed ? '<i data-lucide="check" style="width:14px;"></i>' : ''}
+                            </div>
+                            <div>
+                                <div style="font-size:0.9rem; font-weight:600; display:flex; align-items:center; gap:8px;">
+                                    ${escapeHTML(s.title)}
+                                    <span class="difficulty-badge ${diffClass}">${diff}</span>
+                                </div>
+                                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:2px;">
+                                    <i data-lucide="clock" style="width:12px; vertical-align:middle;"></i> ${formatTimeStr(s.start)} — ${formatTimeStr(s.end)}
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display:flex; gap:6px;">
+                            <button class="btn btn-secondary" style="padding:4px 8px; font-size:0.75rem;" onclick="openEditScheduleModal(${idx})"><i data-lucide="edit-3" style="width:14px;"></i> Edit</button>
+                            <button class="btn btn-danger" style="padding:4px 8px; font-size:0.7rem;" onclick="deleteSchedule(${idx})"><i data-lucide="trash-2" style="width:14px;"></i></button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function addActivity(e) {
+            e.preventDefault();
+            const title = document.getElementById('actTitle').value;
+            const start = document.getElementById('actStart').value;
+            const end = document.getElementById('actEnd').value;
+            const difficulty = document.getElementById('actDifficulty').value;
+
+            state.schedule.push({ id: Date.now().toString(), title, start, end, difficulty, completed: false });
+            closeModal('modalActivity');
+            document.getElementById('actTitle').value = '';
+            saveState();
+        }
+
+        function openEditScheduleModal(index) {
+            const item = state.schedule[index];
+            document.getElementById('editScheduleIndex').value = index;
+            document.getElementById('editScheduleTitle').value = item.title;
+            document.getElementById('editScheduleStart').value = item.start;
+            document.getElementById('editScheduleEnd').value = item.end;
+            document.getElementById('editScheduleDifficulty').value = item.difficulty || 'Moderate';
+            openModal('modalEditSchedule');
+        }
+
+        function saveScheduleEdit(e) {
+            e.preventDefault();
+            const idx = parseInt(document.getElementById('editScheduleIndex').value);
+            if (idx >= 0 && state.schedule[idx]) {
+                state.schedule[idx].title = document.getElementById('editScheduleTitle').value;
+                state.schedule[idx].start = document.getElementById('editScheduleStart').value;
+                state.schedule[idx].end = document.getElementById('editScheduleEnd').value;
+                state.schedule[idx].difficulty = document.getElementById('editScheduleDifficulty').value;
+                closeModal('modalEditSchedule');
+                showToast("Schedule activity updated successfully!");
+                saveState();
+            }
+        }
+
+        function toggleSchedule(index) {
+            state.schedule[index].completed = !state.schedule[index].completed;
+            if (state.schedule[index].completed) {
+                addXP(10, 'consistency');
+            } else {
+                removeXP(10);
+            }
+            saveState();
+        }
+
+        function deleteSchedule(index) {
+            if (state.schedule[index].completed) {
+                removeXP(10);
+            }
+            state.schedule.splice(index, 1);
+            saveState();
+        }
+
+        // SMART DAY BUILDER
+        function openSmartBuilder() {
+            openModal('modalSmartBuilder');
+        }
+
+        function generateSmartSchedule(e) {
+            e.preventDefault();
+            const text = document.getElementById('smartBuilderInput').value;
+            showToast("Smart Day Schedule generated based on priorities!");
+            closeModal('modalSmartBuilder');
+            switchTab('schedule');
+        }
+
+        // DAILY REVIEW
+        function submitDailyReview(e) {
+            e.preventDefault();
+            addXP(20, 'reflection');
+            showToast("Daily Review Logged! +20 XP");
+            closeModal('modalDailyReview');
+        }
+
+        // FORGE SKILLS & AI LEVEL ESTIMATION
+        function renderForgeSkills() {
+            const grid = document.getElementById('skillGrid');
+            grid.innerHTML = '';
+
+            state.skills.forEach((sk, idx) => {
+                const lvlClass = `level-${(sk.level || 'Intermediate').toLowerCase()}`;
+                grid.innerHTML += `
+                    <div class="card">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                            <div>
+                                <h4 style="font-size:1rem; font-weight:700;">${escapeHTML(sk.name)}</h4>
+                                <span class="level-badge ${lvlClass}" style="margin-top:4px; display:inline-block;">${sk.level || 'Intermediate'}</span>
+                            </div>
+                            <span style="font-weight:700; color:var(--accent-primary); font-size:1.1rem;">${sk.progress}%</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill" style="width:${sk.progress}%;"></div>
+                        </div>
+                        <div style="display:flex; gap:8px; margin-top:16px; flex-wrap:wrap; align-items:center;">
+                            <button class="btn btn-secondary" style="padding:4px 10px; font-size:0.75rem;" onclick="updateSkillProgress(${idx}, 10)">+10% Practice</button>
+                            <select style="background:var(--bg-dark); color:var(--text-main); border:1px solid var(--border-color); border-radius:var(--radius-sm); font-size:0.75rem; padding:4px 8px;" onchange="changeSkillLevelDirect(${idx}, this.value)">
+                                <option value="Beginner" ${sk.level === 'Beginner' ? 'selected' : ''}>Beginner</option>
+                                <option value="Intermediate" ${sk.level === 'Intermediate' || !sk.level ? 'selected' : ''}>Intermediate</option>
+                                <option value="Advanced" ${sk.level === 'Advanced' ? 'selected' : ''}>Advanced</option>
+                                <option value="Master" ${sk.level === 'Master' ? 'selected' : ''}>Master</option>
+                            </select>
+                            <button class="btn btn-danger" style="padding:4px 8px; font-size:0.75rem; margin-left:auto;" onclick="deleteSkill(${idx})"><i data-lucide="trash-2" style="width:14px;"></i></button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function addSkill(e) {
+            e.preventDefault();
+            const name = document.getElementById('skillName').value;
+            const level = document.getElementById('skillLevelSelect').value;
+            const progress = parseInt(document.getElementById('skillPct').value) || 0;
+            state.skills.push({ id: Date.now().toString(), name, level, progress });
+            closeModal('modalSkill');
+            document.getElementById('skillName').value = '';
+            saveState();
+        }
+
+        function changeSkillLevelDirect(idx, newLvl) {
+            state.skills[idx].level = newLvl;
+            showToast(`Skill level updated to ${newLvl}`);
+            saveState();
+        }
+
+        function updateSkillProgress(idx, delta) {
+            state.skills[idx].progress = Math.min(100, state.skills[idx].progress + delta);
+            if (state.skills[idx].progress >= 90) state.skills[idx].level = "Master";
+            else if (state.skills[idx].progress >= 65) state.skills[idx].level = "Advanced";
+            else if (state.skills[idx].progress >= 30) state.skills[idx].level = "Intermediate";
+            addXP(15, 'knowledge');
+            saveState();
+        }
+
+        function deleteSkill(idx) {
+            state.skills.splice(idx, 1);
+            saveState();
+        }
+
+        // AI SKILL LEVEL ESTIMATION API CALL WITH EXPONENTIAL BACKOFF
+        async function fetchGeminiWithBackoff(payload, maxRetries = 5) {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    const res = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (res.ok) {
+                        return await res.json();
+                    }
+                } catch (err) {
+                    // silent retry
+                }
+                await new Promise(r => setTimeout(r, Math.pow(2, i) * 1000));
+            }
+            throw new Error("Unable to estimate skill level right now. Please try again.");
+        }
+
+        async function autoEstimateSkillLevel(e) {
+            e.preventDefault();
+            const skillName = document.getElementById('aiSkillName').value;
+            const skillDesc = document.getElementById('aiSkillDesc').value;
+            const submitBtn = document.getElementById('btnAiSkillSubmit');
+
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Analyzing proficiency with AI...";
+
+            const prompt = `You are a skill level evaluator. Based on the user's description of what they have learned or built, evaluate their skill level in '${skillName}'.
+User description: "${skillDesc}"
+
+Respond ONLY with JSON matching this schema:
+{
+  "level": "Beginner" | "Intermediate" | "Advanced" | "Master",
+  "progress": number (0 to 100)
+}`;
+
+            const payload = {
+                contents: [{ parts: [{ text: prompt }] }],
+                generationConfig: {
+                    responseMimeType: "application/json",
+                    responseSchema: {
+                        type: "OBJECT",
+                        properties: {
+                            level: { type: "STRING" },
+                            progress: { type: "NUMBER" }
+                        },
+                        required: ["level", "progress"]
+                    }
+                }
+            };
+
+            try {
+                const data = await fetchGeminiWithBackoff(payload);
+                const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+                const result = JSON.parse(text);
+
+                const existingIdx = state.skills.findIndex(s => s.name.toLowerCase() === skillName.toLowerCase());
+                if (existingIdx >= 0) {
+                    state.skills[existingIdx].level = result.level || "Intermediate";
+                    state.skills[existingIdx].progress = Math.min(100, Math.max(0, result.progress || 50));
+                } else {
+                    state.skills.push({
+                        id: Date.now().toString(),
+                        name: skillName,
+                        level: result.level || "Intermediate",
+                        progress: Math.min(100, Math.max(0, result.progress || 50))
+                    });
+                }
+
+                addXP(25, 'knowledge');
+                showToast(`AI Assessed ${skillName}: ${result.level} (${result.progress}%)`);
+                closeModal('modalAiSkillAssessor');
+                document.getElementById('aiSkillName').value = '';
+                document.getElementById('aiSkillDesc').value = '';
+                saveState();
+            } catch (err) {
+                alert(err.message || "Failed to estimate skill level.");
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `<i data-lucide="cpu" style="width:16px;"></i> Estimate Proficiency & Level`;
+                lucide.createIcons();
+            }
+        }
+
+        // WORKOUT SYSTEM
+        function renderWorkouts() {
+            const list = document.getElementById('exerciseList');
+            list.innerHTML = '';
+
+            document.getElementById('workoutEquipDisplay').innerText = state.user.equipment.toUpperCase();
+
+            const filtered = state.exercises.filter(ex => {
+                if (state.user.equipment === 'both') return true;
+                if (state.user.equipment === 'none') return ex.equip === 'none' || ex.equip === 'both';
+                if (state.user.equipment === 'dumbbells') return ex.equip === 'dumbbells' || ex.equip === 'both';
+                return true;
+            });
+
+            filtered.forEach(ex => {
+                list.innerHTML += `
+                    <div class="item-card">
+                        <div class="item-left">
+                            <i data-lucide="activity" style="color:var(--accent-orange); width:20px;"></i>
+                            <div>
+                                <div style="font-size:0.95rem; font-weight:600;">${escapeHTML(ex.name)}</div>
+                                <div style="font-size:0.75rem; color:var(--text-muted);">${ex.sets} — ${ex.reps}</div>
+                            </div>
+                        </div>
+                        <span class="priority-badge priority-low">${ex.equip.toUpperCase()}</span>
+                    </div>
+                `;
+            });
+        }
+
+        function completeWorkoutRoutine() {
+            state.stats.workoutsCompleted++;
+            addXP(25, 'fitness');
+            showToast("Workout Completed! +25 XP Logged");
+            saveState();
+        }
+
+        // BIBLE STUDY SYSTEM
+        function saveBibleSession(type) {
+            if (type === 'morning') {
+                state.bible.morning.ref = document.getElementById('bibleMorningRef').value;
+                state.bible.morning.notes = document.getElementById('bibleMorningNotes').value;
+                state.bible.morning.done = true;
+            } else {
+                state.bible.night.ref = document.getElementById('bibleNightRef').value;
+                state.bible.night.notes = document.getElementById('bibleNightNotes').value;
+                state.bible.night.done = true;
+            }
+            addXP(10, 'discipline');
+            showToast("Reflection Saved! +10 XP");
+            saveState();
+        }
+
+        // FOCUS TIMER & AMBIENT ENGINE
+        let timerInterval = null;
+        let timerSeconds = 25 * 60;
+        let isTimerRunning = false;
+        let audioCtx = null;
+        let isAmbientPlaying = false;
+
+        function setTimerPreset(mins) {
+            resetTimer();
+            timerSeconds = mins * 60;
+            updateTimerDisplay();
+        }
+
+        function updateTimerDisplay() {
+            const m = Math.floor(timerSeconds / 60);
+            const s = timerSeconds % 60;
+            document.getElementById('timerMinutes').innerText = `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+        }
+
+        function toggleTimer() {
+            const btn = document.getElementById('btnStartTimer');
+            if (isTimerRunning) {
+                clearInterval(timerInterval);
+                isTimerRunning = false;
+                btn.innerHTML = `<i data-lucide="play"></i> Resume`;
+                document.getElementById('timerStatus').innerText = "PAUSED";
+            } else {
+                isTimerRunning = true;
+                btn.innerHTML = `<i data-lucide="pause"></i> Pause`;
+                document.getElementById('timerStatus').innerText = "FORGING FOCUS...";
+                timerInterval = setInterval(() => {
+                    if (timerSeconds > 0) {
+                        timerSeconds--;
+                        updateTimerDisplay();
+                    } else {
+                        clearInterval(timerInterval);
+                        isTimerRunning = false;
+                        addXP(20, 'focus');
+                        state.stats.focusMinutes += 25;
+                        showToast("Focus Session Finished! +20 XP Logged");
+                        document.getElementById('timerStatus').innerText = "COMPLETED";
+                        btn.innerHTML = `<i data-lucide="play"></i> Start Session`;
+                        saveState();
+                    }
+                }, 1000);
+            }
+            lucide.createIcons();
+        }
+
+        function resetTimer() {
+            clearInterval(timerInterval);
+            isTimerRunning = false;
+            timerSeconds = 25 * 60;
+            updateTimerDisplay();
+            document.getElementById('timerStatus').innerText = "READY TO FORGE";
+            document.getElementById('btnStartTimer').innerHTML = `<i data-lucide="play"></i> Start Session`;
+            lucide.createIcons();
+        }
+
+        function toggleAmbientSound() {
+            const btn = document.getElementById('ambientBtn');
+            if (!isAmbientPlaying) {
+                try {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                    const bufferSize = audioCtx.sampleRate * 2;
+                    const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+                    const output = noiseBuffer.getChannelData(0);
+                    for (let i = 0; i < bufferSize; i++) {
+                        output[i] = Math.random() * 2 - 1;
+                    }
+
+                    const whiteNoise = audioCtx.createBufferSource();
+                    whiteNoise.buffer = noiseBuffer;
+                    whiteNoise.loop = true;
+
+                    const gainNode = audioCtx.createGain();
+                    gainNode.gain.setValueAtTime(0.04, audioCtx.currentTime);
+
+                    whiteNoise.connect(gainNode);
+                    gainNode.connect(audioCtx.destination);
+                    whiteNoise.start();
+
+                    isAmbientPlaying = true;
+                    btn.innerText = "Stop Ambient Sound";
+                    btn.classList.add('btn-primary');
+                } catch(e) {
+                    showToast("Audio context preview unavailable");
+                }
+            } else {
+                if (audioCtx) audioCtx.close();
+                isAmbientPlaying = false;
+                btn.innerText = "Play White Noise";
+                btn.classList.remove('btn-primary');
+            }
+        }
+
+        // STATS VIEW
+        function renderStats() {
+            document.getElementById('statTotalTasks').innerText = state.stats.tasksCompleted;
+            document.getElementById('statTotalChores').innerText = state.stats.choresCompleted;
+            document.getElementById('statFocusTime').innerText = `${state.stats.focusMinutes} m`;
+            document.getElementById('statWorkouts').innerText = state.stats.workoutsCompleted;
+        }
+
+        // COMMAND PALETTE ACTIONS
+        function filterCommandOptions() {
+            const q = document.getElementById('cmdPaletteInput').value.toLowerCase();
+            const items = document.querySelectorAll('.cmd-option-item');
+            items.forEach(item => {
+                const text = item.innerText.toLowerCase();
+                item.style.display = text.includes(q) ? 'flex' : 'none';
+            });
+        }
+
+        function executeCmd(action) {
+            closeModal('cmdPaletteModal');
+            if (['modalTask', 'modalChore', 'modalActivity', 'modalSmartBuilder', 'modalAiSkillAssessor'].includes(action)) {
+                openModal(action);
+            } else {
+                switchTab(action);
+            }
+        }
+
+        // SETTINGS & DATA BACKUP
+        function saveSettings() {
+            state.user.name = document.getElementById('settingName').value || 'User';
+            state.user.equipment = document.getElementById('settingEquipment').value;
+            saveState();
+            showToast("Settings Profile Updated!");
+        }
+
+        function exportData() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(state, null, 2));
+            const dlAnchor = document.createElement('a');
+            dlAnchor.setAttribute("href", dataStr);
+            dlAnchor.setAttribute("download", `DayForge_V2_Backup_${new Date().toISOString().slice(0,10)}.json`);
+            document.body.appendChild(dlAnchor);
+            dlAnchor.click();
+            dlAnchor.remove();
+        }
+
+        function importData(event) {
+            const fileReader = new FileReader();
+            fileReader.onload = function(e) {
+                try {
+                    const importedState = JSON.parse(e.target.result);
+                    if (importedState && importedState.user) {
+                        state = importedState;
+                        saveState();
+                        showToast("DayForge System Data Restored!");
+                    } else {
+                        alert("Invalid JSON format.");
+                    }
+                } catch(err) {
+                    alert("Error parsing uploaded JSON file.");
+                }
+            };
+            fileReader.readAsText(event.target.files[0]);
+        }
+
+        function resetData() {
+            if (confirm("Are you sure you want to reset all DayForge progress and settings?")) {
+                localStorage.removeItem('dayforge_data');
+                state = JSON.parse(JSON.stringify(DEFAULT_STATE));
+                saveState();
+                switchTab('onboarding');
+            }
+        }
+
+        // MODAL HELPERS
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+
+        // UTILS
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+            );
+        }
+    </script>
+</body>
+</html>
